@@ -131,7 +131,7 @@ namespace Sofft.Utils
 		public static void TomarLogin ()
 		{
 			//este metodo abre el archivo ini y setea el usuario por defecto o ultimo validado
-			throw NotImplementedException ();
+			throw new NotImplementedException ();
 		}
 
 		[Obsolete ("Usar GuardarLogin()")]
@@ -144,7 +144,7 @@ namespace Sofft.Utils
 		public static void GuardarLogin ()
 		{
 			//este metodo guarda el login en el archivo
-			throw NotImplementedException ();
+			throw new NotImplementedException ();
 		}
 
 		[Obsolete ("Usar SeteaCultura")]

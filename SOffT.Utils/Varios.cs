@@ -109,7 +109,7 @@ namespace Sofft.Utils
 		[Obsolete ("Usar ConfirmarEliminarRegitro()")]
 		public static bool confirmaEliminarRegistro ()
 		{
-			ConfirmaEliminarRegistro ();
+			return ConfirmaEliminarRegistro ();
 		}
 
 		/// <summary>
