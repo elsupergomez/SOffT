@@ -102,7 +102,7 @@ namespace Sofft.Utils
 		[Obsolete ("Usar CargarIcono()")]
 		public static Icon cargaIcono ()
 		{
-			return CargaIcono ();
+			return CargarIcono ();
 		}
 
 		/// <summary>

@@ -23,6 +23,7 @@
 
 using System;
 using System.Windows.Forms;
+using Hamekoz.Data;
 
 namespace Sofft.Utils
 {
@@ -42,35 +43,27 @@ namespace Sofft.Utils
 
 		public static long DateDiff (DateInterval Interval, DateTime StartDate, DateTime EndDate)
 		{
-			long lngDateDiffValue = 0;
 			var TS = new TimeSpan (EndDate.Ticks - StartDate.Ticks);
 			switch (Interval) {
 			case DateInterval.Day:
-				lngDateDiffValue = (long)TS.Days;
-				break;
+				return (long)TS.Days;
 			case DateInterval.Hour:
-				lngDateDiffValue = (long)TS.TotalHours;
-				break;
+				return (long)TS.TotalHours;
 			case DateInterval.Minute:
-				lngDateDiffValue = (long)TS.TotalMinutes;
-				break;
+				return (long)TS.TotalMinutes;
 			case DateInterval.Month:
-				lngDateDiffValue = (long)(TS.Days / 30);
-				break;
+				return (long)(TS.Days / 30);
 			case DateInterval.Quarter:
-				lngDateDiffValue = (long)((TS.Days / 30) / 3);
-				break;
+				return (long)((TS.Days / 30) / 3);
 			case DateInterval.Second:
-				lngDateDiffValue = (long)TS.TotalSeconds;
-				break;
+				return (long)TS.TotalSeconds;
 			case DateInterval.Week:
-				lngDateDiffValue = (long)(TS.Days / 7);
-				break;
+				return (long)(TS.Days / 7);
 			case DateInterval.Year:
-				lngDateDiffValue = (long)(TS.Days / 365);
-				break;
+				return (long)(TS.Days / 365);
+			default:
+				return 0;
 			}
-			return (lngDateDiffValue);
 		}
 		//end of DateDiff
 
@@ -84,11 +77,11 @@ namespace Sofft.Utils
 			}
 		}
 
-		//TODO: sacar esto de acá !!!!!!!!!!!!!!!!!!!! Quitar referencia DBNET tambien
+		//TODO: sacar esto de acá !!!!!!!!!!!!!!!!!!!!
 		public static string consultarFechaActual ()
 		{
 			string fecha;
-			fecha = Model.DB.ejecutarScalar (Model.TipoComando.SP, "fechaActual").ToString ();
+			fecha = DB.Instancia.SP ("fechaActual").ToString ();
 			return fecha;
 		}
 

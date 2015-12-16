@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using Hamekoz.Data;
 
 namespace Sofft.Utils
 {
@@ -79,7 +80,7 @@ namespace Sofft.Utils
 		public int ExisteUsuario (string usr, string pwd)
 		{
 			int idUsuario;
-			idUsuario = Convert.ToInt32 (Model.DB.ejecutarScalar (Model.TipoComando.SP, "usuariosConsultarSiExiste", "usr", usr, "pwd", pwd));
+			idUsuario = Convert.ToInt32 (DB.Instancia.SPToScalar ("usuariosConsultarSiExiste", "usr", usr, "pwd", pwd));
 			return idUsuario > 0 ? idUsuario : 0;
 		}
 
@@ -87,7 +88,7 @@ namespace Sofft.Utils
 		public static void setPermisos (ref Button[] botones, string nivel)
 		{
 			if (Modulo.Usuario != null) {
-				var ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosConsultarNivel", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo, "nivel", nivel);
+				var ds = DB.Instancia.SPToDataSet ("permisosConsultarNivel", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo, "nivel", nivel);
 				foreach (DataRow dr in ds.Tables["permisosConsultarNivel"].Rows) {
 					try {
 						botones [Convert.ToInt32 (dr ["indice"])].Enabled = (bool)dr ["acceso"];
@@ -101,7 +102,7 @@ namespace Sofft.Utils
 		public static void SetPermisos (ref List<Button> botones, string nivel)
 		{
 			if (Modulo.Usuario != null) {
-				var ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosConsultarNivel", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo, "nivel", nivel);
+				var ds = DB.Instancia.SPToDataSet ("permisosConsultarNivel", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo, "nivel", nivel);
 				foreach (DataRow dr in ds.Tables["permisosConsultarNivel"].Rows) {
 					try {
 						botones [Convert.ToInt32 (dr ["indice"])].Enabled = (bool)dr ["acceso"];
@@ -116,7 +117,7 @@ namespace Sofft.Utils
 		public static void setPermisosIndices (ref Button[] botones)
 		{
 			DataSet ds;
-			ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosUsuariosConsultarIndice", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo);
+			ds = DB.Instancia.SPToDataSet ("permisosUsuariosConsultarIndice", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo);
 			foreach (DataRow dr in ds.Tables["permisosUsuariosConsultarIndice"].Rows) {
 				botones [(int)dr ["indice"] - 1].Enabled = (bool)dr ["acceso"];
 			}
@@ -124,7 +125,7 @@ namespace Sofft.Utils
 
 		public static void SetPermisosIndices (ref List<Button> botones)
 		{
-			var ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosUsuariosConsultarIndice", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo);
+			var ds = DB.Instancia.SPToDataSet ("permisosUsuariosConsultarIndice", "@idUsuario", Modulo.Usuario.IdUsuario, "@idModulo", Modulo.IdModulo);
 			foreach (DataRow dr in ds.Tables["permisosUsuariosConsultarIndice"].Rows) {
 				botones [(int)dr ["indice"] - 1].Enabled = (bool)dr ["acceso"];
 			}
@@ -134,7 +135,7 @@ namespace Sofft.Utils
 		public static void setPermisosSubIndices (ref Button[] botones, int indice)
 		{
 			if (Modulo.Usuario != null) {
-				var ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosUsuariosConsultarSubIndice", "idUsuario", Modulo.Usuario.IdUsuario, "idModulo", Modulo.IdModulo, "indice", indice);
+				var ds = DB.Instancia.SPToDataSet ("permisosUsuariosConsultarSubIndice", "idUsuario", Modulo.Usuario.IdUsuario, "idModulo", Modulo.IdModulo, "indice", indice);
 				foreach (DataRow dr in ds.Tables["permisosUsuariosConsultarSubIndice"].Rows) {
 					botones [(int)dr ["subIndice"] - 1].Enabled = (bool)dr ["acceso"];
 				}
@@ -144,7 +145,7 @@ namespace Sofft.Utils
 		public static void SetPermisosSubIndices (ref List<Button> botones, int indice)
 		{
 			if (Modulo.Usuario != null) {
-				var ds = Model.DB.ejecutarDataSet (Model.TipoComando.SP, "permisosUsuariosConsultarSubIndice", "idUsuario", Modulo.Usuario.IdUsuario, "idModulo", Modulo.IdModulo, "indice", indice);
+				var ds = DB.Instancia.SPToDataSet ("permisosUsuariosConsultarSubIndice", "idUsuario", Modulo.Usuario.IdUsuario, "idModulo", Modulo.IdModulo, "indice", indice);
 				foreach (DataRow dr in ds.Tables["permisosUsuariosConsultarSubIndice"].Rows) {
 					botones [(int)dr ["subIndice"] - 1].Enabled = (bool)dr ["acceso"];
 				}
