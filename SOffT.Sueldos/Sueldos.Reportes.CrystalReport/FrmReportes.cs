@@ -5,7 +5,7 @@
     Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
     Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
 
-    Copyright © SOffT 2010 - http://www.sofft.com.ar
+    Copyright Â© SOffT 2010 - http://www.sofft.com.ar
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

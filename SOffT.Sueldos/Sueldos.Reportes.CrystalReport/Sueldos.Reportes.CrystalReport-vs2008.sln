@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.Reportes.CrystalReport-vs2008", "Sueldos.Reportes.CrystalReport-vs2008.csproj", "{F462BE9D-90D3-4CD9-A097-BE0195A5D460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F462BE9D-90D3-4CD9-A097-BE0195A5D460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F462BE9D-90D3-4CD9-A097-BE0195A5D460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F462BE9D-90D3-4CD9-A097-BE0195A5D460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F462BE9D-90D3-4CD9-A097-BE0195A5D460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Sueldos.Reportes.CrystalReport.csproj
+	EndGlobalSection
+EndGlobal

@@ -5,7 +5,7 @@
     Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
     Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
 
-    Copyright © SOffT 2010 - http://www.sofft.com.ar
+    Copyright Â© SOffT 2010 - http://www.sofft.com.ar
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 
 using System;
 using System.Data;
-
 
 namespace Sueldos.Reportes.CrystalReport
 {
@@ -147,30 +146,12 @@ namespace Sueldos.Reportes.CrystalReport
         public static void RecibosDeSueldo(DataSet fuente, String fechaAcreditacion)
         {
             FrmReportes frmRepo = new FrmReportes();
-            //EN MODO DEBUG GENERA RECIBOS SEPARADOS HOJA ENTERA EN A4
-            #if DEBUG
-                CRRecibosSueldo reporteRecibosSueldo = new CRRecibosSueldo();
-            #else
-                CRRecibosSueldo_Nuevo reporteRecibosSueldo = new CRRecibosSueldo_Nuevo();
-            #endif
+            CRRecibosSueldo_Nuevo reporteRecibosSueldo = new CRRecibosSueldo_Nuevo();
             reporteRecibosSueldo.SetDataSource(fuente);
-            #if DEBUG
-                //Muestra originales
-                reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_fechaAcreditacion.ParameterFieldName, DateTime.Parse(fechaAcreditacion));
-                reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_Original.ParameterFieldName, true);
-                frmRepo.setReportSource(reporteRecibosSueldo);
-                frmRepo.ShowDialog();
-
-                //Muestra duplicados
-                reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_Original.ParameterFieldName, false);
-                frmRepo.setReportSource(reporteRecibosSueldo);
-                frmRepo.ShowDialog();
-            #else
-                reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_fechaAcreditacion.ParameterFieldName, DateTime.Parse(fechaAcreditacion));
-                reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_notaAlPie.ParameterFieldName, string.Empty);
-                frmRepo.setReportSource(reporteRecibosSueldo);
-                frmRepo.ShowDialog();
-            #endif
+            reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_fechaAcreditacion.ParameterFieldName, DateTime.Parse(fechaAcreditacion));
+            reporteRecibosSueldo.SetParameterValue(reporteRecibosSueldo.Parameter_notaAlPie.ParameterFieldName, string.Empty);
+            frmRepo.setReportSource(reporteRecibosSueldo);
+            frmRepo.ShowDialog();
         }
 
         public static void LibroLey(DataSet fuente, String titulo, String empresa, String cuit, String domicilio, String actividad)
@@ -240,6 +221,7 @@ namespace Sueldos.Reportes.CrystalReport
 
         #region Anticipos
 
+        [Obsolete("Usar reportes de Sueldos.Reportes.Pdf")]
         public static void ArchivoAcreditacion(DataSet fuente, DateTime fechaAcreditacion, String descripcionLiquidacion, String empresa, String nroEmpresa)
         {
             CRReporteBapro reporteAcreditacionBancariaBapro = new CRReporteBapro();
@@ -252,6 +234,7 @@ namespace Sueldos.Reportes.CrystalReport
             visor.ShowDialog();
         }
 
+        [Obsolete("Usar reportes de Sueldos.Reportes.Pdf")]
         public static void AcreditacionDeAnticipos(DataSet fuente, String fechaAcreditacion, String descripcionLiquidacion, String empresa, String nroEmpresa)
         {
             CRReporteBapro reporteAcreditacionBancariaBapro = new CRReporteBapro();
