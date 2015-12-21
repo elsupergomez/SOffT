@@ -148,3 +148,5 @@ Thumbs.db
 
 #dotCover
 *.dotCover
+
+*app.config
