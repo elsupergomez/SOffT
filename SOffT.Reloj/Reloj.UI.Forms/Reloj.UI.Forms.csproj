@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Reloj.UI.Forms</RootNamespace>
+    <AssemblyName>Reloj.View</AssemblyName>
+    <StartupObject>Reloj.UI.Forms.Program</StartupObject>
+    <ApplicationIcon>clock.ico</ApplicationIcon>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Commandlineparameters>1</Commandlineparameters>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Linux|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <Commandlineparameters>a</Commandlineparameters>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Linux|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>LINUX</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Interop.WisSensorNLibLib">
+      <HintPath>..\libs\Interop.WisSensorNLibLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RelojForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RelojForm.designer.cs">
+      <DependentUpon>RelojForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RelojForm.resx">
+      <DependentUpon>RelojForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="FingerPrintUtilsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FingerPrintUtilsForm.Designer.cs">
+      <DependentUpon>FingerPrintUtilsForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FingerPrintUtilsForm.resx">
+      <DependentUpon>FingerPrintUtilsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config.example" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clock.ico" />
+    <None Include="Resources\mano01.jpg" />
+    <None Include="Resources\mano00.jpg" />
+    <None Include="Resources\mano011.jpg" />
+    <None Include="Resources\mano001.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\Reloj.Core\Reloj.Core.csproj">
+      <Project>{1F09652F-31D5-434E-B64C-C6CB70DCEDD3}</Project>
+      <Name>Reloj.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj">
+      <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
+      <Name>Sueldos.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
