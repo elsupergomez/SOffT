@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sueldos.Core</RootNamespace>
+    <AssemblyName>Sueldos.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Hamekoz.Data">
+      <HintPath>..\..\..\packages\Hamekoz.Data.1.0.0\lib\Hamekoz.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Liquidacion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recibo.cs" />
+    <Compile Include="ReciboRenglon.cs" />
+    <Compile Include="ReciboRenglones.cs" />
+    <Compile Include="Recibos.cs" />
+    <Compile Include="Acumulado.cs" />
+    <Compile Include="Concepto.cs" />
+    <Compile Include="Calculo.cs" />
+    <Compile Include="FormulaConcepto.cs" />
+    <Compile Include="CUIL.cs" />
+    <Compile Include="Entidades\AcreditacionBapro.cs" />
+    <Compile Include="Entidades\CampoEmpleadoEntity.cs" />
+    <Compile Include="Entidades\ConceptoEntity.cs" />
+    <Compile Include="Entidades\EmpleadoEntity.cs" />
+    <Compile Include="Entidades\EmpresaEntity.cs" />
+    <Compile Include="Entidades\FamiliarEntity.cs" />
+    <Compile Include="Entidades\FechaDePagoEntity.cs" />
+    <Compile Include="Entidades\HorarioEntity.cs" />
+    <Compile Include="Entidades\LiquidacionDetalleEntity.cs" />
+    <Compile Include="Entidades\LiquidacionPorTipoEntity.cs" />
+    <Compile Include="Entidades\LocalidadEntity.cs" />
+    <Compile Include="Entidades\NovedadEntity.cs" />
+    <Compile Include="Entidades\PaisEntity.cs" />
+    <Compile Include="Entidades\PeriodoTrabajadoEntity.cs" />
+    <Compile Include="Entidades\PersonaEntity.cs" />
+    <Compile Include="Entidades\ProvinciaEntity.cs" />
+    <Compile Include="Entidades\TablaEntity.cs" />
+    <Compile Include="Entidades\VacacionEntity.cs" />
+    <Compile Include="Modelo\ConsultaEmpleados.cs" />
+    <Compile Include="Modelo\ConsultaEmpresas.cs" />
+    <Compile Include="Modelo\ConsultaFechasDePago.cs" />
+    <Compile Include="Modelo\ConsultaLiquidacionDetalle.cs" />
+    <Compile Include="Modelo\ConsultaLiquidacionesPorTipo.cs" />
+    <Compile Include="Modelo\ConsultaNovedades.cs" />
+    <Compile Include="Data\ConceptoData.cs" />
+    <Compile Include="Data\EmpleadoData.cs" />
+    <Compile Include="Data\EmpresaData.cs" />
+    <Compile Include="Data\FechaDePagoData.cs" />
+    <Compile Include="Data\LiquidacionDetalleData.cs" />
+    <Compile Include="Data\LiquidacionPorTipoData.cs" />
+    <Compile Include="Data\NovedadData.cs" />
+    <Compile Include="Data\PersonaData.cs" />
+    <Compile Include="Data\TablaData.cs" />
+    <Compile Include="Modelo\TablaController.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Entidades\" />
+    <Folder Include="Modelo\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Eval3Lib\Eval3Lib.vbproj">
+      <Project>{FE433B1A-3397-45FC-88C4-FB80ECAF5849}</Project>
+      <Name>Eval3Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Eval4\Eval4Lib\Eval4Lib.csproj">
+      <Project>{21896275-AF6E-4F6E-B057-F28B02BCF7E8}</Project>
+      <Name>Eval4Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
