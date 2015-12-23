@@ -25,7 +25,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-using Log4Net;
+//using Log4Net;
 
 namespace Model
 {
@@ -33,8 +33,9 @@ namespace Model
 	{
 		SqlConnection con;
 
-		public Datos(string conString) {
-			this.con = new SqlConnection(conString);
+		public Datos (string conString)
+		{
+			this.con = new SqlConnection (conString);
 		}
 
 		/// <summary>Devuelve la Cadena de Conexión del objeto SqlConnection.</summary>
@@ -42,186 +43,203 @@ namespace Model
 			get { return this.con.ConnectionString; }
 		}
 
-		public void Open() {
-			this.con.Open();
+		public void Open ()
+		{
+			this.con.Open ();
 		}
 
-		public void Close() {
-			this.con.Close();
+		public void Close ()
+		{
+			this.con.Close ();
 		}
 
 
 
-        public Boolean existeTabla(string nombreTabla) {
-            string sql = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES " +
-                         "WHERE TABLE_TYPE = 'BASE TABLE' " +
-                         "AND TABLE_NAME = '" + nombreTabla + "'";
+		public Boolean existeTabla (string nombreTabla)
+		{
+			string sql = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES " +
+			                      "WHERE TABLE_TYPE = 'BASE TABLE' " +
+			                      "AND TABLE_NAME = '" + nombreTabla + "'";
 
-            int ret = (int)sqlSc(sql);
-            return ret > 0;
-        }
+			int ret = (int)sqlSc (sql);
+			return ret > 0;
+		}
 
 
-		public SqlDataReader sqlDr(string sql) {
-			SqlCommand cmd = new SqlCommand(sql, con);
+		public SqlDataReader sqlDr (string sql)
+		{
+			SqlCommand cmd = new SqlCommand (sql, con);
 			cmd.CommandType = CommandType.Text;
-            cmd.CommandTimeout = 180; // 3 min
+			cmd.CommandTimeout = 180; // 3 min
 			cmd.CommandText = sql;
-			return exeRdDr(cmd);
+			return exeRdDr (cmd);
 		}
 
-		public SqlDataReader spDr(string sp) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public SqlDataReader spDr (string sp)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 180; // 3 min
-			return exeRdDr(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			return exeRdDr (cmd);
 		}
 
-		public SqlDataReader spDr(string sp, object[] pr, string[] NomParam) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public SqlDataReader spDr (string sp, object[] pr, string[] NomParam)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.AddRange(addParams(pr, NomParam));
-			return exeRdDr(cmd);
+			cmd.Parameters.AddRange (addParams (pr, NomParam));
+			return exeRdDr (cmd);
 		}
 
 
-		public DataTable sqlDt(string sql) {
-			SqlCommand cmd = new SqlCommand(sql, con);
+		public DataTable sqlDt (string sql)
+		{
+			SqlCommand cmd = new SqlCommand (sql, con);
 			cmd.CommandType = CommandType.Text;
-            cmd.CommandTimeout = 180; // 3 min
+			cmd.CommandTimeout = 180; // 3 min
 			cmd.CommandText = sql;
-			return exeRd(cmd);
+			return exeRd (cmd);
 		}
 
-		public DataTable spDt(string sp) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public DataTable spDt (string sp)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 180; // 3 min
-			return exeRd(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			return exeRd (cmd);
 		}
 
-		public DataTable spDt(string sp, object[] pr, string[] nomParam) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public DataTable spDt (string sp, object[] pr, string[] nomParam)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 180; // 3 min
-			cmd.Parameters.AddRange(addParams(pr, nomParam));
-			return exeRd(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			cmd.Parameters.AddRange (addParams (pr, nomParam));
+			return exeRd (cmd);
 		}
 
 
-		public object spSc(string sp) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public object spSc (string sp)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 180; // 3 min
-			return exeSc(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			return exeSc (cmd);
 		}
 
-		public object sqlSc(string sql) {
-			SqlCommand cmd = new SqlCommand(sql, con);
+		public object sqlSc (string sql)
+		{
+			SqlCommand cmd = new SqlCommand (sql, con);
 			cmd.CommandType = CommandType.Text;
-            cmd.CommandTimeout = 180; // 3 min
-			return exeSc(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			return exeSc (cmd);
 		}
 
-		public int sqlNc(string sql) {
-			SqlCommand cmd = new SqlCommand(sql, con);
+		public int sqlNc (string sql)
+		{
+			SqlCommand cmd = new SqlCommand (sql, con);
 			cmd.CommandType = CommandType.Text;
-            cmd.CommandTimeout = 180; // 3 min
-			return exeNc(cmd);
+			cmd.CommandTimeout = 180; // 3 min
+			return exeNc (cmd);
 		}
 
-		public object spSc(string sp, object[] pr, string[] NomParam) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public object spSc (string sp, object[] pr, string[] NomParam)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			//string[] NomParam = new string[] { "id", "nom", "dir", "tel" };
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.AddRange(addParams(pr, NomParam));
-			return exeSc(cmd);
+			cmd.Parameters.AddRange (addParams (pr, NomParam));
+			return exeSc (cmd);
 		}
 
-		public int spNc(string sp, object[] pr, string[] NomParam) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public int spNc (string sp, object[] pr, string[] NomParam)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.AddRange(addParams(pr, NomParam));
-			return exeNc(cmd);
+			cmd.Parameters.AddRange (addParams (pr, NomParam));
+			return exeNc (cmd);
 		}
 
-		public int spNc(string sp) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public int spNc (string sp)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-			return exeNc(cmd);
+			return exeNc (cmd);
 		}
 
-		public double spNc_Double(string sp) {
-			SqlCommand cmd = new SqlCommand(sp, con);
+		public double spNc_Double (string sp)
+		{
+			SqlCommand cmd = new SqlCommand (sp, con);
 			cmd.CommandType = CommandType.StoredProcedure;
-			return exeNc_Double(cmd);
+			return exeNc_Double (cmd);
 		}
 
 
 
-		SqlParameter[] addParams(object[] pr, string[] NomParam) {
+		SqlParameter[] addParams (object[] pr, string[] NomParam)
+		{
 			SqlParameter[] ifxp = new SqlParameter[pr.Length];
 			int i = 0;
 			foreach (object pr1 in pr) {
 				//Param = "?" + i.ToString();
-				ifxp[i] = new SqlParameter(i.ToString(), pr1);
-				ifxp[i].ParameterName = "@" + NomParam[i];
+				ifxp [i] = new SqlParameter (i.ToString (), pr1);
+				ifxp [i].ParameterName = "@" + NomParam [i];
 				i++;
 			}
 			return ifxp;
 		}
 
-		DataTable exeRd(SqlCommand cmd) {
-			DataTable dt = new DataTable();
+		DataTable exeRd (SqlCommand cmd)
+		{
+			DataTable dt = new DataTable ();
 			try {
-				SqlDataReader dr = cmd.ExecuteReader();
-				dt.Load(dr);
-				dr.Close();
+				SqlDataReader dr = cmd.ExecuteReader ();
+				dt.Load (dr);
+				dr.Close ();
 			} catch (SqlException ex) {
-				MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeRd() -> " + ex.Message);
+				//MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeRd() -> " + ex.Message);
 				throw ex;
 			}
 			return dt;
 		}
 
-		SqlDataReader exeRdDr(SqlCommand cmd) {
+		SqlDataReader exeRdDr (SqlCommand cmd)
+		{
 			try {
-				return cmd.ExecuteReader();
-			} 
-            catch (SqlException ex) {
-				MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeRdDr() -> " + ex.Message);
+				return cmd.ExecuteReader ();
+			} catch (SqlException ex) {
+				//MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeRdDr() -> " + ex.Message);
 				throw ex;
 			}
 		}
 
-		object exeSc(SqlCommand cmd) {
+		object exeSc (SqlCommand cmd)
+		{
 			try {
-				return cmd.ExecuteScalar();
-			} 
-            catch (SqlException ex) {
-				MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeSc() -> " + ex.Message);
+				return cmd.ExecuteScalar ();
+			} catch (SqlException ex) {
+				//MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeSc() -> " + ex.Message);
 				throw ex;
 			}
 		}
 
-		int exeNc(SqlCommand cmd) {
+		int exeNc (SqlCommand cmd)
+		{
 			try {
- 				return cmd.ExecuteNonQuery();
-			} 
-            catch (SqlException ex) {
-				MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeNc() -> " + cmd.CommandText +
-                    " - " +  ex.Message);
+				return cmd.ExecuteNonQuery ();
+			} catch (SqlException ex) {
+				//MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeNc() -> " + cmd.CommandText +                    " - " +  ex.Message);
 				throw ex;
 			}
 		}
 
-		double exeNc_Double(SqlCommand cmd) { // double ??????????????
+		double exeNc_Double (SqlCommand cmd)
+		{ // double ??????????????
 			try {
-				return cmd.ExecuteNonQuery();
-			}
-            catch (SqlException ex) {
-				MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeNc_Double() -> " + ex.Message);
-                throw ex;
+				return cmd.ExecuteNonQuery ();
+			} catch (SqlException ex) {
+				//MyLog4Net.Instance.getCustomLog(this.GetType()).Error("exeNc_Double() -> " + ex.Message);
+				throw ex;
 			}
 		}
 

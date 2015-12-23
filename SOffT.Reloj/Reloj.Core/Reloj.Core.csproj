@@ -34,9 +34,6 @@
     <Reference Include="Hamekoz.Data">
       <HintPath>..\..\packages\Hamekoz.Data.1.0.0\lib\Hamekoz.Data.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelLibrary">
-      <HintPath>..\..\libs\ExcelLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +62,10 @@
     <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj">
       <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
       <Name>Sueldos.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\excellibrary\src\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{0716F257-72DD-41EF-8E79-54BA388E3AB1}</Project>
+      <Name>ExcelLibrary</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

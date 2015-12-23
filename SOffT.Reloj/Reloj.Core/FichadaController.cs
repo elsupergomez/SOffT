@@ -21,7 +21,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -163,6 +162,9 @@ namespace Reloj.Negocio
 	[Obsolete ("Usar Reloj.Core.FichadaController")]
 	public class FichadasNegocio : Reloj.Core.FichadaController
 	{
-		
+		public DataSet getAll (DateTime desde, DateTime hasta)
+		{
+			return ExportarXLS (desde, hasta);
+		}
 	}
 }

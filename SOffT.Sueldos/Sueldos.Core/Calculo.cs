@@ -1072,3 +1072,12 @@ namespace Sueldos.Core
 		}
 	}
 }
+
+//TODO Remover
+namespace Sueldos.View
+{
+	[Obsolete ("Usar Sueldos.Core.Calculo")]
+	public class Calculo:Sueldos.Core.Calculo
+	{
+	}
+}

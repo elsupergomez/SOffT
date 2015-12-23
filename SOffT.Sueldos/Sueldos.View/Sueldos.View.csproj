@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{52D22840-4B58-4525-BE57-77EFD9992FA0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -31,6 +29,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>false</Optimize>
@@ -45,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -57,12 +53,14 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="Sueldos.Reportes.CrystalReport">
+      <HintPath>..\..\libs\Sueldos.Reportes.CrystalReport.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acumulado.cs" />
     <Compile Include="Acumulados.cs" />
     <Compile Include="Bapro.cs" />
-    <Compile Include="Calculo.cs" />
     <Compile Include="Concepto.cs" />
     <Compile Include="Control\LiquidacionesCtrl.cs">
       <SubType>UserControl</SubType>
@@ -562,9 +560,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="DiagramaClasesSueldos.cd" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Sueldos.Entidades.EmpresaEntity.datasource" />
     <None Include="Properties\DataSources\Sueldos.Entidades.LiquidacionDetalleEntity.datasource" />
@@ -594,37 +589,29 @@
       <Project>{FE433B1A-3397-45FC-88C4-FB80ECAF5849}</Project>
       <Name>Eval3Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Sofft.Reloj\Reloj.Modelo\Reloj.Negocio.csproj">
-      <Project>{44FC1CF8-AE02-4E58-A3F9-EEB79CCE27B7}</Project>
-      <Name>Reloj.Negocio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Sofft.Reloj\Reloj.View\Reloj.View.csproj">
-      <Project>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</Project>
-      <Name>Reloj.View</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Model\Model.csproj">
       <Project>{65909236-0370-4436-B362-93292DEAC91C}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Sofft.Utils\Sofft.Utils.csproj">
+    <ProjectReference Include="..\..\SOffT.Utils\Sofft.Utils.csproj">
       <Project>{9BBBC9AB-C1FD-4E74-91E4-F65B062C97FA}</Project>
       <Name>Sofft.Utils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Sofft.ViewComunes\Sofft.ViewComunes.csproj">
+    <ProjectReference Include="..\Sueldos.Core\Sueldos.Core.csproj">
+      <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
+      <Name>Sueldos.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SOffT.UI.Forms\Sofft.UI.Forms.csproj">
       <Project>{D667B156-C44B-4C85-B064-6B587CD308E1}</Project>
-      <Name>Sofft.ViewComunes</Name>
+      <Name>Sofft.UI.Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sueldos.Entidades\Sueldos.Entidades.csproj">
-      <Project>{3C2C235B-6CB6-44F7-801C-2BBDBAB24261}</Project>
-      <Name>Sueldos.Entidades</Name>
+    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.Core\Reloj.Core.csproj">
+      <Project>{1F09652F-31D5-434E-B64C-C6CB70DCEDD3}</Project>
+      <Name>Reloj.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sueldos.Modelo\Sueldos.Modelo.csproj">
-      <Project>{D7488DE1-0BEF-437E-9FB8-9FCD5D48CACE}</Project>
-      <Name>Sueldos.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sueldos.Reportes.CrystalReport\Sueldos.Reportes.CrystalReport.csproj">
-      <Project>{F462BE9D-90D3-4CD9-A097-BE0195A5D460}</Project>
-      <Name>Sueldos.Reportes.CrystalReport</Name>
+    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.UI.Forms\Reloj.UI.Forms.csproj">
+      <Project>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</Project>
+      <Name>Reloj.UI.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
