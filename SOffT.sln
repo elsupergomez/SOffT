@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.Core", "SOffT.Sueld
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reloj.UI.Forms", "SOffT.Reloj\Reloj.UI.Forms\Reloj.UI.Forms.csproj", "{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguridad.UI.Forms", "SOffT.Seguridad\Seguridad.UI.Forms\Seguridad.UI.Forms.csproj", "{100905AC-CD73-46B0-A143-C4634C954230}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguridad.UI.Forms", "Seguridad.UI.Forms\Seguridad.UI.Forms.csproj", "{100905AC-CD73-46B0-A143-C4634C954230}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.Reportes.CrystalReport", "SOffT.Sueldos\Sueldos.Reportes.CrystalReport\Sueldos.Reportes.CrystalReport.csproj", "{F462BE9D-90D3-4CD9-A097-BE0195A5D460}"
 EndProject
