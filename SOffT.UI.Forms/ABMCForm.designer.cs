@@ -1,4 +1,27 @@
-﻿namespace Sofft.UI.Forms
+﻿//
+//  ABMCForm.designer.cs
+//
+//  Author:
+//       Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//
+//  Copyright (c) 2010 SOffT - http://www.sofft.com.ar
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+namespace Sofft.UI.Forms
 {
 	partial class ABMCForm
 	{
@@ -37,9 +60,9 @@
 			this.gbDatos = new System.Windows.Forms.GroupBox ();
 			this.gbBotones.SuspendLayout ();
 			this.SuspendLayout ();
-			// 
+			//
 			// gbBotones
-			// 
+			//
 			this.gbBotones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.gbBotones.Controls.Add (this.btnBuscar);
@@ -54,9 +77,9 @@
 			this.gbBotones.Size = new System.Drawing.Size (590, 70);
 			this.gbBotones.TabIndex = 61;
 			this.gbBotones.TabStop = false;
-			// 
+			//
 			// btnBuscar
-			// 
+			//
 			this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.btnBuscar.Image = global::Sofft.ViewComunes.Properties.Resources.Magnifier32x32;
 			this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -68,9 +91,9 @@
 			this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnBuscar.UseVisualStyleBackColor = true;
 			this.btnBuscar.Click += new System.EventHandler (this.btnBuscar_Click);
-			// 
+			//
 			// btnGrabar
-			// 
+			//
 			this.btnGrabar.Image = global::Sofft.ViewComunes.Properties.Resources.Save;
 			this.btnGrabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnGrabar.Location = new System.Drawing.Point (394, 19);
@@ -81,9 +104,9 @@
 			this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnGrabar.UseVisualStyleBackColor = true;
 			this.btnGrabar.Click += new System.EventHandler (this.btnGrabar_Click);
-			// 
+			//
 			// btnEliminar
-			// 
+			//
 			this.btnEliminar.Image = global::Sofft.ViewComunes.Properties.Resources.Trash32x32;
 			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnEliminar.Location = new System.Drawing.Point (200, 19);
@@ -94,9 +117,9 @@
 			this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEliminar.UseVisualStyleBackColor = true;
 			this.btnEliminar.Click += new System.EventHandler (this.btnEliminar_Click);
-			// 
+			//
 			// btnCancelar
-			// 
+			//
 			this.btnCancelar.Image = global::Sofft.ViewComunes.Properties.Resources.Cancel;
 			this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnCancelar.Location = new System.Drawing.Point (491, 19);
@@ -107,9 +130,9 @@
 			this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnCancelar.UseVisualStyleBackColor = true;
 			this.btnCancelar.Click += new System.EventHandler (this.btnCancelar_Click);
-			// 
+			//
 			// btnAgregar
-			// 
+			//
 			this.btnAgregar.Image = global::Sofft.ViewComunes.Properties.Resources.Plus32x321;
 			this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnAgregar.Location = new System.Drawing.Point (103, 19);
@@ -120,9 +143,9 @@
 			this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnAgregar.UseVisualStyleBackColor = true;
 			this.btnAgregar.Click += new System.EventHandler (this.btnAgregar_Click);
-			// 
+			//
 			// btnModificar
-			// 
+			//
 			this.btnModificar.Image = global::Sofft.ViewComunes.Properties.Resources.Edit32x32;
 			this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnModificar.Location = new System.Drawing.Point (297, 19);
@@ -133,9 +156,9 @@
 			this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnModificar.UseVisualStyleBackColor = true;
 			this.btnModificar.Click += new System.EventHandler (this.btnModificar_Click);
-			// 
+			//
 			// gbDatos
-			// 
+			//
 			this.gbDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 			| System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
@@ -146,9 +169,9 @@
 			this.gbDatos.Size = new System.Drawing.Size (590, 66);
 			this.gbDatos.TabIndex = 79;
 			this.gbDatos.TabStop = false;
-			// 
+			//
 			// FormABMC
-			// 
+			//
 			this.ClientSize = new System.Drawing.Size (614, 162);
 			this.Controls.Add (this.gbDatos);
 			this.Controls.Add (this.gbBotones);

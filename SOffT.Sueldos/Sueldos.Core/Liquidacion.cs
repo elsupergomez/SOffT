@@ -176,7 +176,7 @@ namespace Sueldos.Core
                 Model.DB.desconectarDB();
                 return false;
             }
-            
+
         }*/
 
 		/*    public static Boolean hayConveniosAsociados(int idTipoLiq)

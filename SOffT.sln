@@ -19,13 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguridad.UI.Forms", "Segur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.Reportes.CrystalReport", "SOffT.Sueldos\Sueldos.Reportes.CrystalReport\Sueldos.Reportes.CrystalReport.csproj", "{F462BE9D-90D3-4CD9-A097-BE0195A5D460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.View", "SOffT.Sueldos\Sueldos.View\Sueldos.View.csproj", "{52D22840-4B58-4525-BE57-77EFD9992FA0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sofft.UI.Forms", "SOffT.UI.Forms\Sofft.UI.Forms.csproj", "{D667B156-C44B-4C85-B064-6B587CD308E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sofft.Utils", "SOffT.Utils\Sofft.Utils.csproj", "{9BBBC9AB-C1FD-4E74-91E4-F65B062C97FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelLibrary", "excellibrary\src\ExcelLibrary\ExcelLibrary.csproj", "{0716F257-72DD-41EF-8E79-54BA388E3AB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sueldos.UI.Forms", "SOffT.Sueldos\Sueldos.UI.Forms\Sueldos.UI.Forms.csproj", "{52D22840-4B58-4525-BE57-77EFD9992FA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,5 +138,11 @@ Global
 		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Release Linux|Any CPU.Build.0 = Debug|Any CPU
 		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.Text = @ \n ${FileName}\n \n Author:\n      ${AuthorName} <${AuthorEmail}>\n\n Copyright (c) ${Year} ${CopyrightHolder}\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.\n\n This program is distributed in the hope that it will be useful,\n but WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n GNU General Public License for more details.\n\n You should have received a copy of the GNU General Public License\n along with this program.  If not, see <http://www.gnu.org/licenses/>.
+		$1.IncludeInNewFiles = True
 	EndGlobalSection
 EndGlobal

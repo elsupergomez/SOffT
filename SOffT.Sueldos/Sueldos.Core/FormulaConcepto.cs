@@ -132,7 +132,6 @@ namespace Sueldos.Core
 				+ " entre " + cadena [2] + " y " + cadena [3];
 			case "saltar":
 				return cadena [0] + " a ";
-			// + Model.DB.ejecutarDataSet(Model.TipoComando.SP, "calculoConsultarDescripcion", "idCalculo", cadena[1]).Tables[0].ToString();
 			default:
 				return instrucion;
 			}

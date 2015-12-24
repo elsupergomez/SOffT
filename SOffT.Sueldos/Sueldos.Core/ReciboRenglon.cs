@@ -39,7 +39,7 @@ namespace Sueldos.Core
 
 		public int IdLiquidacion {
 			get { return idLiquidacion; }
-			set { 
+			set {
 				idLiquidacion = value;
 				DbDataReader rs;
 				using (rs = DB.Instancia.SPToDbDataReader ("liquidacionesDetalleConsultar",

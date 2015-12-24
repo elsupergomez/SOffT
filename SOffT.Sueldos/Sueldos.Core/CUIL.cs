@@ -58,7 +58,6 @@ namespace Sueldos.Core
 			} else {
 				return false;
 			}
-
 		}
 
 		/// <summary>
@@ -93,7 +92,6 @@ namespace Sueldos.Core
 			}
 			return cuil;
 		}
-
 
 		public static string Generar (char sexo, string dni)
 		{

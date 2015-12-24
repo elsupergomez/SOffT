@@ -115,7 +115,7 @@ namespace Sueldos.Core
 		}
 
 		/// <summary>
-		/// actualiza la tabla de campos historicos de empleados 
+		/// actualiza la tabla de campos historicos de empleados
 		/// dado el codigo, lo copia de la tabla de empleados
 		/// y lo almacena en empleadosHistoricoLiquidacion
 		/// </summary>
@@ -377,10 +377,10 @@ namespace Sueldos.Core
 		}
 
 		/// <summary>
-		/// busca un determinado valor comprendido entre los campos contenido y detalle, aplicando un coeficiente (dividiendo) los campos 
+		/// busca un determinado valor comprendido entre los campos contenido y detalle, aplicando un coeficiente (dividiendo) los campos
 		/// contenido y detalle y devuelve el campo detalle.
 		/// Este metodo es explicito para ganancias. Habría que trabajarlo un poco mas.
-		/// Se realiza acá el pasaje de coeficientes para no aumentar la complejidad en 
+		/// Se realiza acá el pasaje de coeficientes para no aumentar la complejidad en
 		/// las formulas.
 		/// </summary>
 		/// <param name="tabla"></param>
@@ -394,7 +394,7 @@ namespace Sueldos.Core
 				mm = mesLiquidacion () + 1;
 			else
 				mm = 1;
-			
+
 			double salida;
 			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasBuscarValorCoeficiente", "@tabla", tabla, "@valor", valor, "@coeficiente", 12, "@mesLiquidacion", mm)) {
 				salida = rs.Read () ? Convert.ToDouble (rs ["detalle"]) : 0;
@@ -418,10 +418,10 @@ namespace Sueldos.Core
 		}
 
 		/// <summary>
-		/// busca un determinado valor comprendido entre los campos contenido y detalle, aplicando un coeficiente (dividiendo) los campos 
+		/// busca un determinado valor comprendido entre los campos contenido y detalle, aplicando un coeficiente (dividiendo) los campos
 		/// contenido y detalle y devuelve el campo indice dividido el coeficiente.
 		/// Este metodo es explicito para ganancias. Habría que trabajarlo un poco mas.
-		/// Se realiza acá el pasaje de coeficientes para no aumentar la complejidad en 
+		/// Se realiza acá el pasaje de coeficientes para no aumentar la complejidad en
 		/// las formulas.
 		/// </summary>
 		/// <param name="tabla"></param>
@@ -499,9 +499,12 @@ namespace Sueldos.Core
 				throw new Exception ("No se puede seguir el calculo, no se ha seteado AnioMes o Legajo.");
 
 			IdTabla = idT;      //este valor viene del tablas: calculo
-			//HACK Elegir que version de Eval usar
+			//HACK Elegir que version de Eval usar usar directiva de compilacion EVAL3 por defecto usa EVAL4
+			#if EVAL3
+			var ev = new Eval3.Evaluator (Eval3.eParserSyntax.cSharp, false);
+			#else
 			var ev = new Eval4.CSharpEvaluator ();
-			//var ev = new Eval3.Evaluator (Eval3.eParserSyntax.cSharp, false);
+			#endif
 			ev.AddEnvironmentFunctions (new Calculo ());
 			Salto = 0;
 			double salida = 0;    //contiene el id de la linea a saltar
@@ -529,7 +532,7 @@ namespace Sueldos.Core
 						var [59] = 0;
 					} else
 						imprimeValorUnitario = 0;
-                    
+
 					if (Convert.ToInt32 (rs ["Imprime"]) == 1 && salida != 0) {
 						imprime = salida;
 						DB.Instancia.SP ("liquidacionesInsertar", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@Legajo", Calculo.Legajo, "@Codigo", Convert.ToInt32 (rs ["Codigo"]), "@AnioMes", Calculo.AnioMes, "@idCalculo", IdTabla, "idAplicacion", Calculo.IdAplicacion, "@Posicion", Convert.ToInt32 (rs ["Tipo"]), "@Cantidad", imprimeCantidad, "@VU", imprimeValorUnitario, "@Importe", imprime, "@Letra", "", "@OrdenProceso", Convert.ToInt32 (rs ["OrdenProceso"]));
@@ -539,7 +542,7 @@ namespace Sueldos.Core
 				} else {
 					if (Salto > 0) {
 						Console.WriteLine ("salto: " + Salto);
-						rs = DB.Instancia.SPToDbDataReader ("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", Salto, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion); 
+						rs = DB.Instancia.SPToDbDataReader ("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", Salto, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion);
 						Salto = 0;
 					} else {
 						//error
@@ -623,7 +626,7 @@ namespace Sueldos.Core
 		}
 
 		/// <summary>
-		/// Consulta la cantidad de dias de asistencia para un empleado entre fechas para un codigo especifico. 
+		/// Consulta la cantidad de dias de asistencia para un empleado entre fechas para un codigo especifico.
 		/// Por ej. asistenciaConsultarLegajoEntreDias(200801,151,1,15)*/
 		/// </summary>
 		/// <param name="codigo"></param>
@@ -735,7 +738,7 @@ namespace Sueldos.Core
 		/// <summary>
 		/// consulta la existencia de un codigo de situacion de revista
 		/// en la asistencia pasandole el numero de ocurrencia a consultar
-		/// es decir, si es la 1ra, la 2da, etc. 
+		/// es decir, si es la 1ra, la 2da, etc.
 		/// devuelve el codigo de asistencia de dicha ocurrencia
 		/// </summary>
 		/// <param name="ocurrencia"></param>
@@ -753,7 +756,7 @@ namespace Sueldos.Core
 		/// <summary>
 		/// consulta el dia de inicio de un codigo de situacion de revista
 		/// en la asistencia pasandole el numero de ocurrencia a consultar
-		/// es decir, si es la 1ra, la 2da, etc. 
+		/// es decir, si es la 1ra, la 2da, etc.
 		/// devuelve el codigo de asistencia de dicha ocurrencia
 		/// </summary>
 		/// <param name="ocurrencia"></param>
@@ -936,8 +939,8 @@ namespace Sueldos.Core
 		}
 
 		/// <summary>
-		/// Devuelve =0 si es igual 
-		/// >0 si fecha1 > fecha2 
+		/// Devuelve =0 si es igual
+		/// >0 si fecha1 > fecha2
 		/// <0 si fecha1 < fecha2
 		/// </summary>
 		/// <param name="fecha1"></param>
@@ -1040,35 +1043,27 @@ namespace Sueldos.Core
 
 		public long DateDiff (DateInterval Interval, DateTime StartDate, DateTime EndDate)
 		{
-			long lngDateDiffValue = 0;
 			var TS = new TimeSpan (EndDate.Ticks - StartDate.Ticks);
 			switch (Interval) {
 			case DateInterval.Day:
-				lngDateDiffValue = (long)TS.Days;
-				break;
+				return (long)TS.Days;
 			case DateInterval.Hour:
-				lngDateDiffValue = (long)TS.TotalHours;
-				break;
+				return (long)TS.TotalHours;
 			case DateInterval.Minute:
-				lngDateDiffValue = (long)TS.TotalMinutes;
-				break;
+				return (long)TS.TotalMinutes;
 			case DateInterval.Month:
-				lngDateDiffValue = (long)(TS.Days / 30.4375);
-				break;
+				return (long)(TS.Days / 30.4375);
 			case DateInterval.Quarter:
-				lngDateDiffValue = (long)((TS.Days / 30) / 3);
-				break;
+				return (long)((TS.Days / 30) / 3);
 			case DateInterval.Second:
-				lngDateDiffValue = (long)TS.TotalSeconds;
-				break;
+				return (long)TS.TotalSeconds;
 			case DateInterval.Week:
-				lngDateDiffValue = (long)(TS.Days / 7);
-				break;
+				return (long)(TS.Days / 7);
 			case DateInterval.Year:
-				lngDateDiffValue = (long)(TS.Days / 365.25);
-				break;
+				return (long)(TS.Days / 365.25);
+			default:
+				return TS.Ticks;
 			}
-			return (lngDateDiffValue);
 		}
 	}
 }

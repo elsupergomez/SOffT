@@ -84,6 +84,7 @@
     <Compile Include="Data\PersonaData.cs" />
     <Compile Include="Data\TablaData.cs" />
     <Compile Include="Modelo\TablaController.cs" />
+    <Compile Include="Acumulados.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

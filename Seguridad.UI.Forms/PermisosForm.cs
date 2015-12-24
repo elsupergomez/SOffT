@@ -37,7 +37,7 @@ namespace Seguridad.UI.Forms
 		int idUsuario;
 
 		public PermisosForm ()
-		{ 
+		{
 			InitializeComponent ();
 		}
 

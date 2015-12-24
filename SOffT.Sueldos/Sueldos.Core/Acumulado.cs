@@ -20,7 +20,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 
 namespace Sueldos.Core
 {
@@ -68,6 +68,20 @@ namespace Sueldos.Core
 		public double Valor {
 			get;
 			set;
+		}
+	}
+}
+
+//TODO Remover
+namespace Sueldos.View
+{
+	[Obsolete ("Usar Sueldos.Core.Acumulado")]
+	public class Acumulado : Sueldos.Core.Acumulado
+	{
+		public Acumulado (int anioMes, int indice, int legajo, int codigo, string descripcion, double valor)
+			: base (anioMes, indice, legajo, codigo, descripcion, valor)
+		{
+			
 		}
 	}
 }

@@ -1,3 +1,26 @@
+//
+//  ABMForm.cs
+//
+//  Author:
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
+//
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
+//  Copyright (c) 2010 SOffT - http://www.sofft.com.ar
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,12 +54,12 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Enlace para aplicar filtros sobre la consulta
 		/// </summary>
-		BindingSource binding;
+		internal BindingSource binding;
 
 		public ABMForm ()
 		{
 			InitializeComponent ();
-			Icon = Modulo.cargaIcono ();
+			Icon = Modulo.CargarIcono ();
 			txtBoxBuqueda.KeyDown += txtBoxBuqueda_KeyDown;
 			txtBoxBuqueda.Focus ();
 		}
@@ -365,5 +388,50 @@ namespace Sofft.UI.Forms
 		}
 
 		#endregion
+	}
+}
+
+//TODO Remover
+namespace Sofft.ViewComunes
+{
+	[Obsolete ("Usar Sofft.UI.Forms.ABMForm")]
+	public class frmABM : Sofft.UI.Forms.ABMForm
+	{
+		/// <summary>
+		/// carga la grilla con el resultado de una consulta de un sp
+		/// </summary>
+		/// <param name="nombreSP"></param>
+		/// <param name="parametros"></param>
+		[Obsolete ("usar metodo con parametro dataset")]
+		public void cargaGrilla (string nombreSP, params object[] parametros)
+		{
+			//TODO: sacar esto de acá !!!
+			Controles.setEstandarDataGridView (dgvDatos);
+			Controles.cargaDataGridView (dgvDatos, nombreSP, parametros);
+			//esta columna pertenece al id interno del objeto consultado.
+			//nunca es visible. 
+			//Se utiliza solamente para las busquedas
+			dgvDatos.Columns [0].Visible = false;
+			binding = new BindingSource ();
+			binding.DataSource = dgvDatos.DataSource;
+			for (int i = 0; i < dgvDatos.Columns.Count - 1; i++) {
+				dgvDatos.Columns [i].Visible = !(dgvDatos.Columns [i].Name.StartsWith ("id") || dgvDatos.Columns [i].Name.StartsWith ("Id"));
+			}
+		}
+
+		/// <summary>
+		/// carga la grilla con un dataset
+		/// </summary>
+		[Obsolete ("Usar CargarGrilla(DataSet)")]
+		public void cargaGrilla (DataSet ds)
+		{
+			CargaGrilla (ds);
+		}
+
+		[Obsolete ("Usar OcultarColumna(int)")]
+		public void ocultarColumna (int columna)
+		{
+			OcultarColumna (columna);
+		}
 	}
 }

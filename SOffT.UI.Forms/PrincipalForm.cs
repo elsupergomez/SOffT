@@ -1,3 +1,26 @@
+//
+//  PrincipalForm.cs
+//
+//  Author:
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
+//
+//  Copyright (c) 2010 SOffT - http://www.sofft.com.ar
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -49,7 +72,7 @@ namespace Sofft.UI.Forms
 			Modulo.NombreModulo = nombreModulo;
 			Modulo.NombreSistema = nombreSistema;
 			Modulo.IdModulo = 2;
-			Icon = Modulo.cargaIcono ();
+			Icon = Modulo.CargarIcono ();
 			lblVersion.Text = version;
 			lblSistemaGestion.Text = Modulo.NombreSistema;
 			lblModulo.Text = Modulo.NombreModulo;
@@ -116,5 +139,34 @@ namespace Sofft.UI.Forms
 		}
 
 		#endregion
+	}
+}
+
+//TODO Remover
+namespace Sofft.ViewComunes
+{
+	/// <summary>
+	/// Formulario Principal de Modulos, Heredable, con metodos redefinibles.
+	/// </summary>
+	[Obsolete ("Usar Sofft.UI.Forms.PrincipalForm")]
+	public class frmPrincipal : Sofft.UI.Forms.PrincipalForm
+	{
+		[Obsolete ("Usar metodo AgregarBoton(item)")]
+		public void creaBotones (params string[] nombresBotones)
+		{
+			foreach (var item in nombresBotones) {
+				AgregarBoton (item);
+			}
+		}
+
+		public void abrir (string nivel, int indice)
+		{
+			throw new Exception ("The method or operation is not implemented.");
+		}
+
+		public void setDatos (string servidor, string DB, string nombreModulo, object nil, string nombreSistema, string version)
+		{
+			base.setDatos (servidor, DB, nombreModulo, nombreSistema, version);
+		}
 	}
 }

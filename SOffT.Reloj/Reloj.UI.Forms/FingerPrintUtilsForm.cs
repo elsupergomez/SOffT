@@ -5,7 +5,7 @@
 //       Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2010 SOffT - http://www.sofft.com.ar
+//  Copyright (c) 2011 SOffT - http://www.sofft.com.ar
 //  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -21,15 +21,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-/*
- * hvivani. 20110518
- * Formulario para enrolamiento e identificación de usuarios. Programado para el lector Wison OR200N v2.5
- * es necesario realizar el registro manual de la librería: regsvr32 WisSensorNLib.dll
- * antes de utilizar el dispositivo.
- * Debe ademas, agregarse como referencia (objeto COM) en el presente proyecto.
-*/
-
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -40,6 +31,15 @@ using WisSensorNLibLib;
 
 namespace Reloj.UI.Forms
 {
+	/// <summary>
+	/// Formulario para enrolamiento e identificación de usuarios.
+	/// </summary>
+	/// <remarks>
+	/// Programado para el lector Wison OR200N v2.5
+	/// es necesario realizar el registro manual de la librería: regsvr32 WisSensorNLib.dll
+	/// antes de utilizar el dispositivo.
+	/// Debe ademas, agregarse como referencia (objeto COM) en el presente proyecto.
+	/// </remarks>
 	public partial class FingerPrintUtilsForm : Form
 	{
 		WisSensorN WisObj = new WisSensorN ();

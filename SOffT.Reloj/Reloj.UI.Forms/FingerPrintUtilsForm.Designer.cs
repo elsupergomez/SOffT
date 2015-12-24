@@ -5,7 +5,7 @@
 //       Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2010 SOffT - http://www.sofft.com.ar
+//  Copyright (c) 2011 SOffT - http://www.sofft.com.ar
 //  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify

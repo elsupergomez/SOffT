@@ -21,7 +21,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -34,7 +33,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCompany ("SOffT")]
 [assembly: AssemblyProduct ("Reloj.Core")]
 [assembly: AssemblyCopyright ("Copyright © SOffT 2008")]
-[assembly: AssemblyTrademark ("Hamekoz")]
+[assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

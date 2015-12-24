@@ -148,28 +148,6 @@
     <Compile Include="Dialogos\PeriodoDialog.Designer.cs">
       <DependentUpon>PeriodoDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="SOffT.ViewComunes\FrmDatos.Designer.cs" />
-    <Compile Include="SOffT.ViewComunes\FrmDatos.cs" />
-    <None Include="SOffT.ViewComunes\FrmDatos.resx" />
-    <Compile Include="SOffT.ViewComunes\frmABM.Designer.cs" />
-    <Compile Include="SOffT.ViewComunes\frmABM.cs" />
-    <None Include="SOffT.ViewComunes\frmABM.resx" />
-    <Compile Include="SOffT.ViewComunes\frmABMC.cs" />
-    <Compile Include="SOffT.ViewComunes\frmABMC.designer.cs" />
-    <None Include="SOffT.ViewComunes\frmABMC.resx" />
-    <Compile Include="SOffT.ViewComunes\frmBase.Designer.cs" />
-    <Compile Include="SOffT.ViewComunes\frmBase.cs" />
-    <None Include="SOffT.ViewComunes\frmBase.resx" />
-    <Compile Include="SOffT.ViewComunes\frmLogin.cs" />
-    <Compile Include="SOffT.ViewComunes\frmLogin.designer.cs" />
-    <None Include="SOffT.ViewComunes\frmLogin.resx" />
-    <Compile Include="SOffT.ViewComunes\frmMenu.Designer.cs" />
-    <Compile Include="SOffT.ViewComunes\frmMenu.cs" />
-    <None Include="SOffT.ViewComunes\frmMenu.resx" />
-    <Compile Include="SOffT.ViewComunes\frmPrincipal.cs" />
-    <Compile Include="SOffT.ViewComunes\frmPrincipal.designer.cs" />
-    <None Include="SOffT.ViewComunes\frmPrincipal.resx" />
-    <Compile Include="SOffT.ViewComunes\Controles.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
