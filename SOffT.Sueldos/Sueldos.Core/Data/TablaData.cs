@@ -32,7 +32,7 @@ namespace Sueldos.Data
 {
 	public class TablaData
 	{
-		const string tabla = "tablas";
+		const string tabladb = "tablas";
 
 		#region ABM
 
@@ -40,7 +40,7 @@ namespace Sueldos.Data
 		{
 			var sql = new StringBuilder ();
 			sql.Append (" INSERT INTO ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" VALUES('");
 			sql.Append (tabla.Nombre);
 			sql.Append ("', ");
@@ -61,7 +61,7 @@ namespace Sueldos.Data
 		{
 			var sql = new StringBuilder ();
 			sql.Append (" UPDATE ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" SET");
 			sql.Append (" indice = ");
 			sql.Append (tabla.Indice);
@@ -87,7 +87,7 @@ namespace Sueldos.Data
 			var sql = new StringBuilder ();
 			sql.Append ("DELETE");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" id = ");
 			sql.Append (tabla.Id);
@@ -112,7 +112,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombreTabla);
 			sql.Append ("' and indice = " + indice);
@@ -139,7 +139,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombreTabla);
 			sql.Append ("' order by nombre, indice, descripcion, contenido");
@@ -166,7 +166,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombreTabla);
 			sql.Append ("' order by " + orden);
@@ -194,7 +194,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombreTabla + "'");
 			if (filtro.Length > 0)
@@ -215,7 +215,7 @@ namespace Sueldos.Data
 			sql.Append ("SELECT distinct");
 			sql.Append (" nombre");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			var tablas = new List<TablaEntity> ();
 			using (IDataReader reader = DB.Instancia.SqlToDbDataReader (sql.ToString ())) {
 				while (reader.Read ())
@@ -239,7 +239,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombre);
 			sql.Append ("' and indice = " + indice);
@@ -257,7 +257,7 @@ namespace Sueldos.Data
 			var sql = new StringBuilder ();
 			sql.Append ("SELECT max(indice) as indice");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" nombre = '" + nombre);
 			sql.Append ("' and descripcion = '" + descripcion + "'");
@@ -277,7 +277,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			sql.Append (" WHERE ");
 			sql.Append (" id = " + id);
 			using (IDataReader reader = DB.Instancia.SqlToDbDataReader (sql.ToString ())) {
@@ -296,7 +296,7 @@ namespace Sueldos.Data
 			sql.Append (", detalle");
 			sql.Append (", identidad");
 			sql.Append (" FROM ");
-			sql.Append (tabla);
+			sql.Append (tabladb);
 			return GetLista (sql.ToString ());
 		}
 
