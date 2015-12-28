@@ -81,7 +81,7 @@ namespace Sofft.UI.Forms
 			// btnBuscar
 			//
 			this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.btnBuscar.Image = global::Sofft.ViewComunes.Properties.Resources.Magnifier32x32;
+			this.btnBuscar.Image = global::Sofft.UI.Forms.Properties.Resources.Magnifier32x32;
 			this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnBuscar.Location = new System.Drawing.Point (6, 19);
 			this.btnBuscar.Name = "btnBuscar";
@@ -94,7 +94,7 @@ namespace Sofft.UI.Forms
 			//
 			// btnGrabar
 			//
-			this.btnGrabar.Image = global::Sofft.ViewComunes.Properties.Resources.Save;
+			this.btnGrabar.Image = global::Sofft.UI.Forms.Properties.Resources.Save;
 			this.btnGrabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnGrabar.Location = new System.Drawing.Point (394, 19);
 			this.btnGrabar.Name = "btnGrabar";
@@ -107,7 +107,7 @@ namespace Sofft.UI.Forms
 			//
 			// btnEliminar
 			//
-			this.btnEliminar.Image = global::Sofft.ViewComunes.Properties.Resources.Trash32x32;
+			this.btnEliminar.Image = global::Sofft.UI.Forms.Properties.Resources.Trash32x32;
 			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnEliminar.Location = new System.Drawing.Point (200, 19);
 			this.btnEliminar.Name = "btnEliminar";
@@ -120,7 +120,7 @@ namespace Sofft.UI.Forms
 			//
 			// btnCancelar
 			//
-			this.btnCancelar.Image = global::Sofft.ViewComunes.Properties.Resources.Cancel;
+			this.btnCancelar.Image = global::Sofft.UI.Forms.Properties.Resources.Cancel;
 			this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnCancelar.Location = new System.Drawing.Point (491, 19);
 			this.btnCancelar.Name = "btnCancelar";
@@ -133,7 +133,7 @@ namespace Sofft.UI.Forms
 			//
 			// btnAgregar
 			//
-			this.btnAgregar.Image = global::Sofft.ViewComunes.Properties.Resources.Plus32x321;
+			this.btnAgregar.Image = global::Sofft.UI.Forms.Properties.Resources.Plus32x321;
 			this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnAgregar.Location = new System.Drawing.Point (103, 19);
 			this.btnAgregar.Name = "btnAgregar";
@@ -146,7 +146,7 @@ namespace Sofft.UI.Forms
 			//
 			// btnModificar
 			//
-			this.btnModificar.Image = global::Sofft.ViewComunes.Properties.Resources.Edit32x32;
+			this.btnModificar.Image = global::Sofft.UI.Forms.Properties.Resources.Edit32x32;
 			this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnModificar.Location = new System.Drawing.Point (297, 19);
 			this.btnModificar.Name = "btnModificar";

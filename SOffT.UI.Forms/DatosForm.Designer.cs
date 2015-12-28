@@ -57,7 +57,7 @@ namespace Sofft.UI.Forms
 			// aceptarButton
 			//
 			this.aceptarButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.aceptarButton.Image = global::Sofft.ViewComunes.Properties.Resources.CheckMark32x322;
+			this.aceptarButton.Image = global::Sofft.UI.Forms.Properties.Resources.CheckMark32x322;
 			this.aceptarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.aceptarButton.Location = new System.Drawing.Point (101, 238);
 			this.aceptarButton.Name = "aceptarButton";
@@ -71,7 +71,7 @@ namespace Sofft.UI.Forms
 			// cancelarButton
 			//
 			this.cancelarButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.cancelarButton.Image = global::Sofft.ViewComunes.Properties.Resources.Cancel;
+			this.cancelarButton.Image = global::Sofft.UI.Forms.Properties.Resources.Cancel;
 			this.cancelarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.cancelarButton.Location = new System.Drawing.Point (210, 238);
 			this.cancelarButton.Name = "cancelarButton";
