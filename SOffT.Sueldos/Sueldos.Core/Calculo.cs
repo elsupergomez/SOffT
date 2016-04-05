@@ -513,9 +513,13 @@ namespace Sueldos.Core
 				//if (Convert.ToInt32(rs["OrdPro"]) == 91)
 				Console.WriteLine ("Concepto: " + rs ["OrdenProceso"]);
 				if (Salto == 0) {
-					try {
-						salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).ObjectValue);
-						Console.WriteLine ("salida: " + salida);
+                    try {
+#if EVAL3
+                    salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).value);
+#else
+                    salida = Convert.ToDouble(ev.Parse(rs["Formula"].ToString()).ObjectValue);
+#endif
+                    Console.WriteLine ("salida: " + salida);
 					} catch (Exception ex) {
 						throw new Exception ("OrdenProceso: " + Convert.ToInt32 (rs ["OrdenProceso"].ToString ()) + " " + (ex.Message + "\r\n"));
 					}
