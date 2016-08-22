@@ -85,6 +85,7 @@ namespace Sofft.UI.Forms
 		{
 			try {
 				string strLine;
+				//TODO generalizar SO
 				var objReader = new StreamReader ("C:\\lastusr.dat");
 				strLine = objReader.ReadLine ();
 				if (strLine != null) {
@@ -100,12 +101,13 @@ namespace Sofft.UI.Forms
 		void EscribeArchivoLogin ()
 		{
 			try {
+				//TODO generalizar SO
 				var objWriter = new StreamWriter ("C:\\lastusr.dat");
 				if (txtUsuario.Text.Length > 0)
 					objWriter.WriteLine (txtUsuario.Text);
 				objWriter.Close ();
 			} catch {
-				Console.WriteLine ("no pudo crear archivo login.");
+				Console.WriteLine ("No pudo crear archivo login.");
 			}
 		}
 	}

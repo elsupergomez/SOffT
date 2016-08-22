@@ -63,7 +63,7 @@ namespace Sofft.UI.Forms
 			boton.Enabled = !Modulo.ValidaLogin;
 			boton.TabIndex = botones.Count;
 			boton.Text = nombre;
-			boton.Width = flpBotones.Width - flpBotones.Padding.Left - flpBotones.Padding.Right - boton.Margin.Horizontal;
+			boton.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			flpBotones.Controls.Add (boton);
 			boton.Click += botones_Click;
 			boton.AutoSize = true;

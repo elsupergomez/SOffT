@@ -57,31 +57,30 @@ namespace Sofft.UI.Forms
 			// flpBotones
 			//
 			this.flpBotones.AutoSize = true;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
 			this.flpBotones.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flpBotones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flpBotones.Location = new System.Drawing.Point (0, 0);
 			this.flpBotones.Margin = new System.Windows.Forms.Padding (10);
 			this.flpBotones.MinimumSize = new System.Drawing.Size (0, 50);
 			this.flpBotones.Name = "flpBotones";
-			this.flpBotones.Padding = new System.Windows.Forms.Padding (10);
-			this.flpBotones.Size = new System.Drawing.Size (232, 113);
 			this.flpBotones.TabIndex = 12;
 			//
 			// frmMenu
 			//
-			this.AutoScaleDimensions = new System.Drawing.SizeF (6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.AutoSize = true;
-			this.ClientSize = new System.Drawing.Size (232, 113);
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.Controls.Add (this.flpBotones);
 			this.ForeColor = System.Drawing.Color.Navy;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject ("$this.Icon")));
 			this.MaximizeBox = false;
-			this.MinimumSize = new System.Drawing.Size (238, 141);
-			this.Name = "frmMenu";
+			this.MinimumSize = new System.Drawing.Size (0, 50);
+			this.Name = "MenuForm";
+			this.Padding = new System.Windows.Forms.Padding (10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "frmMenu";
+			this.Text = "MenuForm";
 			this.ResumeLayout (false);
 			this.PerformLayout ();
 

@@ -97,7 +97,7 @@ namespace Sofft.UI.Forms
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size (75, 13);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "Contraseña:";
+			this.label2.Text = "ContraseÃ±a:";
 			//
 			// btnAceptar
 			//
@@ -143,9 +143,9 @@ namespace Sofft.UI.Forms
 			this.Controls.Add (this.txtUsuario);
 			this.ForeColor = System.Drawing.Color.Navy;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Name = "frmLogin";
+			this.Name = "LoginForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Ingrese su contraseña";
+			this.Text = "Ingrese su contraseÃ±a";
 			((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit ();
 			this.ResumeLayout (false);
 			this.PerformLayout ();
