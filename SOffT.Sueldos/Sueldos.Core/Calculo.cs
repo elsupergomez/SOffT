@@ -515,7 +515,7 @@ namespace Sueldos.Core
 				if (Salto == 0) {
 					try {
 #if EVAL3
-                        salida = Convert.ToDouble(ev.Parse(rs["Formula"].ToString()).value);
+						salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).value);
 #else
                         salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).ObjectValue);
 #endif
@@ -1069,14 +1069,5 @@ namespace Sueldos.Core
 				return TS.Ticks;
 			}
 		}
-	}
-}
-
-//TODO Remover
-namespace Sueldos.View
-{
-	[Obsolete ("Usar Sueldos.Core.Calculo")]
-	public class Calculo:Sueldos.Core.Calculo
-	{
 	}
 }

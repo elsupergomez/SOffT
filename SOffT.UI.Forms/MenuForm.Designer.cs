@@ -62,7 +62,7 @@ namespace Sofft.UI.Forms
 			this.flpBotones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flpBotones.Location = new System.Drawing.Point (0, 0);
 			this.flpBotones.Margin = new System.Windows.Forms.Padding (10);
-			this.flpBotones.MinimumSize = new System.Drawing.Size (0, 50);
+			this.flpBotones.MinimumSize = new System.Drawing.Size (0, 0);
 			this.flpBotones.Name = "flpBotones";
 			this.flpBotones.TabIndex = 12;
 			//
@@ -76,7 +76,7 @@ namespace Sofft.UI.Forms
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject ("$this.Icon")));
 			this.MaximizeBox = false;
-			this.MinimumSize = new System.Drawing.Size (0, 50);
+			this.MinimumSize = new System.Drawing.Size (100, 0);
 			this.Name = "MenuForm";
 			this.Padding = new System.Windows.Forms.Padding (10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

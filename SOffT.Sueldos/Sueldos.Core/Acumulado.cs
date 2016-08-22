@@ -72,16 +72,3 @@ namespace Sueldos.Core
 	}
 }
 
-//TODO Remover
-namespace Sueldos.View
-{
-	[Obsolete ("Usar Sueldos.Core.Acumulado")]
-	public class Acumulado : Sueldos.Core.Acumulado
-	{
-		public Acumulado (int anioMes, int indice, int legajo, int codigo, string descripcion, double valor)
-			: base (anioMes, indice, legajo, codigo, descripcion, valor)
-		{
-			
-		}
-	}
-}
