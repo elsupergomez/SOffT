@@ -39,7 +39,8 @@ namespace Sofft.UI.Forms
 		public PrincipalForm ()
 		{
 			InitializeComponent ();
-			pictureBoxEmpresa.Image = Controles.CargarImagen (Application.StartupPath + @"/imagenes/logoGrande.jpg");
+            var logo = string.Format("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
+			pictureBoxEmpresa.Image = Controles.CargarImagen (logo);
 		}
 
 		/// <summary>

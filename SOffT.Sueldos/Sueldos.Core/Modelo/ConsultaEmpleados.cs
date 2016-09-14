@@ -105,7 +105,7 @@ namespace Sueldos.Modelo
 			foreach (DataRow item in ds.Tables[0].Rows) {
 				var empleado = new EmpleadoEntity {
 					Nombre = item.Field<string> ("Nombres"),
-					Legajo = item.Field<int> ("Legajo"),
+					Legajo = (int)item.Field<decimal> ("Legajo"),
 				};
 				empleados.Add (empleado);
 			}
