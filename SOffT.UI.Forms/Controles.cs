@@ -216,7 +216,7 @@ namespace Sofft.UI.Forms
 		/// <param name = "showCheckBox"></param>
 		public static void SeteaDTPicker (DateTimePicker dtp, DateTime fecha, Boolean showCheckBox)
 		{
-			if (fecha > Convert.ToDateTime ("01/01/1900")) {
+			if (fecha > new DateTime(1900,01,01)) {
 				dtp.ShowCheckBox = showCheckBox;
 				dtp.Value = fecha;
 			} else {
@@ -315,47 +315,6 @@ namespace Sofft.ViewComunes
 	public static class Controles
 	{
 		/// <summary>
-		/// Devuelve un objeton imágen desde un byte[]
-		/// </summary>
-		/// <param name="byteArrayIn"></param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.ByteArrayToImage()")]
-		public static Image ByteArrayToImage (byte[] byteArrayIn)
-		{
-			return UI.Forms.Controles.ByteArrayToImage (byteArrayIn);
-		}
-
-		/// <summary>
-		/// Totaliza una columna de un DataGridView
-		/// </summary>
-		/// <param name="columna"></param>
-		/// <returns></returns>
-		/// <param name = "dgv"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.TotalizarColumnaGrilla()")]
-		public static double TotalizarColumnaGrilla (int columna, DataGridView dgv)
-		{
-			return UI.Forms.Controles.TotalizarColumnaGrilla (columna, dgv);
-		}
-
-		//Open file in to a filestream and read data in a byte array.
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.ReadFile()")]
-		public static byte[] ReadFile (string sPath)
-		{
-			return UI.Forms.Controles.ReadFile (sPath);
-		}
-
-		/// <summary>
-		/// Devuelve un byte[] desde una imágen
-		/// </summary>
-		/// <param name="imageIn"></param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.ImageToByteArray()")]
-		public static byte[] ImageToByteArray (Image imageIn)
-		{
-			return UI.Forms.Controles.ImageToByteArray (imageIn);
-		}
-
-		/// <summary>
 		/// Carga un datagrid con el resultado de la ejecucion de un sp.
 		/// </summary>
 		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaDataGridView()")]
@@ -370,118 +329,6 @@ namespace Sofft.ViewComunes
 		}
 
 		/// <summary>
-		/// Carga un datagrid con el resultado de la ejecucion de un dataset.
-		/// </summary>
-		/// <param name = "dgv"></param>
-		/// <param name = "ds"></param>
-		/// <param name = "columnaCeroVisible"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaDataGridView()")]
-		public static void cargaDataGridView (DataGridView dgv, DataSet ds, Boolean columnaCeroVisible)
-		{
-			UI.Forms.Controles.CargaDataGridView (dgv, ds, columnaCeroVisible);
-		}
-
-		/// <summary>
-		/// Carga un datagrid con una coleccion.
-		/// </summary>
-		/// <param name = "dgv"></param>
-		/// <param name = "lista"></param>
-		/// <param name = "columnaCeroVisible"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaDataGridView()")]
-		public static void cargaDataGridView (DataGridView dgv, object lista, Boolean columnaCeroVisible)
-		{
-			UI.Forms.Controles.CargaDataGridView (dgv, lista, columnaCeroVisible);
-		}
-
-		/// <summary>
-		/// carga un cmb dado con el resultado de un sp.
-		/// setea el dropdownstyle a dropdownlist.
-		/// </summary>
-		/// <param name="cmb"></param>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name="sp"></param>
-		/// <param name="parametrosSp"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaComboBox()")]
-		public static void cargaComboBox (ComboBox cmb, string displayCol, string idCol, string sp, params object[] parametrosSp)
-		{
-			var datos = Hamekoz.Data.DB.Instancia.SPToDataSet (sp, parametrosSp).Tables [sp];
-			UI.Forms.Controles.CargaComboBox (cmb, displayCol, idCol, datos);
-		}
-
-		/// <summary>
-		/// Carga combo box desde lista de objetos, indicando columna display y columna id
-		/// </summary>
-		/// <param name="cmb"></param>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name="lista"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaComboBox()")]
-		public static void cargaComboBox (ComboBox cmb, string displayCol, string idCol, object lista)
-		{
-			UI.Forms.Controles.CargaComboBox (cmb, displayCol, idCol, lista);
-		}
-
-		/// <summary>
-		/// Carga combo box desde dataset, indicando columna display y columna id
-		/// </summary>
-		/// <param name="cmb"></param>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name = "ds"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaComboBox()")]
-		public static void cargaComboBox (ComboBox cmb, string displayCol, string idCol, DataSet ds)
-		{
-			UI.Forms.Controles.CargaComboBox (cmb, displayCol, idCol, ds);
-		}
-
-		/// <summary>
-		/// carga listbox con el resultado de la ejecucion de un sp
-		/// </summary>
-		/// <param name="lb"></param>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name="sp"></param>
-		/// <param name="parametrosSp"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaListBox()")]
-		public static void cargaListBox (ListBox lb, string displayCol, string idCol, string sp, params object[] parametrosSp)
-		{
-			var lista = Hamekoz.Data.DB.Instancia.SPToDataSet (sp, parametrosSp).Tables [sp];
-			UI.Forms.Controles.CargaListBox (lb, displayCol, idCol, lista);
-		}
-
-		/// <summary>
-		/// Carga list box con una lista
-		/// </summary>
-		/// <param name="lb"></param>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name="lista"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaListBox()")]
-		public static void cargaListBox (ListBox lb, string displayCol, string idCol, object lista)
-		{
-			UI.Forms.Controles.CargaListBox (lb, displayCol, idCol, lista);
-		}
-
-		/// <summary>
-		/// Crea y carga combobox seteado con propiedades por defecto. Lo utilizo para crear arrays
-		/// </summary>
-		/// <param name="displayCol"></param>
-		/// <param name="idCol"></param>
-		/// <param name="sp"></param>
-		/// <param name="parametrosSp"></param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaComboBox()")]
-		public static ComboBox creaComboBox (string displayCol, string idCol, string sp, params object[] parametrosSp)
-		{
-			var cmb = new ComboBox ();
-			var lista = Hamekoz.Data.DB.Instancia.SPToDataSet (sp, parametrosSp).Tables [sp];
-			UI.Forms.Controles.CargaComboBox (cmb, displayCol, idCol, lista);
-			cmb.SelectedIndex = -1; //para q muestre el primero en blanco
-			return cmb;
-		}
-
-		/// <summary>
 		/// setea valores estandard en datagrid con ajuste automatico de columnas.
 		/// </summary>
 		/// <remarks>Desabilita la autogeneracion de columnas</remarks>
@@ -490,68 +337,6 @@ namespace Sofft.ViewComunes
 		public static void setEstandarDataGridView (DataGridView dgv)
 		{
 			UI.Forms.Controles.DataGridViewEstandar (dgv);
-		}
-
-		/// <summary>
-		/// carga dtPicker teniendo en cuenta si no hay una fecha seteada.
-		/// esteblece automaticamente propiedad checked. Pide showcheckbox.
-		/// Comparo con "01/01/1900".
-		/// </summary>
-		/// <param name="dtp"></param>
-		/// <param name="fecha"></param>
-		/// <param name = "showCheckBox"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.SeteaDTPicker()")]
-		public static void seteaDTPicker (DateTimePicker dtp, DateTime fecha, Boolean showCheckBox)
-		{
-			UI.Forms.Controles.SeteaDTPicker (dtp, fecha, showCheckBox);
-		}
-
-		/// <summary>
-		/// carga dtPicker teniendo en cuenta si no hay una fecha seteada.
-		/// esteblece automaticamente propiedad checked y showcheckbox.
-		///
-		/// Comparo con "01/01/1900".
-		/// </summary>
-		/// <param name="dtp"></param>
-		/// <param name="fecha"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.SeteaDTPicker()")]
-		public static void seteaDTPicker (DateTimePicker dtp, DateTime fecha)
-		{
-			UI.Forms.Controles.SeteaDTPicker (dtp, fecha);
-		}
-
-		/// <summary>
-		/// consulta el contenido de un campo de un renglon de un dgv.
-		/// </summary>
-		/// <param name = "dgv"></param>
-		/// <param name = "idColumna">id de columna de la grilla</param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.ConsultaCampoRenglon()")]
-		public static string consultaCampoRenglon (DataGridView dgv, int idColumna)
-		{
-			return UI.Forms.Controles.ConsultaCampoRenglon (dgv, idColumna);
-		}
-
-		/// <summary>
-		/// consulta el id del renglon seleccionado en una grilla
-		/// </summary>
-		/// <param name="dgv"></param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.ConsultaRenglonSeleccionado()")]
-		public static int consultaRenglonSeleccionado (DataGridView dgv)
-		{
-			return UI.Forms.Controles.ConsultaRenglonSeleccionado (dgv);
-		}
-
-		/// <summary>
-		/// Carga la imagen solicitada en un control bitmap.
-		/// </summary>
-		/// <param name="pathAbsoluto">Pasar Application.StartupPath + pathRelativo o pathAbsoluto</param>
-		/// <returns></returns>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargarImagen()")]
-		public static Bitmap cargarImagen (string pathAbsoluto)
-		{
-			return UI.Forms.Controles.CargarImagen (pathAbsoluto);
 		}
 	}
 }
