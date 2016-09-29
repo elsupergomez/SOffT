@@ -39,7 +39,7 @@ namespace Sofft.UI.Forms
 		public PrincipalForm ()
 		{
 			InitializeComponent ();
-            var logo = string.Format("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
+			var logo = string.Format ("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
 			pictureBoxEmpresa.Image = Controles.CargarImagen (logo);
 		}
 
@@ -52,7 +52,7 @@ namespace Sofft.UI.Forms
 		/// Llama al login y verifica los datos ingresados.
 		/// hvivani. 20061011.
 		/// </summary>
-		public void verificaLogin ()
+		public void VerificaLogin ()
 		{
 			var f = new LoginForm ();
 			f.ShowDialog ();
@@ -66,7 +66,7 @@ namespace Sofft.UI.Forms
 			}
 		}
 
-		public void setDatos (string servidor, string DB, string nombreModulo, string nombreSistema, string version)
+		public void SetDatos (string servidor, string DB, string nombreModulo, string nombreSistema, string version)
 		{
 			Modulo.ServidorDB = servidor;
 			Modulo.DB = DB;
@@ -115,14 +115,14 @@ namespace Sofft.UI.Forms
 		void botones_Click (object sender, EventArgs e)
 		{
 			var b = (Button)sender;
-			boton_Click (b.TabIndex);
+			Boton_Click (b.TabIndex);
 		}
 
 		/// <summary>
 		/// Metodo para definir la accion de cada boton pulsado
 		/// </summary>
 		/// <param name="indice">Indice del boton pulsado</param>
-		public virtual void boton_Click (int indice)
+		public virtual void Boton_Click (int indice)
 		{
 		}
 
@@ -167,7 +167,7 @@ namespace Sofft.ViewComunes
 
 		public void setDatos (string servidor, string DB, string nombreModulo, object nil, string nombreSistema, string version)
 		{
-			base.setDatos (servidor, DB, nombreModulo, nombreSistema, version);
+			base.SetDatos (servidor, DB, nombreModulo, nombreSistema, version);
 		}
 	}
 }

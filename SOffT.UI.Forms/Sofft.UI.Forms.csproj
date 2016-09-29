@@ -34,9 +34,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Hamekoz.Data">
-      <HintPath>..\..\packages\Hamekoz.Data.1.0.0\lib\Hamekoz.Data.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controles.cs" />
@@ -213,6 +210,10 @@
     <ProjectReference Include="..\SOffT.Utils\Sofft.Utils.csproj">
       <Project>{9BBBC9AB-C1FD-4E74-91E4-F65B062C97FA}</Project>
       <Name>Sofft.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\hamekoz-sharp\Hamekoz.Data\Hamekoz.Data.csproj">
+      <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>
+      <Name>Hamekoz.Data</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
