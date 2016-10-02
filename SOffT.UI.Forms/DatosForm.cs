@@ -20,7 +20,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Windows.Forms;
 
@@ -28,30 +27,21 @@ namespace Sofft.UI.Forms
 {
 	public partial class DatosForm : Form
 	{
-		public DatosForm ()
+		public DatosForm()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
-		protected virtual void aceptarButton_Click (object sender, EventArgs e)
+		protected virtual void aceptarButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-			Close ();
+			Close();
 		}
 
-		protected virtual void cancelarButton_Click (object sender, EventArgs e)
+		protected virtual void cancelarButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
-			Close ();
+			Close();
 		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	[Obsolete ("Usar Sofft.UI.Forms.DatosForm")]
-	public class FrmDatos : Sofft.UI.Forms.DatosForm
-	{
 	}
 }

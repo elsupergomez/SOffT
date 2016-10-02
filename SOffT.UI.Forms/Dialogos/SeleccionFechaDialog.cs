@@ -28,49 +28,38 @@ namespace Sofft.UI.Forms
 {
 	public partial class SeleccionFechaDialog : Form
 	{
-		public SeleccionFechaDialog ()
+		public SeleccionFechaDialog()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			dateTimePicker1.Value = DateTime.Now;
 		}
 
 		/// <summary>
 		/// Obtiene el la fecha seleccionada
 		/// </summary>
-		public DateTime Fecha {
+		public DateTime Fecha
+		{
 			get { return dateTimePicker1.Value; }
 		}
 
 		/// <summary>
 		/// Obtiene el Año y Mes seleccionado en formato numerico AAAAMM
 		/// </summary>
-		public int AnioMes {
+		public int AnioMes
+		{
 			get { return dateTimePicker1.Value.Year * 100 + dateTimePicker1.Value.Month; }
 		}
 
-		void btnCancelar_Click (object sender, EventArgs e)
+		void btnCancelar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
-			Close ();
+			Close();
 		}
 
-		void btnAceptar_Click (object sender, EventArgs e)
+		void btnAceptar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-			Close ();
+			Close();
 		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes.Dialogos
-{
-	/// <summary>
-	/// Formulario de dialogo para seleccion de fechas
-	/// </summary>
-	[Obsolete ("Usar Sofft.UI.Forms.SeleccionFechaDialog")]
-	public class frmSeleccionFecha : UI.Forms.SeleccionFechaDialog
-	{
-
 	}
 }

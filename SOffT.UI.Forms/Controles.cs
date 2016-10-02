@@ -20,7 +20,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Data;
 using System.Drawing;
@@ -40,15 +39,16 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="byteArrayIn"></param>
 		/// <returns></returns>
-		public static Image ByteArrayToImage (byte[] byteArrayIn)
+		public static Image ByteArrayToImage(byte[] byteArrayIn)
 		{
 			Image newImage;
 			//Read image data into a memory stream
-			using (var ms = new MemoryStream (byteArrayIn, 0, byteArrayIn.Length)) {
-				ms.Write (byteArrayIn, 0, byteArrayIn.Length);
+			using (var ms = new MemoryStream(byteArrayIn, 0, byteArrayIn.Length))
+			{
+				ms.Write(byteArrayIn, 0, byteArrayIn.Length);
 
 				//Set image variable value using memory stream.
-				newImage = Image.FromStream (ms, true);
+				newImage = Image.FromStream(ms, true);
 			}
 			return newImage;
 		}
@@ -59,36 +59,37 @@ namespace Sofft.UI.Forms
 		/// <param name="columna"></param>
 		/// <returns></returns>
 		/// <param name = "dgv"></param>
-		public static double TotalizarColumnaGrilla (int columna, DataGridView dgv)
+		public static double TotalizarColumnaGrilla(int columna, DataGridView dgv)
 		{
 			double total = 0;
-			foreach (DataGridViewRow row in dgv.Rows) {
-				total += double.Parse (row.Cells [columna].Value.ToString ());
+			foreach (DataGridViewRow row in dgv.Rows)
+			{
+				total += double.Parse(row.Cells[columna].Value.ToString());
 			}
 			return total;
 		}
 
 		//Open file in to a filestream and read data in a byte array.
-		public static byte[] ReadFile (string sPath)
+		public static byte[] ReadFile(string sPath)
 		{
 			//Initialize byte array with a null value initially.
 			byte[] data;
 
 			//Use FileInfo object to get file size.
-			var fInfo = new FileInfo (sPath);
+			var fInfo = new FileInfo(sPath);
 			long numBytes = fInfo.Length;
 
 			//Open FileStream to read file
-			var fStream = new FileStream (sPath, FileMode.Open, FileAccess.Read);
+			var fStream = new FileStream(sPath, FileMode.Open, FileAccess.Read);
 
 			//Use BinaryReader to read file stream into byte array.
-			var br = new BinaryReader (fStream);
+			var br = new BinaryReader(fStream);
 
 			//When you use BinaryReader, you need to supply number of bytes
 			//to read from file.
 			//In this case we want to read entire file.
 			//So supplying total number of bytes.
-			data = br.ReadBytes ((int)numBytes);
+			data = br.ReadBytes((int)numBytes);
 
 			return data;
 		}
@@ -98,11 +99,11 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="imageIn"></param>
 		/// <returns></returns>
-		public static byte[] ImageToByteArray (Image imageIn)
+		public static byte[] ImageToByteArray(Image imageIn)
 		{
-			var ms = new MemoryStream ();
-			imageIn.Save (ms, ImageFormat.Bmp);
-			return ms.ToArray ();
+			var ms = new MemoryStream();
+			imageIn.Save(ms, ImageFormat.Bmp);
+			return ms.ToArray();
 		}
 
 		/// <summary>
@@ -111,9 +112,9 @@ namespace Sofft.UI.Forms
 		/// <param name = "dgv"></param>
 		/// <param name = "ds"></param>
 		/// <param name = "columnaCeroVisible"></param>
-		public static void CargaDataGridView (DataGridView dgv, DataSet ds, Boolean columnaCeroVisible)
+		public static void CargarDataGridView(DataGridView dgv, DataSet ds, Boolean columnaCeroVisible)
 		{
-			CargaDataGridView (dgv, ds.Tables [0], columnaCeroVisible);
+			CargarDataGridView(dgv, ds.Tables[0], columnaCeroVisible);
 		}
 
 		/// <summary>
@@ -122,11 +123,11 @@ namespace Sofft.UI.Forms
 		/// <param name = "dgv"></param>
 		/// <param name = "lista"></param>
 		/// <param name = "columnaCeroVisible"></param>
-		public static void CargaDataGridView (DataGridView dgv, object lista, Boolean columnaCeroVisible)
+		public static void CargarDataGridView(DataGridView dgv, object lista, Boolean columnaCeroVisible)
 		{
 			dgv.AutoGenerateColumns = true;
 			dgv.DataSource = lista;
-			dgv.Columns [0].Visible = columnaCeroVisible;
+			dgv.Columns[0].Visible = columnaCeroVisible;
 		}
 
 		/// <summary>
@@ -136,7 +137,7 @@ namespace Sofft.UI.Forms
 		/// <param name="displayCol"></param>
 		/// <param name="idCol"></param>
 		/// <param name="lista"></param>
-		public static void CargaComboBox (ComboBox cmb, string displayCol, string idCol, object lista)
+		public static void CargarComboBox(ComboBox cmb, string displayCol, string idCol, object lista)
 		{
 			cmb.ValueMember = idCol;
 			cmb.DisplayMember = displayCol;
@@ -152,9 +153,9 @@ namespace Sofft.UI.Forms
 		/// <param name="displayCol"></param>
 		/// <param name="idCol"></param>
 		/// <param name = "ds"></param>
-		public static void CargaComboBox (ComboBox cmb, string displayCol, string idCol, DataSet ds)
+		public static void CargarComboBox(ComboBox cmb, string displayCol, string idCol, DataSet ds)
 		{
-			CargaComboBox (cmb, displayCol, idCol, ds.Tables [0]);
+			CargarComboBox(cmb, displayCol, idCol, ds.Tables[0]);
 		}
 
 		/// <summary>
@@ -164,7 +165,7 @@ namespace Sofft.UI.Forms
 		/// <param name="displayCol"></param>
 		/// <param name="idCol"></param>
 		/// <param name="lista"></param>
-		public static void CargaListBox (ListBox lb, string displayCol, string idCol, object lista)
+		public static void CargarListBox(ListBox lb, string displayCol, string idCol, object lista)
 		{
 			lb.ValueMember = idCol;
 			lb.DisplayMember = displayCol;
@@ -176,7 +177,7 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <remarks>Desabilita la autogeneracion de columnas</remarks>
 		/// <param name="dgv"></param>
-		public static void DataGridViewEstandar (DataGridView dgv)
+		public static void DataGridViewEstandar(DataGridView dgv)
 		{
 			//cpereyra: desabilita la autogeneracion de columnas para que no se modifique el orden de las mismas.
 			//Es necesario haber asignado previamente la fuente de datos.
@@ -201,8 +202,9 @@ namespace Sofft.UI.Forms
 			dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 			dgv.TabIndex = 0;
 
-			for (int i = 0; i < dgv.Columns.Count - 1; i++) {
-				dgv.Columns [i].Visible = !(dgv.Columns [i].Name.StartsWith ("id") || dgv.Columns [i].Name.StartsWith ("Id"));
+			for (int i = 0; i < dgv.Columns.Count - 1; i++)
+			{
+				dgv.Columns[i].Visible = !(dgv.Columns[i].Name.StartsWith("id") || dgv.Columns[i].Name.StartsWith("Id"));
 			}
 		}
 
@@ -214,12 +216,14 @@ namespace Sofft.UI.Forms
 		/// <param name="dtp"></param>
 		/// <param name="fecha"></param>
 		/// <param name = "showCheckBox"></param>
-		public static void SeteaDTPicker (DateTimePicker dtp, DateTime fecha, Boolean showCheckBox)
+		public static void SetDatePicker(DateTimePicker dtp, DateTime fecha, Boolean showCheckBox)
 		{
-			if (fecha > new DateTime(1900,01,01)) {
+			if (fecha > new DateTime(1900, 01, 01))
+			{
 				dtp.ShowCheckBox = showCheckBox;
 				dtp.Value = fecha;
-			} else {
+			}
+			else {
 				dtp.ShowCheckBox = showCheckBox;
 				dtp.Checked = false;
 			}
@@ -233,9 +237,9 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="dtp"></param>
 		/// <param name="fecha"></param>
-		public static void SeteaDTPicker (DateTimePicker dtp, DateTime fecha)
+		public static void SetDatePicker(DateTimePicker dtp, DateTime fecha)
 		{
-			SeteaDTPicker (dtp, fecha, false);
+			SetDatePicker(dtp, fecha, false);
 		}
 
 		/// <summary>
@@ -244,9 +248,9 @@ namespace Sofft.UI.Forms
 		/// <param name = "dgv"></param>
 		/// <param name = "idColumna">id de columna de la grilla</param>
 		/// <returns></returns>
-		public static string ConsultaCampoRenglon (DataGridView dgv, int idColumna)
+		public static string ConsultaCampoRenglon(DataGridView dgv, int idColumna)
 		{
-			return dgv.SelectedRows [0].Cells [idColumna].Value.ToString ();
+			return dgv.SelectedRows[0].Cells[idColumna].Value.ToString();
 		}
 
 		/// <summary>
@@ -254,9 +258,9 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="dgv"></param>
 		/// <returns></returns>
-		public static int ConsultaRenglonSeleccionado (DataGridView dgv)
+		public static int ConsultaRenglonSeleccionado(DataGridView dgv)
 		{
-			return dgv.SelectedRows [0].Cells [0].RowIndex;
+			return dgv.SelectedRows[0].Cells[0].RowIndex;
 		}
 
 		/// <summary>
@@ -264,13 +268,16 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="pathAbsoluto">Pasar Application.StartupPath + pathRelativo o pathAbsoluto</param>
 		/// <returns></returns>
-		public static Bitmap CargarImagen (string pathAbsoluto)
+		public static Bitmap CargarImagen(string pathAbsoluto)
 		{
 			Bitmap bmp = null;
-			try {
-				bmp = new Bitmap (pathAbsoluto);
-			} catch (Exception ex) {
-				Console.WriteLine ("Error al cargar la imagen solicitada" + ex);
+			try
+			{
+				bmp = new Bitmap(pathAbsoluto);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Error al cargar la imagen solicitada" + ex);
 			}
 			return bmp;
 		}
@@ -281,10 +288,11 @@ namespace Sofft.UI.Forms
 		/// <param name="control">Control contenedor</param>
 		/// <param name="estado">True para habilitar controles, False para deshabilitar controles</param>
 		/// <autor>Claudio Rodrigo Pereyra Diaz</autor>
-		public static void HabilitarControles (Control control, bool estado)
+		public static void HabilitarControles(Control control, bool estado)
 		{
-			foreach (Control c in control.Controls) {
-				HabilitarControles (c, estado);
+			foreach (Control c in control.Controls)
+			{
+				HabilitarControles(c, estado);
 			}
 			if (control is TextBox)
 				control.Enabled = estado;
@@ -301,42 +309,6 @@ namespace Sofft.UI.Forms
 			var dataGridView = control as DataGridView;
 			if (dataGridView != null)
 				dataGridView.ReadOnly = !estado;
-		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	/// <summary>
-	/// Clase de manejo de la presentacion, carga y estetica de varios controles.
-	/// </summary>
-	[Obsolete ("Usar Sofft.UI.Forms.Controles")]
-	public static class Controles
-	{
-		/// <summary>
-		/// Carga un datagrid con el resultado de la ejecucion de un sp.
-		/// </summary>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.CargaDataGridView()")]
-		public static void cargaDataGridView (DataGridView dgv, string sp, params object[] parametros)
-		{
-			dgv.AutoGenerateColumns = true;
-			dgv.DataSource = Hamekoz.Data.DB.Instancia.SPToDataSet (sp, parametros).Tables [sp];
-			for (int i = 0; i < dgv.Columns.Count - 1; i++) {
-				dgv.Columns [i].Visible = !dgv.Columns [i].Name.StartsWith ("id") || !dgv.Columns [i].Name.StartsWith ("Id");
-			}
-			//TODO: sacar esto de acá !!!
-		}
-
-		/// <summary>
-		/// setea valores estandard en datagrid con ajuste automatico de columnas.
-		/// </summary>
-		/// <remarks>Desabilita la autogeneracion de columnas</remarks>
-		/// <param name="dgv"></param>
-		[Obsolete ("Usar Sofft.UI.Forms.Controles.DataGridViewEstandar()")]
-		public static void setEstandarDataGridView (DataGridView dgv)
-		{
-			UI.Forms.Controles.DataGridViewEstandar (dgv);
 		}
 	}
 }

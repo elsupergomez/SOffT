@@ -29,7 +29,7 @@ namespace Sueldos.Core
 {
 	public class Concepto
 	{
-		public Concepto ()
+		public Concepto()
 		{
 		}
 
@@ -38,93 +38,108 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="codigo"></param>
 		/// <param name = "idcalculo"></param>
-		public Concepto (int codigo, int idcalculo)
+		public Concepto(int codigo, int idcalculo)
 		{
 			Codigo = codigo;
 			IdCalculo = idcalculo;
 		}
 
-		public int IdCalculo {
-			get;
-			set;
-		}
-
-		public int OrdenDeProceso {
-			get;
-			set;
-		}
-
-		public int Codigo {
-			get;
-			set;
-		}
-
-		public string Descripcion {
-			get;
-			set;
-		}
-
-		public string Formula {
-			get;
-			set;
-		}
-
-		public byte Tipo {
-			get;
-			set;
-		}
-
-		public Boolean Imprime {
-			get;
-			set;
-		}
-
-		public Boolean ImprimeCantidad {
-			get;
-			set;
-		}
-
-		public Boolean ImprimeValorUnitario {
-			get;
-			set;
-		}
-
-		public Boolean Desactivado {
-			get;
-			set;
-		}
-
-		public int IdTipoLiquidacion {
-			get;
-			set;
-		}
-
-		public int IdAplicacion {
-			get;
-			set;
-		}
-
-		public int IdCuentaContable {
-			get;
-			set;
-		}
-
-		public void cargarDatosConcepto ()
+		public int IdCalculo
 		{
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("calculoConsultar", "@codigo", Codigo, "@idCalculo", IdCalculo)) {
-				if (rs.Read ()) {
-					OrdenDeProceso = Convert.ToInt32 (rs ["OrdenProceso"]);
-					IdCalculo = Convert.ToInt32 (rs ["idCalculo"]);
-					Descripcion = rs ["Descripcion"].ToString ();
-					Formula = rs ["formula"].ToString ();
-					Tipo = Convert.ToByte (rs ["tipo"]);
-					Imprime = Convert.ToBoolean (rs ["imprime"]);
-					ImprimeCantidad = Convert.ToBoolean (rs ["imprimeCantidad"]);
-					ImprimeValorUnitario = Convert.ToBoolean (rs ["imprimeVU"]);
-					Desactivado = Convert.ToBoolean (rs ["desactivado"]);
-					IdTipoLiquidacion = Convert.ToInt32 (rs ["idTipoLiquidacion"]);
-					IdAplicacion = Convert.ToInt32 (rs ["idAplicacion"]);
-					IdCuentaContable = Convert.ToInt32 (rs ["idCuentaContable"]);
+			get;
+			set;
+		}
+
+		public int OrdenDeProceso
+		{
+			get;
+			set;
+		}
+
+		public int Codigo
+		{
+			get;
+			set;
+		}
+
+		public string Descripcion
+		{
+			get;
+			set;
+		}
+
+		public string Formula
+		{
+			get;
+			set;
+		}
+
+		public byte Tipo
+		{
+			get;
+			set;
+		}
+
+		public bool Imprime
+		{
+			get;
+			set;
+		}
+
+		public bool ImprimeCantidad
+		{
+			get;
+			set;
+		}
+
+		public bool ImprimeValorUnitario
+		{
+			get;
+			set;
+		}
+
+		public bool Desactivado
+		{
+			get;
+			set;
+		}
+
+		public int IdTipoLiquidacion
+		{
+			get;
+			set;
+		}
+
+		public int IdAplicacion
+		{
+			get;
+			set;
+		}
+
+		public int IdCuentaContable
+		{
+			get;
+			set;
+		}
+
+		public void cargarDatosConcepto()
+		{
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("calculoConsultar", "@codigo", Codigo, "@idCalculo", IdCalculo))
+			{
+				if (rs.Read())
+				{
+					OrdenDeProceso = Convert.ToInt32(rs["OrdenProceso"]);
+					IdCalculo = Convert.ToInt32(rs["idCalculo"]);
+					Descripcion = rs["Descripcion"].ToString();
+					Formula = rs["formula"].ToString();
+					Tipo = Convert.ToByte(rs["tipo"]);
+					Imprime = Convert.ToBoolean(rs["imprime"]);
+					ImprimeCantidad = Convert.ToBoolean(rs["imprimeCantidad"]);
+					ImprimeValorUnitario = Convert.ToBoolean(rs["imprimeVU"]);
+					Desactivado = Convert.ToBoolean(rs["desactivado"]);
+					IdTipoLiquidacion = Convert.ToInt32(rs["idTipoLiquidacion"]);
+					IdAplicacion = Convert.ToInt32(rs["idAplicacion"]);
+					IdCuentaContable = Convert.ToInt32(rs["idCuentaContable"]);
 				}
 			}
 		}

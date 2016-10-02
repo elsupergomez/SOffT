@@ -28,22 +28,22 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle ("Reloj.UI.Forms")]
-[assembly: AssemblyDescription ("")]
-[assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("SOffT")]
-[assembly: AssemblyProduct ("Reloj.UI.Forms")]
-[assembly: AssemblyCopyright ("Copyright © SOffT 2008")]
-[assembly: AssemblyTrademark ("")]
-[assembly: AssemblyCulture ("")]
+[assembly: AssemblyTitle("Reloj.UI.Forms")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("SOffT")]
+[assembly: AssemblyProduct("Reloj.UI.Forms")]
+[assembly: AssemblyCopyright("Copyright © SOffT 2008")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible (false)]
+[assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid ("49910493-d8da-42f4-b200-b1c3c4366798")]
+[assembly: Guid("49910493-d8da-42f4-b200-b1c3c4366798")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -52,5 +52,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion ("2.2.1.*")]
-[assembly: AssemblyFileVersion ("2.2.1.*")]
+[assembly: AssemblyVersion("2.2.1.*")]
+[assembly: AssemblyFileVersion("2.2.1.*")]

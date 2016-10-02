@@ -20,26 +20,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Windows.Forms;
-using System;
 
 namespace Sofft.UI.Forms
 {
 	public partial class BaseForm : Form
 	{
-		public BaseForm ()
+		public BaseForm()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	[Obsolete ("Usar Sofft.UI.Forms.BaseForm")]
-	public partial class frmBase : Sofft.UI.Forms.BaseForm
-	{
 	}
 }

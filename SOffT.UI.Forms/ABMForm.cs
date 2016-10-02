@@ -20,7 +20,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +28,7 @@ using Sofft.Utils;
 
 namespace Sofft.UI.Forms
 {
-	public partial class ABMForm : Form //, sueldos.IPermisible
+	public partial class ABMForm : Form
 	{
 		/// <summary>
 		/// Arreglo de botones del formulario Buscar
@@ -56,38 +55,38 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		internal BindingSource binding;
 
-		public ABMForm ()
+		public ABMForm()
 		{
-			InitializeComponent ();
-			Icon = Modulo.CargarIcono ();
+			InitializeComponent();
+			Icon = Modulo.CargarIcono();
 			txtBoxBuqueda.KeyDown += txtBoxBuqueda_KeyDown;
-			txtBoxBuqueda.Focus ();
+			txtBoxBuqueda.Focus();
 		}
 
-		void txtBoxBuqueda_KeyDown (object sender, KeyEventArgs e)
+		void txtBoxBuqueda_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
-				btnBuscar_Click (sender, e);
+				btnBuscar_Click(sender, e);
 		}
 
 		/// <summary>
 		/// carga la grilla con un dataset
 		/// </summary>
 		/// <param name="ds"></param>
-		public void CargaGrilla (DataSet ds)
+		public void CargaGrilla(DataSet ds)
 		{
-			Controles.CargaDataGridView (dgvDatos, ds, false);
-			Controles.DataGridViewEstandar (dgvDatos);
+			Controles.CargarDataGridView(dgvDatos, ds, false);
+			Controles.DataGridViewEstandar(dgvDatos);
 			//esta columna pertenece al id interno del objeto consultado.
 			//nunca es visible.
 			//Se utiliza solamente para las busquedas
-			binding = new BindingSource ();
+			binding = new BindingSource();
 			binding.DataSource = dgvDatos.DataSource;
 		}
 
-		public void OcultarColumna (int columna)
+		public void OcultarColumna(int columna)
 		{
-			dgvDatos.Columns [columna].Visible = false;
+			dgvDatos.Columns[columna].Visible = false;
 		}
 
 		/// <summary>
@@ -96,37 +95,42 @@ namespace Sofft.UI.Forms
 		/// Opcional 2 botones adicionales indicar por parametro el nombre de los mismo.
 		/// </summary>
 		/// <param name="nombres"></param> Opcional Nombre de los Botones adicionales.
-		public void creaBotones (params string[] nombres)
+		public void CrearBotones(params string[] nombres)
 		{
-			botones = new List<Button> ();
+			botones = new List<Button>();
 
-			for (int i = 0; i < nombres.Length + 5; i++) {
-				var boton = new Button ();
+			for (int i = 0; i < nombres.Length + 5; i++)
+			{
+				var boton = new Button();
 				boton.Enabled = !Modulo.ValidaLogin;
 				boton.Size = btnCerrar.Size;
 				boton.Tag = i;
 				boton.Click += botones_Click;
-				botones.Add (boton);
-				flpBotones.Controls.Add (boton);
+				botones.Add(boton);
+				flpBotones.Controls.Add(boton);
 			}
 
-			botones [0].Text = "Consultar";
-			botones [1].Text = "Nuevo";
-			botones [2].Text = "Modificar";
-			botones [3].Text = "Eliminar";
-			botones [4].Text = "Listado";
+			botones[0].Text = "Consultar";
+			botones[1].Text = "Nuevo";
+			botones[2].Text = "Modificar";
+			botones[3].Text = "Eliminar";
+			botones[4].Text = "Listado";
 
-			for (int i = 5; i < nombres.Length + 5; i++) {
-				botones [i].Text = nombres [i - 5];
+			for (int i = 5; i < nombres.Length + 5; i++)
+			{
+				botones[i].Text = nombres[i - 5];
 			}
 		}
 
-		public DataTable Lista {
-			get {
-				DataTable datos = ((DataTable)dgvDatos.DataSource).Clone ();
-				DataRow[] rowColl = ((DataTable)dgvDatos.DataSource).Select (binding.Filter);
-				foreach (DataRow row in rowColl) {
-					datos.ImportRow (row);
+		public DataTable Lista
+		{
+			get
+			{
+				DataTable datos = ((DataTable)dgvDatos.DataSource).Clone();
+				DataRow[] rowColl = ((DataTable)dgvDatos.DataSource).Select(binding.Filter);
+				foreach (DataRow row in rowColl)
+				{
+					datos.ImportRow(row);
 				}
 				return datos;
 			}
@@ -137,24 +141,25 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <remarks>Debe invocarse antes el procediminto CargaGrilla</remarks>
 		/// <param name="nroColumna">nro de columna de la Tabla de datos que representa el criterio de busqueda</param>
-		public void creaBusquedas (params byte[] nroColumna)
+		public void CrearBusquedas(params byte[] nroColumna)
 		{
 			busquedas = new RadioButton[nroColumna.Length];
 
-			for (int i = 0; i < nroColumna.Length; i++) {
-				busquedas [i] = new RadioButton ();
-				busquedas [i].Text = dgvDatos.Columns [nroColumna [i]].Name;
-				busquedas [i].GotFocus += frmABM_GotFocus;
-				busquedas [i].Width = 150;
-				flpBusquedas.Controls.Add (busquedas [i]);
+			for (int i = 0; i < nroColumna.Length; i++)
+			{
+				busquedas[i] = new RadioButton();
+				busquedas[i].Text = dgvDatos.Columns[nroColumna[i]].Name;
+				busquedas[i].GotFocus += frmABM_GotFocus;
+				busquedas[i].Width = 150;
+				flpBusquedas.Controls.Add(busquedas[i]);
 			}
-			busquedas [0].Select ();
-			txtBoxBuqueda.Focus ();
+			busquedas[0].Select();
+			txtBoxBuqueda.Focus();
 		}
 
-		void frmABM_GotFocus (object sender, EventArgs e)
+		void frmABM_GotFocus(object sender, EventArgs e)
 		{
-			txtBoxBuqueda.Focus ();
+			txtBoxBuqueda.Focus();
 		}
 
 		/// <summary>
@@ -162,27 +167,28 @@ namespace Sofft.UI.Forms
 		/// Debe invocarse antes el Procedimiento CargaGrilla
 		/// </summary>
 		/// <param name="DataCombos"></param> 0-8 ComboBox cargados con la informacion de filtro.
-		public void creaFiltros (params ComboBox[] DataCombos)
+		public void CreaFiltros(params ComboBox[] DataCombos)
 		{
 			etiquetas = new Label[DataCombos.Length];
 			filtros = new ComboBox[DataCombos.Length];
 
-			for (int i = 0; i < DataCombos.Length; i++) {
-				etiquetas [i] = new Label ();
-				filtros [i] = new ComboBox ();
+			for (int i = 0; i < DataCombos.Length; i++)
+			{
+				etiquetas[i] = new Label();
+				filtros[i] = new ComboBox();
 
-				etiquetas [i].Width = 175;
-				etiquetas [i].Height = etiquetas [i].Height - 10;
+				etiquetas[i].Width = 175;
+				etiquetas[i].Height = etiquetas[i].Height - 10;
 
-				filtros [i] = DataCombos [i];
-				filtros [i].Width = 175;
-				filtros [i].DropDownStyle = ComboBoxStyle.DropDownList;
+				filtros[i] = DataCombos[i];
+				filtros[i].Width = 175;
+				filtros[i].DropDownStyle = ComboBoxStyle.DropDownList;
 
-				flpFiltros.Controls.Add (etiquetas [i]);
-				flpFiltros.Controls.Add (filtros [i]);
-				filtros [i].SelectedIndex = -1;
+				flpFiltros.Controls.Add(etiquetas[i]);
+				flpFiltros.Controls.Add(filtros[i]);
+				filtros[i].SelectedIndex = -1;
 
-				filtros [i].SelectedIndexChanged += aplicarFiltros;
+				filtros[i].SelectedIndexChanged += AplicarFiltros;
 			}
 		}
 
@@ -192,10 +198,11 @@ namespace Sofft.UI.Forms
 		/// Debe invocarse antes el procedimiento CreaFiltros
 		/// </summary>
 		/// <param name="nroColumna">0-8, nro de columna de la Tabla de datos que representa el filtro. </param>
-		public void nombrarFiltros (params byte[] nroColumna)
+		public void NombrarFiltros(params byte[] nroColumna)
 		{
-			for (int i = 0; i < filtros.Length; i++) {
-				etiquetas [i].Text = dgvDatos.Columns [nroColumna [i]].Name;
+			for (int i = 0; i < filtros.Length; i++)
+			{
+				etiquetas[i].Text = dgvDatos.Columns[nroColumna[i]].Name;
 			}
 		}
 
@@ -204,69 +211,70 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void botones_Click (object sender, EventArgs e)
+		void botones_Click(object sender, EventArgs e)
 		{
 			var b = (Button)sender;
-			switch ((int)b.Tag) {
-			case 0:
-				Consultar ();
-				break;
-			case 1:
-				Nuevo (sender, e);
-				break;
-			case 2:
-				Modificar (sender, e);
-				break;
-			case 3:
-				Eliminar (sender, e);
-				break;
-			case 4:
-				Listar ();
-				break;
-			case 5:
-				OtrosBotones_Click (sender, e);
-				break;
+			switch ((int)b.Tag)
+			{
+				case 0:
+					Consultar();
+					break;
+				case 1:
+					Nuevo(sender, e);
+					break;
+				case 2:
+					Modificar(sender, e);
+					break;
+				case 3:
+					Eliminar(sender, e);
+					break;
+				case 4:
+					Listar();
+					break;
+				case 5:
+					OtrosBotones_Click(sender, e);
+					break;
 			}
 		}
 
 		/// <summary>
 		/// Procedimiento del boton Consultar. Definir en formulario heredado.
 		/// </summary>
-		protected virtual void Consultar ()
+		protected virtual void Consultar()
 		{
-			MessageBox.Show ("No Implementado. Ingresar codigo en formulario heredado");
+			MessageBox.Show("No Implementado. Ingresar codigo en formulario heredado");
 		}
 
 		/// <summary>
 		/// Procedimiento del boton Nuevo. Definir en formulario heredado.
 		/// </summary>
-		protected virtual void Nuevo (object sender, EventArgs e)
+		protected virtual void Nuevo(object sender, EventArgs e)
 		{
-			MessageBox.Show ("No Implementado. Ingresar codigo en formulario heredado");
+			MessageBox.Show("No Implementado. Ingresar codigo en formulario heredado");
 		}
 
 		/// <summary>
 		/// Procedimiento del boton Modificar. Definir en formulario heredado.
 		/// </summary>
-		protected virtual void Modificar (object sender, EventArgs e)
+		protected virtual void Modificar(object sender, EventArgs e)
 		{
-			MessageBox.Show ("No Implementado. Ingresar codigo en formulario heredado");
+			MessageBox.Show("No Implementado. Ingresar codigo en formulario heredado");
 		}
 
 		/// <summary>
 		/// Procedimiento del boton Eliminar. Definir en formulario heredado.
 		/// </summary>
-		protected virtual void Eliminar (object sender, EventArgs e)
+		protected virtual void Eliminar(object sender, EventArgs e)
 		{
-			MessageBox.Show ("No Implementado. Ingresar codigo en formulario heredado");
+			MessageBox.Show("No Implementado. Ingresar codigo en formulario heredado");
 		}
 
 		/// <summary>
 		/// Procedimiento del boton Listado. Definir en formulario heredado.
 		/// </summary>
-		protected virtual void Listar ()
+		protected virtual void Listar()
 		{
-			MessageBox.Show ("No Implementado. Ingresar codigo en formulario heredado");
+			MessageBox.Show("No Implementado. Ingresar codigo en formulario heredado");
 		}
 
 		/// <summary>
@@ -275,7 +283,7 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="sender"></param> Tipo Button
 		/// <param name="e"></param>
-		protected virtual void OtrosBotones_Click (object sender, EventArgs e)
+		protected virtual void OtrosBotones_Click(object sender, EventArgs e)
 		{
 		}
 
@@ -284,24 +292,25 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void btnCerrar_Click (object sender, EventArgs e)
+		void btnCerrar_Click(object sender, EventArgs e)
 		{
-			Close ();
+			Close();
 		}
 
-		protected virtual void btnTodos_Click (object sender, EventArgs e)
+		protected virtual void btnTodos_Click(object sender, EventArgs e)
 		{
 			txtBoxBuqueda.Text = "";
-			for (int i = 0; i < filtros.Length; i++) {
-				filtros [i].SelectedIndex = -1;
+			for (int i = 0; i < filtros.Length; i++)
+			{
+				filtros[i].SelectedIndex = -1;
 			}
-			txtBoxBuqueda.Focus ();
+			txtBoxBuqueda.Focus();
 		}
 
-		protected virtual void btnBuscar_Click (object sender, EventArgs e)
+		protected virtual void btnBuscar_Click(object sender, EventArgs e)
 		{
-			aplicarFiltros (sender, e);
-			txtBoxBuqueda.SelectAll ();
+			AplicarFiltros(sender, e);
+			txtBoxBuqueda.SelectAll();
 		}
 
 
@@ -311,22 +320,23 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		public void aplicarFiltros (object sender, EventArgs e)
+		public void AplicarFiltros(object sender, EventArgs e)
 		{
 			string cadfitro = "";
-			for (int i = 0; i < filtros.Length; i++) {
-				if (filtros [i].SelectedIndex >= 0)
-					cadfitro = cadfitro + " and " + etiquetas [i].Text + " like '*" + filtros [i].Text + "*'";
+			for (int i = 0; i < filtros.Length; i++)
+			{
+				if (filtros[i].SelectedIndex >= 0)
+					cadfitro = cadfitro + " and " + etiquetas[i].Text + " like '*" + filtros[i].Text + "*'";
 			}
 			if (txtBoxBuqueda.TextLength > 0)
-			if (Varios.IsNumeric (txtBoxBuqueda.Text))
-				cadfitro = cadfitro + " and [" + busquedas [getBusquedaSeleccionada ()].Text + "] = " + txtBoxBuqueda.Text;
-			else {
-				if (getBusquedaSeleccionada () != 0)
-					cadfitro = cadfitro + " and [" + busquedas [getBusquedaSeleccionada ()].Text + "] LIKE '*" + txtBoxBuqueda.Text + "*'";
-			}
+				if (Varios.IsNumeric(txtBoxBuqueda.Text))
+					cadfitro = cadfitro + " and [" + busquedas[getBusquedaSeleccionada()].Text + "] = " + txtBoxBuqueda.Text;
+				else {
+					if (getBusquedaSeleccionada() != 0)
+						cadfitro = cadfitro + " and [" + busquedas[getBusquedaSeleccionada()].Text + "] LIKE '*" + txtBoxBuqueda.Text + "*'";
+				}
 			if (cadfitro.Length > 0)
-				cadfitro = cadfitro.Remove (0, 5);
+				cadfitro = cadfitro.Remove(0, 5);
 			binding.Filter = cadfitro;
 		}
 
@@ -337,21 +347,21 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="idColumna">id de columna de la grilla</param>
 		/// <returns></returns>
-		public string consultaCampoRenglon (int idColumna)
+		public string ConsultaCampoRenglon(int idColumna)
 		{
-			return dgvDatos.SelectedRows [0].Cells [idColumna].Value.ToString ();
+			return dgvDatos.SelectedRows[0].Cells[idColumna].Value.ToString();
 		}
 
 		/// <summary>
 		/// Devuelve la posicion activa de los criterios del busqueda del arreglo Busquedas
 		/// </summary>
 		/// <returns></returns>
-		int getBusquedaSeleccionada ()
+		int getBusquedaSeleccionada()
 		{
 			int i = -1;
 			do
 				i++;
-			while (!busquedas [i].Checked);
+			while (!busquedas[i].Checked);
 			return i;
 		}
 
@@ -360,16 +370,17 @@ namespace Sofft.UI.Forms
 		/// este formulario.
 		/// </summary>
 		/// <param name="indice"></param>
-		public void aplicaPermisos (int indice)
+		public void AplicarPermisos(int indice)
 		{
-			Usuario.SetPermisosSubIndices (ref botones, indice);
+			Usuario.SetPermisosSubIndices(ref botones, indice);
 		}
 
 		#region Miembros de IPermisible
 
 		string nivel;
 
-		public string Nivel {
+		public string Nivel
+		{
 			get { return nivel; }
 		}
 
@@ -380,58 +391,13 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="nivel">Nivel del fomulario invocador</param>
 		/// <param name="indice">Indice del boton invocador</param>
-		public virtual void abrir (string nivel, int indice)
+		public virtual void Abrir(string nivel, int indice)
 		{
-			this.nivel = string.Concat (nivel, ".", indice.ToString ());
-			Usuario.SetPermisos (ref botones, Nivel);
-			ShowDialog ();
+			this.nivel = string.Concat(nivel, ".", indice.ToString());
+			Usuario.SetPermisos(ref botones, Nivel);
+			ShowDialog();
 		}
 
 		#endregion
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	[Obsolete ("Usar Sofft.UI.Forms.ABMForm")]
-	public class frmABM : Sofft.UI.Forms.ABMForm
-	{
-		/// <summary>
-		/// carga la grilla con el resultado de una consulta de un sp
-		/// </summary>
-		/// <param name="nombreSP"></param>
-		/// <param name="parametros"></param>
-		[Obsolete ("usar metodo con parametro dataset")]
-		public void cargaGrilla (string nombreSP, params object[] parametros)
-		{
-			//TODO: sacar esto de acá !!!
-			Controles.setEstandarDataGridView (dgvDatos);
-			Controles.cargaDataGridView (dgvDatos, nombreSP, parametros);
-			//esta columna pertenece al id interno del objeto consultado.
-			//nunca es visible. 
-			//Se utiliza solamente para las busquedas
-			dgvDatos.Columns [0].Visible = false;
-			binding = new BindingSource ();
-			binding.DataSource = dgvDatos.DataSource;
-			for (int i = 0; i < dgvDatos.Columns.Count - 1; i++) {
-				dgvDatos.Columns [i].Visible = !(dgvDatos.Columns [i].Name.StartsWith ("id") || dgvDatos.Columns [i].Name.StartsWith ("Id"));
-			}
-		}
-
-		/// <summary>
-		/// carga la grilla con un dataset
-		/// </summary>
-		[Obsolete ("Usar CargarGrilla(DataSet)")]
-		public void cargaGrilla (DataSet ds)
-		{
-			CargaGrilla (ds);
-		}
-
-		[Obsolete ("Usar OcultarColumna(int)")]
-		public void ocultarColumna (int columna)
-		{
-			OcultarColumna (columna);
-		}
 	}
 }

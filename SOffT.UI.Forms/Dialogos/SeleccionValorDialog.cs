@@ -28,47 +28,35 @@ namespace Sofft.UI.Forms
 {
 	public partial class SeleccionValorDialog : Form
 	{
-		public SeleccionValorDialog ()
+		public SeleccionValorDialog()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			txtValor.Text = "0";
 		}
 
 		/// <summary>
 		/// Obtiene el el valor seleccionado
 		/// </summary>
-		public object getValor {
+		public object getValor
+		{
 			get { return txtValor.Text; }
 		}
 
-		void btnCancelar_Click (object sender, EventArgs e)
+		void btnCancelar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
-			Close ();
+			Close();
 		}
 
-		void btnAceptar_Click (object sender, EventArgs e)
+		void btnAceptar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-			Close ();
+			Close();
 		}
 
-		void frmSeleccionValor_Load (object sender, EventArgs e)
+		void frmSeleccionValor_Load(object sender, EventArgs e)
 		{
-			txtValor.Focus ();
+			txtValor.Focus();
 		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes.Dialogos
-{
-	/// <summary>
-	/// Formulario de dialogo para seleccion de fechas
-	/// </summary>
-	[Obsolete ("Usar Sofft.UI.Forms.SeleccionValorDialog")]
-	public class frmSeleccionValor : UI.Forms.SeleccionValorDialog
-	{
-
 	}
 }

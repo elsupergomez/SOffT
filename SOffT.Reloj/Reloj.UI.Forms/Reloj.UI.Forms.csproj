@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Reloj.UI.Forms</RootNamespace>
-    <AssemblyName>Reloj.View</AssemblyName>
+    <AssemblyName>Reloj.UI.Forms</AssemblyName>
     <StartupObject>Reloj.UI.Forms.Program</StartupObject>
     <ApplicationIcon>clock.ico</ApplicationIcon>
     <SccProjectName>
@@ -38,20 +38,6 @@
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Linux|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-    <Commandlineparameters>a</Commandlineparameters>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Linux|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <DefineConstants>LINUX</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -73,27 +59,28 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="RelojForm.cs">
+    <Compile Include="RelojUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RelojForm.designer.cs">
-      <DependentUpon>RelojForm.cs</DependentUpon>
+    <Compile Include="RelojUI.designer.cs">
+      <DependentUpon>RelojUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RelojForm.resx">
-      <DependentUpon>RelojForm.cs</DependentUpon>
+    <EmbeddedResource Include="RelojUI.resx">
+      <DependentUpon>RelojUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="FingerPrintUtilsForm.cs">
+    <Compile Include="FingerPrintUtilsUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FingerPrintUtilsForm.Designer.cs">
-      <DependentUpon>FingerPrintUtilsForm.cs</DependentUpon>
+    <Compile Include="FingerPrintUtilsUI.Designer.cs">
+      <DependentUpon>FingerPrintUtilsUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FingerPrintUtilsForm.resx">
-      <DependentUpon>FingerPrintUtilsForm.cs</DependentUpon>
+    <EmbeddedResource Include="FingerPrintUtilsUI.resx">
+      <DependentUpon>FingerPrintUtilsUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config.example" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="clock.ico" />

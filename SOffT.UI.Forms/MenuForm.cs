@@ -20,7 +20,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -30,56 +29,43 @@ namespace Sofft.UI.Forms
 {
 	public partial class MenuForm : Form
 	{
-		public MenuForm ()
+		public MenuForm()
 		{
-			InitializeComponent ();
-			Icon = Modulo.CargarIcono ();
+			InitializeComponent();
+			Icon = Modulo.CargarIcono();
 		}
 
 		/// <summary>
 		/// Lista de Botones para manejar los indices de los permisos.
 		/// </summary>
-		List<Button> botones = new List<Button> ();
-
-		/// <summary>
-		/// Crea los botones en una lista a agregar en el frm.
-		/// </summary>
-		/// <param name="nombres">Lista de nombre para los botones a crear</param>
-		[Obsolete ("Usar metodo AgregarBoton()")]
-		public void CreaBotones (params string[] nombres)
-		{
-			foreach (string nombre in nombres) {
-				AgregarBoton (nombre);
-			}
-		}
+		List<Button> botones = new List<Button>();
 
 		/// <summary>
 		/// Agrega un nuevo boton al final de la lista de botones
 		/// </summary>
 		/// <param name="nombre">Nombre del boton</param>
-		public void AgregarBoton (string nombre)
+		public void AgregarBoton(string nombre)
 		{
-			var boton = new Button ();
+			var boton = new Button();
 			boton.Enabled = !Modulo.ValidaLogin;
 			boton.TabIndex = botones.Count;
 			boton.Text = nombre;
 			boton.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			flpBotones.Controls.Add (boton);
+			flpBotones.Controls.Add(boton);
 			boton.Click += botones_Click;
 			boton.AutoSize = true;
-			botones.Add (boton);
+			botones.Add(boton);
 		}
 
 		/// <summary>
 		/// Evento único para el panel de botones. Detecta la pulsacion de un boton
-		/// hvivani. 20061011.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void botones_Click (object sender, EventArgs e)
+		void botones_Click(object sender, EventArgs e)
 		{
 			var b = (Button)sender;
-			boton_Click (b.TabIndex);
+			Boton_Click(b.TabIndex);
 		}
 
 
@@ -87,9 +73,9 @@ namespace Sofft.UI.Forms
 		/// Metodo para definir la accion de cada boton pulsado
 		/// </summary>
 		/// <param name="indice">Indice del boton pulsado</param>
-		public virtual void boton_Click (int indice)
+		public virtual void Boton_Click(int indice)
 		{
-			MessageBox.Show ("Es necesario redefinir este metodo en la nueva instancia");
+			MessageBox.Show("Es necesario redefinir este metodo en la nueva instancia");
 		}
 
 		/// <summary>
@@ -97,9 +83,9 @@ namespace Sofft.UI.Forms
 		/// este formulario.
 		/// </summary>
 		/// <param name="indice"></param>
-		public void aplicaPermisos (int indice)
+		public void AplicarPermisos(int indice)
 		{
-			Usuario.SetPermisosSubIndices (ref botones, indice);
+			Usuario.SetPermisosSubIndices(ref botones, indice);
 		}
 
 		#region Miembros de IPermisible
@@ -109,7 +95,8 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Obtinene el nivel de profundidad del formulario. Recorrido de indices desde el fomulario principal hasta el formulario actual.
 		/// </summary>
-		public string Nivel {
+		public string Nivel
+		{
 			get { return nivel; }
 		}
 
@@ -120,29 +107,13 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="nivel">Nivel del fomulario invocador</param>
 		/// <param name="indice">Indice del boton invocador</param>
-		public virtual void abrir (string nivel, int indice)
+		public virtual void Abrir(string nivel, int indice)
 		{
-			this.nivel = string.Concat (nivel, ".", indice.ToString ());
-			Usuario.SetPermisos (ref botones, Nivel);
-			ShowDialog ();
+			this.nivel = string.Concat(nivel, ".", indice.ToString());
+			Usuario.SetPermisos(ref botones, Nivel);
+			ShowDialog();
 		}
 
 		#endregion
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	[Obsolete ("Usar Sofft.UI.Forms.MenuForm")]
-	public partial class frmMenu : Sofft.UI.Forms.MenuForm
-	{
-		[Obsolete ("Usar metodo AgregarBoton()")]
-		public void creaBotones (params string[] nombresBotones)
-		{
-			foreach (var item in nombresBotones) {
-				AgregarBoton (item);
-			}
-		}
 	}
 }

@@ -21,8 +21,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Sueldos.Entidades;
 using System;
+using Sueldos.Entidades;
 
 namespace Reloj.Core
 {
@@ -36,49 +36,55 @@ namespace Reloj.Core
 
 		public string Foto { get; set; }
 
-		public DateTime FechaHora {
+		public DateTime FechaHora
+		{
 			get;
 			set;
 		}
 
-		public string Fecha {
-			get {
-				return FechaHora.ToShortDateString ();
+		public string Fecha
+		{
+			get
+			{
+				return FechaHora.ToShortDateString();
 			}
 		}
 
-		public string Hora {
-			get {
-				return string.Format ("{0:D2}:{1:D2}:{2:D2}", FechaHora.Hour, FechaHora.Minute, FechaHora.Second);
+		public string Hora
+		{
+			get
+			{
+				return string.Format("{0:D2}:{1:D2}:{2:D2}", FechaHora.Hour, FechaHora.Minute, FechaHora.Second);
 			}
 		}
 
-		public int RelojId {
+		public int RelojId
+		{
 			get;
 			set;
 		}
 
-		public TablaEntity Reloj{ get; set; }
+		public TablaEntity Reloj { get; set; }
 
-		public Fichada ()
+		public Fichada()
 		{
 		}
 
-		public Fichada (int id)
+		public Fichada(int id)
 		{
 			Id = id;
 		}
 
-		public Fichada (int id, int legajo)
+		public Fichada(int id, int legajo)
 		{
 
 			Id = id;
 			Legajo = legajo;
 		}
 
-		public string ToCustomString ()
+		public string ToCustomString()
 		{
-			return string.Format ("{0} {1} -> {2:D5} {3}", Fecha, Hora, Legajo, ApellidoYnombres);
+			return string.Format("{0} {1} -> {2:D5} {3}", Fecha, Hora, Legajo, ApellidoYnombres);
 		}
 	}
 }

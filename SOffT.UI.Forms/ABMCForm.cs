@@ -30,39 +30,39 @@ namespace Sofft.UI.Forms
 	public partial class ABMCForm : Form
 	{
 		protected string codigoBusqueda = string.Empty;
-		ToolTip toolTip = new ToolTip ();
+		ToolTip toolTip = new ToolTip();
 
-		public ABMCForm ()
+		public ABMCForm()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			btnBuscar.MouseHover += btnBuscar_MouseHover;
 			Text = "A.B.M. Generico";
 		}
 
-		void btnBuscar_MouseHover (object sender, EventArgs e)
+		void btnBuscar_MouseHover(object sender, EventArgs e)
 		{
-			toolTip.SetToolTip (btnBuscar, "Buscar...");
+			toolTip.SetToolTip(btnBuscar, "Buscar...");
 		}
 
-		protected virtual void frmABM_Load (object sender, EventArgs e)
+		protected virtual void frmABM_Load(object sender, EventArgs e)
 		{
-			HabilitarEdicion (false);
+			HabilitarEdicion(false);
 		}
 
-		void btnCerrar_Click (object sender, EventArgs e)
+		void btnCerrar_Click(object sender, EventArgs e)
 		{
-			Close ();
+			Close();
 		}
 
-		protected virtual void btnAgregar_Click (object sender, EventArgs e)
+		protected virtual void btnAgregar_Click(object sender, EventArgs e)
 		{
-			HabilitarEdicion (true);
-			LimpiarControles (gbDatos);
+			HabilitarEdicion(true);
+			LimpiarControles(gbDatos);
 		}
 
-		protected virtual void HabilitarEdicion (bool habilitado)
+		protected virtual void HabilitarEdicion(bool habilitado)
 		{
-			Controles.HabilitarControles (gbDatos, habilitado);
+			Controles.HabilitarControles(gbDatos, habilitado);
 
 			btnBuscar.Enabled = !habilitado;
 
@@ -71,26 +71,31 @@ namespace Sofft.UI.Forms
 			btnModificar.Enabled = !habilitado;
 			btnGrabar.Enabled = habilitado;
 			btnCancelar.Enabled = habilitado;
-			if (habilitado) {
-				btnAgregar.Focus ();
+			if (habilitado)
+			{
+				btnAgregar.Focus();
 			}
 		}
 
-		void LimpiarControles (Control control)
+		void LimpiarControles(Control control)
 		{
-			foreach (Control c in control.Controls) {
-				LimpiarControles (c);
+			foreach (Control c in control.Controls)
+			{
+				LimpiarControles(c);
 			}
 			var textBox = control as TextBox;
 			if (textBox != null)
 				textBox.Text = string.Empty;
 			var listBox = control as ListBox;
-			if (listBox != null) {
-				listBox.Items.Clear ();
+			if (listBox != null)
+			{
+				listBox.Items.Clear();
 			}
 			var comboBox = control as ComboBox;
-			if (comboBox != null) {
-				if (comboBox.ValueMember != string.Empty) {
+			if (comboBox != null)
+			{
+				if (comboBox.ValueMember != string.Empty)
+				{
 					comboBox.SelectedValue = -1;
 				}
 			}
@@ -99,53 +104,30 @@ namespace Sofft.UI.Forms
 				checkBox.Checked = false;
 		}
 
-		protected virtual void btnCancelar_Click (object sender, EventArgs e)
+		protected virtual void btnCancelar_Click(object sender, EventArgs e)
 		{
-			HabilitarEdicion (false);
+			HabilitarEdicion(false);
 		}
 
-		protected virtual void btnGrabar_Click (object sender, EventArgs e)
+		protected virtual void btnGrabar_Click(object sender, EventArgs e)
 		{
-			HabilitarEdicion (false);
-			btnAgregar.Focus ();
+			HabilitarEdicion(false);
+			btnAgregar.Focus();
 		}
 
-		protected virtual void btnEliminar_Click (object sender, EventArgs e)
-		{
-
-		}
-
-		protected virtual void btnModificar_Click (object sender, EventArgs e)
-		{
-			HabilitarEdicion (true);
-		}
-
-		protected virtual void btnBuscar_Click (object sender, EventArgs e)
+		protected virtual void btnEliminar_Click(object sender, EventArgs e)
 		{
 
 		}
-	}
-}
 
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	[Obsolete ("Usar Sofft.UI.Forms.ABMCForm")]
-	public partial class frmABMC : Sofft.UI.Forms.ABMCForm
-	{
-		protected string CodigoBusqueda {
-			get{ return codigoBusqueda; }
-			set{ codigoBusqueda = value; }
+		protected virtual void btnModificar_Click(object sender, EventArgs e)
+		{
+			HabilitarEdicion(true);
 		}
 
-		protected virtual void habilitaGrabar ()
+		protected virtual void btnBuscar_Click(object sender, EventArgs e)
 		{
-			HabilitarEdicion (true);
-		}
 
-		protected virtual void habilitaEliminar ()
-		{
-			HabilitarEdicion (false);
 		}
 	}
 }

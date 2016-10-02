@@ -40,7 +40,7 @@ namespace Reloj.UI.Forms
 
 			Application.EnableVisualStyles ();
 			Application.SetCompatibleTextRenderingDefault (false);
-			Application.Run (new RelojForm { RelojId = relojdId });
+			Application.Run (new RelojUI { RelojId = relojdId });
 		}
 	}
 }

@@ -21,72 +21,58 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections;
 
 namespace Sueldos.Core
 {
 	public class Acumulados : CollectionBase
 	{
-		public int Add (Acumulado item)
+		public int Add(Acumulado item)
 		{
-			return List.Add (item);
+			return List.Add(item);
 		}
 
-		public void Insert (int index, Acumulado item)
+		public void Insert(int index, Acumulado item)
 		{
-			List.Insert (index, item);
+			List.Insert(index, item);
 		}
 
-		public void Remove (Acumulado item)
+		public void Remove(Acumulado item)
 		{
-			List.Remove (item);
+			List.Remove(item);
 		}
 
-		public bool Contains (Acumulado item)
+		public bool Contains(Acumulado item)
 		{
-			return List.Contains (item);
+			return List.Contains(item);
 		}
 
-		public int IndexOf (Acumulado item)
+		public int IndexOf(Acumulado item)
 		{
-			return List.IndexOf (item);
+			return List.IndexOf(item);
 		}
 
-		public void CopyTo (Acumulado[] array, int index)
+		public void CopyTo(Acumulado[] array, int index)
 		{
-			List.CopyTo (array, index);
+			List.CopyTo(array, index);
 		}
 
-		public Acumulado this [int index] {
-			get { return (Acumulado)List [index]; }
-			set { List [index] = value; }
+		public Acumulado this[int index]
+		{
+			get { return (Acumulado)List[index]; }
+			set { List[index] = value; }
 		}
-
-		/*
-        public void cargarDataGridView(DataGridView dgv)
-        {
-            dgv.DataSource = null;
-            dgv.DataSource = this;
-            dgv.Columns["legajo"].Visible = false;
-            dgv.Columns["nombre"].Visible = false;
-            dgv.Columns["codigo"].DisplayIndex = 0;
-            dgv.Columns["descripcion"].DisplayIndex = 1;
-            dgv.Columns["valor"].DisplayIndex = 2;
-            dgv.Columns["detalle"].DisplayIndex = 3;
-            Controles.setEstandarDataGridView(dgv);
-        }
-        */
 
 		/// <summary>
 		/// verifica si un codigo existe en la coleccion
 		/// </summary>
 		/// <param name="ce"></param>
 		/// <returns></returns>
-		public bool existeCodigo (Acumulado ce)
+		public bool existeCodigo(Acumulado ce)
 		{
-			Boolean salida = false;
-			foreach (Acumulado c in this) {
+			bool salida = false;
+			foreach (Acumulado c in this)
+			{
 				salida = c.Codigo == ce.Codigo;
 			}
 			return salida;

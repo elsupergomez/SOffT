@@ -36,44 +36,45 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Constructor de la clase
 		/// </summary>
-		public PrincipalForm ()
+		public PrincipalForm()
 		{
-			InitializeComponent ();
-			var logo = string.Format ("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
-			pictureBoxEmpresa.Image = Controles.CargarImagen (logo);
+			InitializeComponent();
+			var logo = string.Format("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
+			pictureBoxEmpresa.Image = Controles.CargarImagen(logo);
 		}
 
 		/// <summary>
 		/// Lista de Botones para manejar los indices de los permisos.
 		/// </summary>
-		List<Button> botones = new List<Button> ();
+		List<Button> botones = new List<Button>();
 
 		/// <summary>
 		/// Llama al login y verifica los datos ingresados.
 		/// hvivani. 20061011.
 		/// </summary>
-		public void VerificaLogin ()
+		public void VerificaLogin()
 		{
-			var f = new LoginForm ();
-			f.ShowDialog ();
-			if (Modulo.Usuario != null) {
+			var f = new LoginForm();
+			f.ShowDialog();
+			if (Modulo.Usuario != null)
+			{
 				//this.lblSistemaGestion.Text = Modulo.NombreSistema;
 				//this.lblModulo.Text = Modulo.NombreModulo;
 				//Usuario.setPermisosIndices(ref botones);
 				//actualizarDatosDocumentoModulo Me
 				//administrarPermisosIndices Me
-				Usuario.SetPermisos (ref botones, Nivel);
+				Usuario.SetPermisos(ref botones, Nivel);
 			}
 		}
 
-		public void SetDatos (string servidor, string DB, string nombreModulo, string nombreSistema, string version)
+		public void SetDatos(string servidor, string DB, string nombreModulo, string nombreSistema, string version)
 		{
 			Modulo.ServidorDB = servidor;
 			Modulo.DB = DB;
 			Modulo.NombreModulo = nombreModulo;
 			Modulo.NombreSistema = nombreSistema;
 			Modulo.IdModulo = 2;
-			Icon = Modulo.CargarIcono ();
+			Icon = Modulo.CargarIcono();
 			lblVersion.Text = version;
 			lblSistemaGestion.Text = Modulo.NombreSistema;
 			lblModulo.Text = Modulo.NombreModulo;
@@ -83,10 +84,11 @@ namespace Sofft.UI.Forms
 		/// Crea los botones en una lista a agregar en el frm.
 		/// </summary>
 		/// <param name="nombres">Lista de nombre para los botones a crear</param>
-		public void CreaBotones (params string[] nombres)
+		public void CreaBotones(params string[] nombres)
 		{
-			foreach (string nombre in nombres) {
-				AgregarBoton (nombre);
+			foreach (string nombre in nombres)
+			{
+				AgregarBoton(nombre);
 			}
 		}
 
@@ -94,16 +96,16 @@ namespace Sofft.UI.Forms
 		/// Agrega un nuevo boton al final de la lista de botones
 		/// </summary>
 		/// <param name="nombre">Nombre del boton</param>
-		public void AgregarBoton (string nombre)
+		public void AgregarBoton(string nombre)
 		{
-			var boton = new Button ();
+			var boton = new Button();
 			boton.Enabled = !Modulo.ValidaLogin;
 			boton.TabIndex = botones.Count;
 			boton.Text = nombre;
 			boton.Width = fLPBotones.Width - fLPBotones.Margin.All;
-			fLPBotones.Controls.Add (boton);
+			fLPBotones.Controls.Add(boton);
 			boton.Click += botones_Click;
-			botones.Add (boton);
+			botones.Add(boton);
 		}
 
 		/// <summary>
@@ -112,62 +114,34 @@ namespace Sofft.UI.Forms
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void botones_Click (object sender, EventArgs e)
+		void botones_Click(object sender, EventArgs e)
 		{
 			var b = (Button)sender;
-			Boton_Click (b.TabIndex);
+			Boton_Click(b.TabIndex);
 		}
 
 		/// <summary>
 		/// Metodo para definir la accion de cada boton pulsado
 		/// </summary>
 		/// <param name="indice">Indice del boton pulsado</param>
-		public virtual void Boton_Click (int indice)
+		public virtual void Boton_Click(int indice)
 		{
 		}
 
-		void FormPrincipal_Load (object sender, EventArgs e)
+		void FormPrincipal_Load(object sender, EventArgs e)
 		{
 			//si se esta validando el usuario y no se obtuvo uno valido. cierro.
 			if (Modulo.ValidaLogin && Modulo.Usuario == null || Nivel == null)
-				Close ();
+				Close();
 		}
 
 		#region Miembros de IPermisible
 
-		public string Nivel {
-			get { return Modulo.IdModulo.ToString (); }
+		public string Nivel
+		{
+			get { return Modulo.IdModulo.ToString(); }
 		}
 
 		#endregion
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes
-{
-	/// <summary>
-	/// Formulario Principal de Modulos, Heredable, con metodos redefinibles.
-	/// </summary>
-	[Obsolete ("Usar Sofft.UI.Forms.PrincipalForm")]
-	public class frmPrincipal : Sofft.UI.Forms.PrincipalForm
-	{
-		[Obsolete ("Usar metodo AgregarBoton(item)")]
-		public void creaBotones (params string[] nombresBotones)
-		{
-			foreach (var item in nombresBotones) {
-				AgregarBoton (item);
-			}
-		}
-
-		public void abrir (string nivel, int indice)
-		{
-			throw new Exception ("The method or operation is not implemented.");
-		}
-
-		public void setDatos (string servidor, string DB, string nombreModulo, object nil, string nombreSistema, string version)
-		{
-			base.SetDatos (servidor, DB, nombreModulo, nombreSistema, version);
-		}
 	}
 }

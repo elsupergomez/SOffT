@@ -29,122 +29,132 @@ namespace Sueldos.Core
 	{
 		readonly Queue<string> formulaCompilador;
 
-		public FormulaConcepto ()
+		public FormulaConcepto()
 		{
-			formulaCompilador = new Queue<string> ();
+			formulaCompilador = new Queue<string>();
 		}
 
-		public string CadenaCompilador {
-			get {
+		public string CadenaCompilador
+		{
+			get
+			{
 				string cadena = "";
-				foreach (string elemento in formulaCompilador) {
+				foreach (string elemento in formulaCompilador)
+				{
 					cadena = cadena + elemento + " ";
 				}
 				return cadena;
 			}
-			set {
-				String[] expresiones;
-				expresiones = value.Split (" ".ToCharArray ());
-				for (int i = 0; i < expresiones.Length; i++) {
-					formulaCompilador.Enqueue (expresiones [i]);
+			set
+			{
+				string[] expresiones;
+				expresiones = value.Split(" ".ToCharArray());
+				for (int i = 0; i < expresiones.Length; i++)
+				{
+					formulaCompilador.Enqueue(expresiones[i]);
 				}
 			}
 		}
 
-		public string CadenaNatural {
-			get {
+		public string CadenaNatural
+		{
+			get
+			{
 				string cadena = "";
-				foreach (string elemento in formulaCompilador) {
-					cadena = cadena + Traducir (elemento) + " ";
+				foreach (string elemento in formulaCompilador)
+				{
+					cadena = cadena + Traducir(elemento) + " ";
 				}
 				return cadena;
 			}
 		}
 
-		static string Traducir (string instruccion)
+		static string Traducir(string instruccion)
 		{
-			switch (instruccion) {
-			case "?":
-				return "entonces";
-			case ":":
-				return "sino";
-			case "||":
-				return "o";
-			case "&&":
-				return "y";
-			case "<>":
-				return "disntinto de";
-			case ">=":
-				return "mayor o igual que";
-			case "<=":
-				return "menor o igual que";
-			case ">":
-				return "mayor que";
-			case "<":
-				return "menor que";
-			case "+":
-				return instruccion;
-			case "-":
-				return instruccion;
-			case "/":
-				return instruccion;
-			case "*":
-				return instruccion;
-			case "(":
-				return instruccion;
-			case ")":
-				return instruccion;
-			case ",":
-				return instruccion;
-			case "":
-				return " ";
-			case " ":
-				return " ";
-			default:
-				return Consultar (instruccion);
+			switch (instruccion)
+			{
+				case "?":
+					return "entonces";
+				case ":":
+					return "sino";
+				case "||":
+					return "o";
+				case "&&":
+					return "y";
+				case "<>":
+					return "disntinto de";
+				case ">=":
+					return "mayor o igual que";
+				case "<=":
+					return "menor o igual que";
+				case ">":
+					return "mayor que";
+				case "<":
+					return "menor que";
+				case "+":
+					return instruccion;
+				case "-":
+					return instruccion;
+				case "/":
+					return instruccion;
+				case "*":
+					return instruccion;
+				case "(":
+					return instruccion;
+				case ")":
+					return instruccion;
+				case ",":
+					return instruccion;
+				case "":
+					return " ";
+				case " ":
+					return " ";
+				default:
+					return Consultar(instruccion);
 			}
 		}
 
-		static string Consultar (string instrucion)
+		static string Consultar(string instrucion)
 		{
-			String[] cadena = instrucion.Split ("(),\"".ToCharArray (), StringSplitOptions.RemoveEmptyEntries);
+			string[] cadena = instrucion.Split("(),\"".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-			switch (cadena [0]) {
-			case "campoEmpleado":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "empleadosSueldos", "indice", cadena [1]).ToString ();
-			case "variable":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "VAR", "indice", cadena [1]).ToString ();
-			case "acumulador":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "ACU", "indice", cadena [1]).ToString ();
-			case "novedadEmpleado":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "novedades", "indice", cadena [1]).ToString ();
-			case "tablas":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", cadena [1], "indice", cadena [2]).ToString ();
-			case "fechaEmpleado":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "empleadosSueldos", "indice", cadena [1]).ToString ();
-			case "acumuladoEmpleado":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "acumulados", "indice", cadena [1]).ToString ();
-			case "asistenciaEmpleadoEntreDias":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "asistencia", "indice", cadena [1])
-				+ " entre " + cadena [2] + " y " + cadena [3];
-			case "acumuladoMayorEntreFechas":
-				return DB.Instancia.SPToScalar ("tablaConsultarDescipcion", "tabla", "acumulados", "indice", cadena [1])
-				+ " entre " + cadena [2] + " y " + cadena [3];
-			case "saltar":
-				return cadena [0] + " a ";
-			default:
-				return instrucion;
+			switch (cadena[0])
+			{
+				case "campoEmpleado":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "empleadosSueldos", "indice", cadena[1]).ToString();
+				case "variable":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "VAR", "indice", cadena[1]).ToString();
+				case "acumulador":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "ACU", "indice", cadena[1]).ToString();
+				case "novedadEmpleado":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "novedades", "indice", cadena[1]).ToString();
+				case "tablas":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", cadena[1], "indice", cadena[2]).ToString();
+				case "fechaEmpleado":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "empleadosSueldos", "indice", cadena[1]).ToString();
+				case "acumuladoEmpleado":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "acumulados", "indice", cadena[1]).ToString();
+				case "asistenciaEmpleadoEntreDias":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "asistencia", "indice", cadena[1])
+					+ " entre " + cadena[2] + " y " + cadena[3];
+				case "acumuladoMayorEntreFechas":
+					return DB.Instancia.SPToScalar("tablaConsultarDescipcion", "tabla", "acumulados", "indice", cadena[1])
+					+ " entre " + cadena[2] + " y " + cadena[3];
+				case "saltar":
+					return cadena[0] + " a ";
+				default:
+					return instrucion;
 			}
 		}
 
-		public void Agregar (string valor)
+		public void Agregar(string valor)
 		{
-			formulaCompilador.Enqueue (valor);
+			formulaCompilador.Enqueue(valor);
 		}
 
-		public string Quitar ()
+		public string Quitar()
 		{
-			return formulaCompilador.Dequeue ();
+			return formulaCompilador.Dequeue();
 		}
 	}
 }

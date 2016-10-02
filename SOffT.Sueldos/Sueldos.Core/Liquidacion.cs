@@ -30,168 +30,128 @@ namespace Sueldos.Core
 {
 	public class Liquidacion
 	{
-		public Liquidacion ()
+		public Liquidacion()
 		{
-			FechasDePago = new List<DateTime> ();
+			FechasDePago = new List<DateTime>();
 		}
 
 		/// <summary>
 		/// Constructor para Liquidacion existente.
 		/// </summary>
 		/// <param name = "idLiquidacion"></param>
-		public Liquidacion (int idLiquidacion)
+		public Liquidacion(int idLiquidacion)
 		{
 			Id = idLiquidacion;
-			FechasDePago = new List<DateTime> ();
-			cargarDatos ();
+			FechasDePago = new List<DateTime>();
+			cargarDatos();
 		}
 
-		public int Id {
+		public int Id
+		{
 			get;
 			set;
 		}
 
-		public int AnioMes {
+		public int AnioMes
+		{
 			get;
 			set;
 		}
 
-		public int IdAplicacion {
+		public int IdAplicacion
+		{
 			get;
 			set;
 		}
 
-		public int IdTipoSalario {
+		public int IdTipoSalario
+		{
 			get;
 			set;
 		}
 
-		public string Descripcion {
+		public string Descripcion
+		{
 			get;
 			set;
 		}
 
-		public DateTime FechaLiquidacion {
+		public DateTime FechaLiquidacion
+		{
 			get;
 			set;
 		}
 
-		public string PeriodoLiquidado {
+		public string PeriodoLiquidado
+		{
 			get;
 			set;
 		}
 
-		public string LugarDePago {
+		public string LugarDePago
+		{
 			get;
 			set;
 		}
 
-		public IList<DateTime> FechasDePago {
+		public IList<DateTime> FechasDePago
+		{
 			get;
 			set;
 		}
 
-		public string PeriodoDepositado {
+		public string PeriodoDepositado
+		{
 			get;
 			set;
 		}
 
-		public string BancoDepositado {
+		public string BancoDepositado
+		{
 			get;
 			set;
 		}
 
-		public DateTime FechaDepositado {
+		public DateTime FechaDepositado
+		{
 			get;
 			set;
 		}
 
 
-		public Boolean IdEstado {
+		public bool IdEstado
+		{
 			get;
 			set;
 		}
 
-		public Boolean RecibosSeparados {
+		public bool RecibosSeparados
+		{
 			get;
 			set;
 		}
 
-		protected void cargarDatos ()
+		protected void cargarDatos()
 		{
 			//cargo datos liquidacion
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesDetalleConsultar", "@id", Id)) {
-				if (rs.Read ()) {
-					AnioMes = Convert.ToInt32 (rs ["anioMes"]);
-					IdAplicacion = Convert.ToInt32 (rs ["idAplicacion"]);
-					IdTipoSalario = Convert.ToInt32 (rs ["idTipoSalario"]);
-					Descripcion = rs ["Descripcion"].ToString ();
-					FechaLiquidacion = Convert.ToDateTime (rs ["fechaLiquidacion"]);
-					PeriodoLiquidado = rs ["periodoLiquidado"].ToString ();
-					LugarDePago = rs ["lugarDePago"].ToString ();
-					//  this.fechasDePago[0] = Convert.ToDateTime(rs["fechaDePago"]);
-					//  this.cargarFechasDePago();
-					PeriodoDepositado = rs ["periodoDepositado"].ToString ();
-					BancoDepositado = rs ["bancoDepositado"].ToString ();
-					FechaDepositado = Convert.ToDateTime (rs ["fechaDepositado"]);
-					IdEstado = Convert.ToBoolean (rs ["estado"]);
-					RecibosSeparados = Convert.ToBoolean (rs ["recibosSeparados"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesDetalleConsultar", "@id", Id))
+			{
+				if (rs.Read())
+				{
+					AnioMes = Convert.ToInt32(rs["anioMes"]);
+					IdAplicacion = Convert.ToInt32(rs["idAplicacion"]);
+					IdTipoSalario = Convert.ToInt32(rs["idTipoSalario"]);
+					Descripcion = rs["Descripcion"].ToString();
+					FechaLiquidacion = Convert.ToDateTime(rs["fechaLiquidacion"]);
+					PeriodoLiquidado = rs["periodoLiquidado"].ToString();
+					LugarDePago = rs["lugarDePago"].ToString();
+					PeriodoDepositado = rs["periodoDepositado"].ToString();
+					BancoDepositado = rs["bancoDepositado"].ToString();
+					FechaDepositado = Convert.ToDateTime(rs["fechaDepositado"]);
+					IdEstado = Convert.ToBoolean(rs["estado"]);
+					RecibosSeparados = Convert.ToBoolean(rs["recibosSeparados"]);
 				}
 			}
 		}
-
-		/*    private void cargarFechasDePago()
-        {
-            DbDataReader rs = Model.DB.ejecutarDataReader(Model.TipoComando.SP, "fechasDePagoConsultar", "@idLiquidacion", this.id);
-            while (rs.Read())
-                this.fechasDePago.Add(Convert.ToDateTime(rs["fechaDePago"]));
-            Model.DB.desconectarDB();
-        }*/
-
-		/*     private void grabarFechasDePago()
-        {
-            //primero elimino las actuales
-            Model.DB.ejecutarProceso(Model.TipoComando.SP, "fechasDePagoEliminarTodas", "@idLiquidacion", this.id);
-            for (int i = 0; i < this.fechasDePago.Count; i++)
-                Model.DB.ejecutarProceso(Model.TipoComando.SP, "fechasDePagoInsertar", "@idLiquidacion", this.id, "@fechaDePago", this.fechasDePago[i]);
-        }*/
-
-		/*     public void grabar()
-        {   //graba y luego obtiene el id grabado para ser asignado al objeto.
-            Model.DB.ejecutarProceso(Model.TipoComando.SP, "liquidacionesDetalleActualizar", "@AnioMes", this.anioMes, "@idAplicacion", this.idAplicacion, "@idTipoSalario", this.idTipoSalario, "@descripcion", this.descripcion, "@fechaLiquidacion", this.fechaLiquidacion, "@periodoLiquidado", this.periodoLiquidado, "@lugarDePago", this.lugarDePago, "@periodoDepositado", this.periodoDepositado, "@bancoDepositado", this.bancoDepositado, "@fechaDepositado", this.fechaDepositado, "@estado", this.idEstado, "@recibosSeparados", this.recibosSeparados);
-            this.id = Convert.ToInt32(Model.DB.ejecutarScalar(Model.TipoComando.SP, "liquidacionesDetalleConsultaNueva",  "@AnioMes",this.anioMes, "@idAplicacion", this.idAplicacion, "@fechaLiquidacion", this.FechaLiquidacion ));
-            this.grabarFechasDePago();
-        }*/
-
-		/*     public static Boolean consultarAnioMesAbierta(int anioMes)
-        {
-            DbDataReader rs = Model.DB.ejecutarDataReader(Model.TipoComando.SP, "liquidacionesDetalleConsultarAnioMesAbierta", "@anioMes", anioMes);
-            if (rs.Read())
-            {
-                Model.DB.desconectarDB();
-                return true;
-            }
-            else
-            {
-                Model.DB.desconectarDB();
-                return false;
-            }
-
-        }*/
-
-		/*    public static Boolean hayConveniosAsociados(int idTipoLiq)
-        {
-            DbDataReader rsLiquidaciones;
-            rsLiquidaciones = Model.DB.ejecutarDataReader(Model.TipoComando.SP, "tablasConsultarConveniosAsociadosAliquidaciones", "@idTipoLiquidacion", idTipoLiq);
-            if (rsLiquidaciones.Read())
-            {
-                if (Convert.ToInt32(rsLiquidaciones["contenido"]) > 0)
-                    return true;
-                else
-                    return false;
-            }
-            else
-                return false;
-        }*/
 	}
 }

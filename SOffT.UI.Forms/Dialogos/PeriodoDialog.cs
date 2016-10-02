@@ -40,11 +40,14 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Obtiene o establece fecha inicial del rango. Por defecto fecha actual
 		/// </summary>
-		public DateTime FechaDesde {
-			get {
+		public DateTime FechaDesde
+		{
+			get
+			{
 				return dtpDesde.Value.Date;
 			}
-			set {
+			set
+			{
 				dtpDesde.Value = value;
 			}
 		}
@@ -52,11 +55,14 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Obtiene o establece fecha final del rango. Por defecto fecha actual
 		/// </summary>
-		public DateTime FechaHasta {
-			get {
+		public DateTime FechaHasta
+		{
+			get
+			{
 				return dtpHasta.Value.Date;
 			}
-			set {
+			set
+			{
 				dtpDesde.Value = value;
 			}
 		}
@@ -64,8 +70,10 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Establece si el dialogo es para un rago de fechas (por defecto) o solo para una fecha Hasta.
 		/// </summary>
-		public bool HabilitarRango {
-			set {
+		public bool HabilitarRango
+		{
+			set
+			{
 				dtpDesde.Enabled = value;
 			}
 		}
@@ -77,20 +85,20 @@ namespace Sofft.UI.Forms
 		/// <summary>
 		/// Crea una instancia del formulario de dialogo para seleccion de fechas
 		/// </summary>
-		public PeriodoDialog ()
+		public PeriodoDialog()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			dtpDesde.Value = DateTime.Now.Date;
 			dtpDesde.Value = DateTime.Now.Date;
 		}
 
-		void dtpDesde_ValueChanged (object sender, EventArgs e)
+		void dtpDesde_ValueChanged(object sender, EventArgs e)
 		{
 			if (dtpDesde.Value > dtpHasta.Value)
 				dtpDesde.Value = dtpHasta.Value;
 		}
 
-		void dtpHasta_ValueChanged (object sender, EventArgs e)
+		void dtpHasta_ValueChanged(object sender, EventArgs e)
 		{
 			if (dtpHasta.Value < dtpDesde.Value)
 				dtpHasta.Value = dtpDesde.Value;
@@ -98,29 +106,16 @@ namespace Sofft.UI.Forms
 
 		#endregion
 
-		void btnAceptar_Click (object sender, EventArgs e)
+		void btnAceptar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-			Close ();
+			Close();
 		}
 
-		void btnCancelar_Click (object sender, EventArgs e)
+		void btnCancelar_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
-			Close ();
+			Close();
 		}
-	}
-}
-
-//TODO Remover
-namespace Sofft.ViewComunes.Dialogos
-{
-	/// <summary>
-	/// Formulario de dialogo para seleccion de fechas
-	/// </summary>
-	[Obsolete ("Usar Sofft.UI.Forms.PeriodoDialog")]
-	public class frmRangoFechas : UI.Forms.PeriodoDialog
-	{
-
 	}
 }

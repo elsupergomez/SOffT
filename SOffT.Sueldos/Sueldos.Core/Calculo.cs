@@ -43,52 +43,60 @@ namespace Sueldos.Core
 		static int idTipoLiquidacion;
 		//normal/vacaciones/etc
 
-		public static int IdTabla {
+		public static int IdTabla
+		{
 			get;
 			set;
 		}
 
-		public static int Legajo {
+		public static int Legajo
+		{
 			get;
 			set;
 		}
 
-		public static int Salto {
+		public static int Salto
+		{
 			get;
 			set;
 		}
 
-		public static int AnioMes {
+		public static int AnioMes
+		{
 			get;
 			set;
 		}
 
-		static int AnioCalculo {
+		static int AnioCalculo
+		{
 			get { return AnioMes / 100; }
 		}
 
-		static int MesCalculo {
+		static int MesCalculo
+		{
 			get { return AnioMes % 100; }
 		}
 
-		public static int IdAplicacion {
+		public static int IdAplicacion
+		{
 			get;
 			set;
 		}
 
-		public static int IdLiquidacion {
+		public static int IdLiquidacion
+		{
 			get;
 			set;
 		}
 
-		static void inicializaACUs ()
+		static void inicializaACUs()
 		{
-			acu.Initialize ();
+			acu.Initialize();
 		}
 
-		static void inicializaVARs ()
+		static void inicializaVARs()
 		{
-			var.Initialize ();
+			var.Initialize();
 		}
 
 		/// <summary>
@@ -100,17 +108,18 @@ namespace Sueldos.Core
 		/// <param name="codigo"></param>
 		/// <param name="valor"></param>
 		/// <returns></returns>
-		public double actualizarTabla (string nombreTabla, int codigo, string valor)
+		public double actualizarTabla(string nombreTabla, int codigo, string valor)
 		{
 			//consulto identidad
 			byte identidad = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasConsultarContenidoyDetalle", "@tabla", nombreTabla, "@indice", codigo)) {
-				if (rs.Read ())
-					identidad = Convert.ToByte (rs ["identidad"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasConsultarContenidoyDetalle", "@tabla", nombreTabla, "@indice", codigo))
+			{
+				if (rs.Read())
+					identidad = Convert.ToByte(rs["identidad"]);
 			}
 			//si es tabla con historico
 			if (identidad == 2)
-				DB.Instancia.SP (nombreTabla + "Actualizar", "@AnioMes", Calculo.AnioMes, "@Indice", IdTabla, "@Legajo", Calculo.Legajo, "@Codigo", codigo, "@valor", valor);
+				DB.Instancia.SP(nombreTabla + "Actualizar", "@AnioMes", AnioMes, "@Indice", IdTabla, "@Legajo", Legajo, "@Codigo", codigo, "@valor", valor);
 			return 0;
 		}
 
@@ -121,9 +130,9 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="codigo"></param>
 		/// <returns></returns>
-		public int actualizarHistoricoEmpleado (int codigo)
+		public int actualizarHistoricoEmpleado(int codigo)
 		{
-			DB.Instancia.SP ("empleadosHistoricoLiquidacionActualizaDesdeEmpleado", "@idLiquidacion", Calculo.IdLiquidacion, "@legajo", Calculo.Legajo, "@codigo", codigo);
+			DB.Instancia.SP("empleadosHistoricoLiquidacionActualizaDesdeEmpleado", "@idLiquidacion", IdLiquidacion, "@legajo", Legajo, "@codigo", codigo);
 			return 0;
 		}
 
@@ -133,13 +142,13 @@ namespace Sueldos.Core
 		/// <param name="valor"></param>
 		/// <param name="dec"></param>
 		/// <returns></returns>
-		public string decimales (string valor, int dec)
+		public string decimales(string valor, int dec)
 		{
 			string cad = "{0:#0.";
 			for (int i = 0; i < dec; i++)
 				cad = cad + '0';
 			cad = cad + '}';
-			return string.Format (cad, Redondear (Convert.ToDouble (valor), dec));
+			return string.Format(cad, Redondear(Convert.ToDouble(valor), dec));
 		}
 
 		/// <summary>
@@ -148,11 +157,12 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="idParentesco"></param>
 		/// <returns></returns>
-		public double familiaresConsultarCantidad (int idParentesco)
+		public double familiaresConsultarCantidad(int idParentesco)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("familiaresConsultarCantidadPorParentesco", "@Legajo", Calculo.Legajo, "@idParentesco", idParentesco)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["cantidad"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("familiaresConsultarCantidadPorParentesco", "@Legajo", Legajo, "@idParentesco", idParentesco))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["cantidad"]) : 0;
 			}
 			return salida;
 		}
@@ -161,20 +171,22 @@ namespace Sueldos.Core
 		/// consulta importe de anticipos a descontar.
 		/// </summary>
 		/// <returns></returns>
-		public double anticiposConsultarImporte ()
+		public double anticiposConsultarImporte()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("anticiposConsultarParaLiquidacion", "@Legajo", Calculo.Legajo, "@anioMes", Calculo.AnioMes)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("anticiposConsultarParaLiquidacion", "@Legajo", Legajo, "@anioMes", AnioMes))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double anticiposConsultarImportePorTipo (int tipo)
+		public double anticiposConsultarImportePorTipo(int tipo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("anticiposConsultarParaLiquidacionPorTipo", "@Legajo", Calculo.Legajo, "@anioMes", Calculo.AnioMes, "@idTipoAnticipo", tipo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("anticiposConsultarParaLiquidacionPorTipo", "@Legajo", Legajo, "@anioMes", AnioMes, "@idTipoAnticipo", tipo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["importe"]) : 0;
 			}
 			return salida;
 		}
@@ -184,10 +196,10 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="valor"></param>
 		/// <param name="indice"></param>
-		public double acumular (double valor, int indice)
+		public double acumular(double valor, int indice)
 		{
-			acu [indice] = acu [indice] + valor;
-			Console.WriteLine ("     ACU[" + indice + "]=" + valor);
+			acu[indice] = acu[indice] + valor;
+			Console.WriteLine("     ACU[" + indice + "]=" + valor);
 			return valor;
 		}
 
@@ -196,17 +208,17 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="valor"></param>
 		/// <param name="indice"></param>
-		public double guardar (double valor, int indice)
+		public double guardar(double valor, int indice)
 		{
-			var [indice] = valor;
-			Console.WriteLine ("     VAR[" + indice + "]=" + valor);
+			var[indice] = valor;
+			Console.WriteLine("     VAR[" + indice + "]=" + valor);
 			return valor;
 		}
 
-		public double potencia (double Base, double exponente)
+		public double potencia(double Base, double exponente)
 		{
 			double result;
-			result = Math.Pow (Base, exponente);
+			result = Math.Pow(Base, exponente);
 			return result;
 		}
 
@@ -216,9 +228,9 @@ namespace Sueldos.Core
 		/// <param name="valor"></param>
 		/// <param name="indice"></param>
 		/// <returns></returns>
-		public double guardarEnAcumulado (double valor, int indice)
+		public double guardarEnAcumulado(double valor, int indice)
 		{
-			DB.Instancia.SP ("acumuladosActualizar", "@AnioMes", Calculo.AnioMes, "@Indice", IdTabla, "@Legajo", Calculo.Legajo, "@Codigo", indice, "@Valor", valor);
+			DB.Instancia.SP("acumuladosActualizar", "@AnioMes", AnioMes, "@Indice", IdTabla, "@Legajo", Legajo, "@Codigo", indice, "@Valor", valor);
 			return valor;
 		}
 
@@ -227,11 +239,12 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="indice"></param>
 		/// <returns></returns>
-		public double acumuladoEmpleado (int indice)
+		public double acumuladoEmpleado(int indice)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("acumuladosConsultar", "@AnioMes", Calculo.AnioMes, "@Indice", IdTabla, "@Legajo", Calculo.Legajo, "@Codigo", indice)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Valor"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("acumuladosConsultar", "@AnioMes", AnioMes, "@Indice", IdTabla, "@Legajo", Legajo, "@Codigo", indice))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Valor"]) : 0;
 			}
 			return salida;
 		}
@@ -241,11 +254,12 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="codigo"></param>
 		/// <returns></returns>
-		public double totalConceptoImporte (int codigo)
+		public double totalConceptoImporte(int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConcepto", "@idLiquidacion", Calculo.IdLiquidacion, "@Legajo", Calculo.Legajo, "@Codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConcepto", "@idLiquidacion", IdLiquidacion, "@Legajo", Legajo, "@Codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
@@ -256,56 +270,62 @@ namespace Sueldos.Core
 		/// <param name="codigo"></param>
 		/// <param name="tipo"></param>
 		/// <returns></returns>
-		public double totalConceptoImportePorTipo (int codigo, int tipo)
+		public double totalConceptoImportePorTipo(int codigo, int tipo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoPorTipo", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", tipo, "@Legajo", Calculo.Legajo, "@Codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoPorTipo", "@idLiquidacion", IdLiquidacion, "@idTipoLiquidacion", tipo, "@Legajo", Legajo, "@Codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalConceptoImporteMes (int codigo)
+		public double totalConceptoImporteMes(int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoAnioMes", "@anioMes", Calculo.AnioMes, "@Legajo", Calculo.Legajo, "@Codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoAnioMes", "@anioMes", AnioMes, "@Legajo", Legajo, "@Codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalConceptoImporteAnioMes (int codigo, int AnioMes)
+		public double totalConceptoImporteAnioMes(int codigo, int AnioMes)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoAnioMes", "@anioMes", AnioMes, "@Legajo", Calculo.Legajo, "@Codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoAnioMes", "@anioMes", AnioMes, "@Legajo", Legajo, "@Codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalConceptoHaberImporteMes (int codigo)
+		public double totalConceptoHaberImporteMes(int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", Calculo.AnioMes, "@Legajo", Calculo.Legajo, "@Codigo", codigo, "@posicion", 1)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", AnioMes, "@Legajo", Legajo, "@Codigo", codigo, "@posicion", 1))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalConceptoAdicionalImporteMes (int codigo)
+		public double totalConceptoAdicionalImporteMes(int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", Calculo.AnioMes, "@Legajo", Calculo.Legajo, "@Codigo", codigo, "@posicion", 3)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", AnioMes, "@Legajo", Legajo, "@Codigo", codigo, "@posicion", 3))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalConceptoHaberCantidadMes (int codigo)
+		public double totalConceptoHaberCantidadMes(int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", Calculo.AnioMes, "@Legajo", Calculo.Legajo, "@Codigo", codigo, "@posicion", 1)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Cantidad"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarConceptoAnioMesPosicion", "@anioMes", AnioMes, "@Legajo", Legajo, "@Codigo", codigo, "@posicion", 1))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Cantidad"]) : 0;
 			}
 			return salida;
 		}
@@ -317,11 +337,12 @@ namespace Sueldos.Core
 		/// <param name="fDesde"></param>
 		/// <param name="fHasta"></param>
 		/// <returns></returns>
-		public double acumuladoMayorEntreFechas (int codigo, DateTime fDesde, DateTime fHasta)
+		public double acumuladoMayorEntreFechas(int codigo, DateTime fDesde, DateTime fHasta)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("acumuladosConsultarMayorEntreFechas", "@legajo", Calculo.Legajo, "@codigo", codigo, "@fDesde", fDesde, "@fHasta", fHasta)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Valor"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("acumuladosConsultarMayorEntreFechas", "@legajo", Legajo, "@codigo", codigo, "@fDesde", fDesde, "@fHasta", fHasta))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Valor"]) : 0;
 			}
 			return salida;
 		}
@@ -331,9 +352,9 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="indice"></param>
 		/// <returns></returns>
-		public double variable (int indice)
+		public double variable(int indice)
 		{
-			return var [indice];
+			return var[indice];
 		}
 
 		/// <summary>
@@ -341,9 +362,9 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="indice"></param>
 		/// <returns></returns>
-		public double acumulador (int indice)
+		public double acumulador(int indice)
 		{
-			return acu [indice];
+			return acu[indice];
 		}
 
 		/// <summary>
@@ -352,11 +373,12 @@ namespace Sueldos.Core
 		/// <param name="tabla"></param>
 		/// <param name="indice"></param>
 		/// <returns></returns>
-		public double tablas (string tabla, int indice)
+		public double tablas(string tabla, int indice)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasConsultarContenidoYdetalle", "@tabla", tabla, "@indice", indice)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["Contenido"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasConsultarContenidoYdetalle", "@tabla", tabla, "@indice", indice))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["Contenido"]) : 0;
 			}
 			return salida;
 		}
@@ -367,11 +389,12 @@ namespace Sueldos.Core
 		/// <param name="tabla"></param>
 		/// <param name="valor"></param>
 		/// <returns></returns>
-		public double buscarImporte (string tabla, double valor)
+		public double buscarImporte(string tabla, double valor)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasBuscarImporteEntreRangos", "@tabla", tabla, "@valor", valor)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["detalle"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasBuscarImporteEntreRangos", "@tabla", tabla, "@valor", valor))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["detalle"]) : 0;
 			}
 			return salida;
 		}
@@ -386,18 +409,19 @@ namespace Sueldos.Core
 		/// <param name="tabla"></param>
 		/// <param name="valor"></param>
 		/// <returns></returns>
-		public double buscarValorCoeficiente (string tabla, double valor)
+		public double buscarValorCoeficiente(string tabla, double valor)
 		{
 			//campo utilizado para enviar el mes de liquidacion al sp. (mes + 1 para ganancias)
 			int mm;
-			if (mesLiquidacion () < 12)
-				mm = mesLiquidacion () + 1;
+			if (mesLiquidacion() < 12)
+				mm = mesLiquidacion() + 1;
 			else
 				mm = 1;
 
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasBuscarValorCoeficiente", "@tabla", tabla, "@valor", valor, "@coeficiente", 12, "@mesLiquidacion", mm)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["detalle"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasBuscarValorCoeficiente", "@tabla", tabla, "@valor", valor, "@coeficiente", 12, "@mesLiquidacion", mm))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["detalle"]) : 0;
 			}
 			return salida;
 		}
@@ -408,11 +432,12 @@ namespace Sueldos.Core
 		/// <param name="tabla"></param>
 		/// <param name="valor"></param>
 		/// <returns></returns>
-		public double buscarValor (string tabla, double valor)
+		public double buscarValor(string tabla, double valor)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasBuscarValor", "@tabla", tabla, "@valor", valor)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["detalle"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasBuscarValor", "@tabla", tabla, "@valor", valor))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["detalle"]) : 0;
 			}
 			return salida;
 		}
@@ -427,18 +452,19 @@ namespace Sueldos.Core
 		/// <param name="tabla"></param>
 		/// <param name="valor"></param>
 		/// <returns></returns>
-		public double buscarIndiceCoeficiente (string tabla, double valor)
+		public double buscarIndiceCoeficiente(string tabla, double valor)
 		{
 			//campo utilizado para enviar el mes de liquidacion al sp. (mes + 1 para ganancias)
 			int mm;
-			if (mesLiquidacion () < 12)
-				mm = mesLiquidacion () + 1;
+			if (mesLiquidacion() < 12)
+				mm = mesLiquidacion() + 1;
 			else
 				mm = 1;
 
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("tablasBuscarIndiceCoeficiente", "@tabla", tabla, "@valor", valor, "@coeficiente", 12, "@mesLiquidacion", mm)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["indice"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("tablasBuscarIndiceCoeficiente", "@tabla", tabla, "@valor", valor, "@coeficiente", 12, "@mesLiquidacion", mm))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["indice"]) : 0;
 			}
 			return salida;
 		}
@@ -447,11 +473,12 @@ namespace Sueldos.Core
 		/// consulta acumulados entre rango de anios mes
 		/// </summary>
 		/// <returns></returns>
-		public double acumuladosEntreRangos (int anioMesDesde, int anioMesHasta, int codigo)
+		public double acumuladosEntreRangos(int anioMesDesde, int anioMesHasta, int codigo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("acumuladosConsultarEntreRangos", "@anioMesDesde", anioMesDesde, "@anioMesHasta", anioMesHasta, "@legajo", Calculo.Legajo, "@codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["valor"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("acumuladosConsultarEntreRangos", "@anioMesDesde", anioMesDesde, "@anioMesHasta", anioMesHasta, "@legajo", Legajo, "@codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["valor"]) : 0;
 			}
 			return salida;
 		}
@@ -461,22 +488,25 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name = "codigo"></param>
 		/// <returns></returns>
-		public double acumuladosUltimoAnio (int codigo)
+		public double acumuladosUltimoAnio(int codigo)
 		{
 			double salida;
 			int anioMesDesde;
 			int anioMesHasta;
 			//armo aniomesdesde y aniomeshasta
-			if (mesLiquidacion () == 1) {
-				anioMesDesde = Int32.Parse (ArmaAnioMes (anioLiquidacion () - 1, 1));
-				anioMesHasta = Int32.Parse (ArmaAnioMes (anioLiquidacion () - 1, 12));
-			} else {
-				anioMesDesde = Int32.Parse (ArmaAnioMes (anioLiquidacion () - 1, byte.Parse ((mesLiquidacion ()).ToString ())));
-				anioMesHasta = Int32.Parse (ArmaAnioMes (anioLiquidacion (), byte.Parse ((mesLiquidacion () - 1).ToString ())));
+			if (mesLiquidacion() == 1)
+			{
+				anioMesDesde = int.Parse(ArmaAnioMes(anioLiquidacion() - 1, 1));
+				anioMesHasta = int.Parse(ArmaAnioMes(anioLiquidacion() - 1, 12));
+			}
+			else {
+				anioMesDesde = int.Parse(ArmaAnioMes(anioLiquidacion() - 1, byte.Parse((mesLiquidacion()).ToString())));
+				anioMesHasta = int.Parse(ArmaAnioMes(anioLiquidacion(), byte.Parse((mesLiquidacion() - 1).ToString())));
 			}
 			//consulto
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("acumuladosConsultarEntreRangos", "@anioMesDesde", anioMesDesde, "@anioMesHasta", anioMesHasta, "@legajo", Calculo.Legajo, "@codigo", codigo)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["valor"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("acumuladosConsultarEntreRangos", "@anioMesDesde", anioMesDesde, "@anioMesHasta", anioMesHasta, "@legajo", Legajo, "@codigo", codigo))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["valor"]) : 0;
 			}
 			return salida;
 		}
@@ -487,68 +517,81 @@ namespace Sueldos.Core
 		/// <param name="idT"></param>
 		/// <param name = "idTipoLiquidacion"></param>
 		/// <param name = "reciboSeparado"></param>
-		public static void sigueCalculo (int idT, int idTipoLiquidacion, Boolean reciboSeparado)
+		public static void sigueCalculo(int idT, int idTipoLiquidacion, bool reciboSeparado)
 		{
 			acu = new double[61];
 			var = new double[61];
 			//  inicializaACUs();
 			//  inicializaVARs();
 			Calculo.idTipoLiquidacion = idTipoLiquidacion;
-			Console.WriteLine ("Tabla: {0} idTipoLiquidacion: {1} reciboSeparado: {2}", idT, idTipoLiquidacion, reciboSeparado);
-			if (Calculo.AnioMes == 0 || Calculo.Legajo == 0)
-				throw new Exception ("No se puede seguir el calculo, no se ha seteado AnioMes o Legajo.");
+			Console.WriteLine("Tabla: {0} idTipoLiquidacion: {1} reciboSeparado: {2}", idT, idTipoLiquidacion, reciboSeparado);
+			if (AnioMes == 0 || Legajo == 0)
+				throw new Exception("No se puede seguir el calculo, no se ha seteado AnioMes o Legajo.");
 
 			IdTabla = idT;      //este valor viene del tablas: calculo
-			//HACK Elegir que version de Eval usar usar directiva de compilacion EVAL3 por defecto usa EVAL4
-			#if EVAL3
-			var ev = new Eval3.Evaluator (Eval3.eParserSyntax.cSharp, false);
-			#else
+								//HACK Elegir que version de Eval usar usar directiva de compilacion EVAL3 por defecto usa EVAL4
+#if EVAL3
+			var ev = new Eval3.Evaluator(Eval3.eParserSyntax.cSharp, false);
+#else
 			var ev = new Eval4.CSharpEvaluator ();
-			#endif
-			ev.AddEnvironmentFunctions (new Calculo ());
+#endif
+			ev.AddEnvironmentFunctions(new Calculo());
 			Salto = 0;
 			double salida = 0;    //contiene el id de la linea a saltar
-			DbDataReader rs = DB.Instancia.SPToDbDataReader ("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", 0, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion);
-			while (rs.Read ()) {
+			DbDataReader rs = DB.Instancia.SPToDbDataReader("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", 0, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion);
+			while (rs.Read())
+			{
 				//if (Convert.ToInt32(rs["OrdPro"]) == 91)
-				Console.WriteLine ("Concepto: " + rs ["OrdenProceso"]);
-				if (Salto == 0) {
-					try {
+				Console.WriteLine("Concepto: " + rs["OrdenProceso"]);
+				if (Salto == 0)
+				{
+					try
+					{
 #if EVAL3
-						salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).value);
+						salida = Convert.ToDouble(ev.Parse(rs["Formula"].ToString()).value);
 #else
                         salida = Convert.ToDouble (ev.Parse (rs ["Formula"].ToString ()).ObjectValue);
 #endif
-						Console.WriteLine ("salida: " + salida);
-					} catch (Exception ex) {
-						throw new Exception ("OrdenProceso: " + Convert.ToInt32 (rs ["OrdenProceso"].ToString ()) + " " + (ex.Message + "\r\n"));
+						Console.WriteLine("salida: " + salida);
+					}
+					catch (Exception ex)
+					{
+						throw new Exception("OrdenProceso: " + Convert.ToInt32(rs["OrdenProceso"].ToString()) + " " + (ex.Message + "\r\n"));
 					}
 
-					if (Convert.ToInt32 (rs ["ImprimeCantidad"]) == 1 && var [58] > 0) {
-						Console.WriteLine ("var[58]: " + var [58]);
-						imprimeCantidad = var [58];
-						var [58] = 0;
-					} else
+					if (Convert.ToInt32(rs["ImprimeCantidad"]) == 1 && var[58] > 0)
+					{
+						Console.WriteLine("var[58]: " + var[58]);
+						imprimeCantidad = var[58];
+						var[58] = 0;
+					}
+					else
 						imprimeCantidad = 0;
-					if (Convert.ToInt32 (rs ["ImprimeVU"]) == 1 && var [59] > 0) {
-						Console.WriteLine ("var[59]: " + var [59]);
-						imprimeValorUnitario = var [59];
-						var [59] = 0;
-					} else
+					if (Convert.ToInt32(rs["ImprimeVU"]) == 1 && var[59] > 0)
+					{
+						Console.WriteLine("var[59]: " + var[59]);
+						imprimeValorUnitario = var[59];
+						var[59] = 0;
+					}
+					else
 						imprimeValorUnitario = 0;
 
-					if (Convert.ToInt32 (rs ["Imprime"]) == 1 && salida != 0) {
+					if (Convert.ToInt32(rs["Imprime"]) == 1 && salida != 0)
+					{
 						imprime = salida;
-						DB.Instancia.SP ("liquidacionesInsertar", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@Legajo", Calculo.Legajo, "@Codigo", Convert.ToInt32 (rs ["Codigo"]), "@AnioMes", Calculo.AnioMes, "@idCalculo", IdTabla, "idAplicacion", Calculo.IdAplicacion, "@Posicion", Convert.ToInt32 (rs ["Tipo"]), "@Cantidad", imprimeCantidad, "@VU", imprimeValorUnitario, "@Importe", imprime, "@Letra", "", "@OrdenProceso", Convert.ToInt32 (rs ["OrdenProceso"]));
+						DB.Instancia.SP("liquidacionesInsertar", "@idLiquidacion", IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@Legajo", Legajo, "@Codigo", Convert.ToInt32(rs["Codigo"]), "@AnioMes", AnioMes, "@idCalculo", IdTabla, "idAplicacion", IdAplicacion, "@Posicion", Convert.ToInt32(rs["Tipo"]), "@Cantidad", imprimeCantidad, "@VU", imprimeValorUnitario, "@Importe", imprime, "@Letra", "", "@OrdenProceso", Convert.ToInt32(rs["OrdenProceso"]));
 						imprimeCantidad = 0;
 						imprimeValorUnitario = 0;
 					}
-				} else {
-					if (Salto > 0) {
-						Console.WriteLine ("salto: " + Salto);
-						rs = DB.Instancia.SPToDbDataReader ("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", Salto, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion);
+				}
+				else {
+					if (Salto > 0)
+					{
+						Console.WriteLine("salto: " + Salto);
+						rs = DB.Instancia.SPToDbDataReader("calculoConsultarParaLiquidar", "@idCalculo", IdTabla, "@OrdenProceso", Salto, "@idAplicacion", IdAplicacion, "@idTipoLiquidacion", idTipoLiquidacion, "@reciboSeparado", reciboSeparado, "@idLiquidacion", IdLiquidacion);
 						Salto = 0;
-					} else {
+					}
+					else {
 						//error
 					}
 				}
@@ -556,20 +599,20 @@ namespace Sueldos.Core
 			rs = null;
 		}
 
-		public int saltar (int codigo)
+		public int saltar(int codigo)
 		{
 			Salto = codigo;
 			return 0;
 		}
 
-		public int seguir ()
+		public int seguir()
 		{
 			return 0;
 		}
 
-		public double Redondear (double num, int decimales)
+		public double Redondear(double num, int decimales)
 		{
-			return Math.Round (num, decimales);
+			return Math.Round(num, decimales);
 		}
 
 		/// <summary>
@@ -578,55 +621,55 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="codigo"></param>
 		/// <returns></returns>
-		public double campoEmpleado (int codigo)
+		public double campoEmpleado(int codigo)
 		{
 			string cad;
-			cad = (string)DB.Instancia.SPToScalar ("empleadosSueldosConsultarValorLegajo", "@legajo", Calculo.Legajo, "@codigo", codigo);
-			return cad != null ? Convert.ToDouble (cad) : 0;
+			cad = (string)DB.Instancia.SPToScalar("empleadosSueldosConsultarValorLegajo", "@legajo", Legajo, "@codigo", codigo);
+			return cad != null ? Convert.ToDouble(cad) : 0;
 		}
 
-		public double actualizarCampoEmpleado (int codigo, double valor)
+		public double actualizarCampoEmpleado(int codigo, double valor)
 		{
-			DB.Instancia.SP ("empleadosSueldosActualizar", "@legajo", Calculo.Legajo, "@codigo", codigo, "@valor", valor);
+			DB.Instancia.SP("empleadosSueldosActualizar", "@legajo", Legajo, "@codigo", codigo, "@valor", valor);
 			return valor;
 		}
 
 		/*   public double actualizarAsiento(int cuenta, double debe, double haber)
         {
-            DB.ejecutarProceso(TipoComando.SP, "asientosDeSueldosActualizar", "@idLiquidacion",Calculo.IdLiquidacion , "@anioMes",Calculo.AnioMes, "@legajo", Calculo.Legajo, "@idCuenta", cuenta, "@debe", debe, "@haber", haber);
+            DB.ejecutarProceso(TipoComando.SP, "asientosDeSueldosActualizar", "@idLiquidacion",IdLiquidacion , "@anioMes",AnioMes, "@legajo", Legajo, "@idCuenta", cuenta, "@debe", debe, "@haber", haber);
             return 0;
         }*/
 
-		public double actualizarDebeAsiento (int cuenta, double debe)
+		public double actualizarDebeAsiento(int cuenta, double debe)
 		{
-			if (cuenta == 935 && Calculo.Legajo == 459)
-				Console.WriteLine ("estoy");
-			if (double.IsNaN (debe)) //para los casos en que venga un NaN o infinito
-                debe = 0;
-			DB.Instancia.SP ("asientosDeSueldosActualizar", "@idLiquidacion", Calculo.IdLiquidacion, "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@idCuenta", cuenta, "@debe", debe, "@haber", 0);
+			if (cuenta == 935 && Legajo == 459)
+				Console.WriteLine("estoy");
+			if (double.IsNaN(debe)) //para los casos en que venga un NaN o infinito
+				debe = 0;
+			DB.Instancia.SP("asientosDeSueldosActualizar", "@idLiquidacion", IdLiquidacion, "@anioMes", AnioMes, "@legajo", Legajo, "@idCuenta", cuenta, "@debe", debe, "@haber", 0);
 			return debe;
 		}
 
-		public double actualizarHaberAsiento (int cuenta, double haber)
+		public double actualizarHaberAsiento(int cuenta, double haber)
 		{
-			if (double.IsNaN (haber)) //para los casos en que venga un NaN o infinito
-                haber = 0;
-			DB.Instancia.SP ("asientosDeSueldosActualizar", "@idLiquidacion", Calculo.IdLiquidacion, "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@idCuenta", cuenta, "@debe", 0, "@haber", haber);
+			if (double.IsNaN(haber)) //para los casos en que venga un NaN o infinito
+				haber = 0;
+			DB.Instancia.SP("asientosDeSueldosActualizar", "@idLiquidacion", IdLiquidacion, "@anioMes", AnioMes, "@legajo", Legajo, "@idCuenta", cuenta, "@debe", 0, "@haber", haber);
 			return haber;
 		}
 
-		public double novedadEmpleado (int codigo)
+		public double novedadEmpleado(int codigo)
 		{
 			string cad;
-			cad = (string)DB.Instancia.SPToScalar ("novedadesConsultarValorLegajo", "@idLiquidacion", Calculo.IdLiquidacion, "@legajo", Calculo.Legajo, "@codigo", codigo);
-			return cad != null ? Convert.ToDouble (cad) : 0;
+			cad = (string)DB.Instancia.SPToScalar("novedadesConsultarValorLegajo", "@idLiquidacion", IdLiquidacion, "@legajo", Legajo, "@codigo", codigo);
+			return cad != null ? Convert.ToDouble(cad) : 0;
 		}
 
-		public double asistenciaEmpleado (int codigo)
+		public double asistenciaEmpleado(int codigo)
 		{
 			string cad;
-			cad = DB.Instancia.SPToScalar ("asistenciaConsultarLegajoCodigo", "@AnioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@codigo", codigo).ToString ();
-			return cad != "" ? Convert.ToDouble (cad) : 0;
+			cad = DB.Instancia.SPToScalar("asistenciaConsultarLegajoCodigo", "@AnioMes", AnioMes, "@legajo", Legajo, "@codigo", codigo).ToString();
+			return cad != "" ? Convert.ToDouble(cad) : 0;
 		}
 
 		/// <summary>
@@ -637,11 +680,12 @@ namespace Sueldos.Core
 		/// <param name="desde"></param>
 		/// <param name="hasta"></param>
 		/// <returns></returns>
-		public double asistenciaEmpleadoEntreDias (int codigo, int desde, int hasta)
+		public double asistenciaEmpleadoEntreDias(int codigo, int desde, int hasta)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("asistenciaConsultarLegajoEntreDias", "@AnioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@codigo", codigo, "@diaDesde", desde, "@diaHasta", hasta)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["cantidad"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("asistenciaConsultarLegajoEntreDias", "@AnioMes", AnioMes, "@legajo", Legajo, "@codigo", codigo, "@diaDesde", desde, "@diaHasta", hasta))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["cantidad"]) : 0;
 			}
 			return salida;
 		}
@@ -650,38 +694,42 @@ namespace Sueldos.Core
 		/// Calcula la suma total de haberes dado un idLiquidacion
 		/// </summary>
 		/// <returns></returns>
-		public double totalHaberes ()
+		public double totalHaberes()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicion", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", Calculo.idTipoLiquidacion, "@legajo", Calculo.Legajo, "@posicion", 1)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicion", "@idLiquidacion", IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@legajo", Legajo, "@posicion", 1))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalHaberesMesPorTipo (int tipo)
+		public double totalHaberesMesPorTipo(int tipo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", Calculo.AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Calculo.Legajo, "@posicion", 1, "@idAplicacion", Calculo.IdAplicacion)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Legajo, "@posicion", 1, "@idAplicacion", IdAplicacion))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalAdicionalesMesPorTipo (int tipo)
+		public double totalAdicionalesMesPorTipo(int tipo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", Calculo.AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Calculo.Legajo, "@posicion", 3, "@idAplicacion", Calculo.IdAplicacion)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Legajo, "@posicion", 3, "@idAplicacion", IdAplicacion))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["importe"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalRetencionesMesPorTipo (int tipo)
+		public double totalRetencionesMesPorTipo(int tipo)
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", Calculo.AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Calculo.Legajo, "@posicion", 2, "@idAplicacion", Calculo.IdAplicacion)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["importe"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionTipoMes", "@anioMes", AnioMes, "@idTipoLiquidacion", tipo, "@legajo", Legajo, "@posicion", 2, "@idAplicacion", IdAplicacion))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["importe"]) : 0;
 			}
 			return salida;
 		}
@@ -690,51 +738,56 @@ namespace Sueldos.Core
 		/// Calcula la suma total de haberes dado un AnioMes de Liquidacion
 		/// </summary>
 		/// <returns></returns>
-		public double totalHaberesMes ()
+		public double totalHaberesMes()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@posicion", 1)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", AnioMes, "@legajo", Legajo, "@posicion", 1))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
 
 
 
-		public double totalAdicionales ()
+		public double totalAdicionales()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicion", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", Calculo.idTipoLiquidacion, "@legajo", Calculo.Legajo, "@posicion", 3)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicion", "@idLiquidacion", IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@legajo", Legajo, "@posicion", 3))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
 
 
-		public double totalAdicionalesMes ()
+		public double totalAdicionalesMes()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@posicion", 3)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", AnioMes, "@legajo", Legajo, "@posicion", 3))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
 
 
-		public double totalRetenciones ()
+		public double totalRetenciones()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicion", "@idLiquidacion", Calculo.IdLiquidacion, "@idTipoLiquidacion", Calculo.idTipoLiquidacion, "@legajo", Calculo.Legajo, "@posicion", 2)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicion", "@idLiquidacion", IdLiquidacion, "@idTipoLiquidacion", idTipoLiquidacion, "@legajo", Legajo, "@posicion", 2))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
 
-		public double totalRetencionesMes ()
+		public double totalRetencionesMes()
 		{
 			double salida;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@posicion", 2)) {
-				salida = rs.Read () ? Convert.ToDouble (rs ["total"]) : 0;
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("liquidacionesConsultarTotalPosicionAnioMes", "@anioMes", AnioMes, "@legajo", Legajo, "@posicion", 2))
+			{
+				salida = rs.Read() ? Convert.ToDouble(rs["total"]) : 0;
 			}
 			return salida;
 		}
@@ -747,12 +800,13 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="ocurrencia"></param>
 		/// <returns></returns>
-		public double codigoSituacionDeRevista (int ocurrencia)
+		public double codigoSituacionDeRevista(int ocurrencia)
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("asistenciaConsultarOcurrenciaSituacionDeRevista", "@legajo", Calculo.Legajo, "@anioMes", Calculo.AnioMes, "@ocurrencia", ocurrencia)) {
-				if (rs.Read ()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
-                salida = Convert.ToDouble (rs ["codigo"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("asistenciaConsultarOcurrenciaSituacionDeRevista", "@legajo", Legajo, "@anioMes", AnioMes, "@ocurrencia", ocurrencia))
+			{
+				if (rs.Read()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
+					salida = Convert.ToDouble(rs["codigo"]);
 			}
 			return salida;
 		}
@@ -765,12 +819,13 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="ocurrencia"></param>
 		/// <returns></returns>
-		public double diaInicioSituacionDeRevista (int ocurrencia)
+		public double diaInicioSituacionDeRevista(int ocurrencia)
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("asistenciaConsultarOcurrenciaSituacionDeRevista", "@legajo", Calculo.Legajo, "@anioMes", Calculo.AnioMes, "@ocurrencia", ocurrencia)) {
-				if (rs.Read ()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
-                salida = Convert.ToDouble (rs ["DiaInicio"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("asistenciaConsultarOcurrenciaSituacionDeRevista", "@legajo", Legajo, "@anioMes", AnioMes, "@ocurrencia", ocurrencia))
+			{
+				if (rs.Read()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
+					salida = Convert.ToDouble(rs["DiaInicio"]);
 			}
 			return salida;
 		}
@@ -780,22 +835,24 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="idCuenta"></param>
 		/// <returns></returns>
-		public double consultarDebeConceptoLiquidado (int idCuenta)
+		public double consultarDebeConceptoLiquidado(int idCuenta)
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("asientoDeSueldosConsultarSaldoCuenta", "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@idCuenta", idCuenta)) {
-				if (rs.Read ()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
-                salida = Convert.ToDouble (rs ["debe"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("asientoDeSueldosConsultarSaldoCuenta", "@anioMes", AnioMes, "@legajo", Legajo, "@idCuenta", idCuenta))
+			{
+				if (rs.Read()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
+					salida = Convert.ToDouble(rs["debe"]);
 			}
 			return salida;
 		}
 
-		public double consultarHaberConceptoLiquidado (int idCuenta)
+		public double consultarHaberConceptoLiquidado(int idCuenta)
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("asientoDeSueldosConsultarSaldoCuenta", "@anioMes", Calculo.AnioMes, "@legajo", Calculo.Legajo, "@idCuenta", idCuenta)) {
-				if (rs.Read ()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
-                salida = Convert.ToDouble (rs ["haber"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("asientoDeSueldosConsultarSaldoCuenta", "@anioMes", AnioMes, "@legajo", Legajo, "@idCuenta", idCuenta))
+			{
+				if (rs.Read()) //este recorrido se supone realizarse siempre sobre 3 o cuatro registros
+					salida = Convert.ToDouble(rs["haber"]);
 			}
 			return salida;
 		}
@@ -805,12 +862,13 @@ namespace Sueldos.Core
 		/// detallados en dicha tabla
 		/// </summary>
 		/// <returns></returns>
-		public double consultarDiasAntiguedad (DateTime fechaTope)
+		public double consultarDiasAntiguedad(DateTime fechaTope)
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("periodosTrabajadosCalculaAntiguedad", "@fechaTope", fechaTope, "@legajo", Calculo.Legajo)) {
-				if (rs.Read ())
-					salida = Convert.ToDouble (rs ["totalDias"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("periodosTrabajadosCalculaAntiguedad", "@fechaTope", fechaTope, "@legajo", Legajo))
+			{
+				if (rs.Read())
+					salida = Convert.ToDouble(rs["totalDias"]);
 			}
 			return salida;
 		}
@@ -819,32 +877,35 @@ namespace Sueldos.Core
 		/// consulta temporadas trabajadas de acuerdo a periodos trabajados completos
 		/// </summary>
 		/// <returns></returns>
-		public double temporadasTrabajadas ()
+		public double temporadasTrabajadas()
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("periodosTrabajadosConsultaTemporadas", "@legajo", Calculo.Legajo)) {
-				if (rs.Read ())
-					salida = Convert.ToDouble (rs ["periodos"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("periodosTrabajadosConsultaTemporadas", "@legajo", Legajo))
+			{
+				if (rs.Read())
+					salida = Convert.ToDouble(rs["periodos"]);
 			}
 			return salida;
 		}
 
-		public double empresaConsultarAlicuotaLRT ()
+		public double empresaConsultarAlicuotaLRT()
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("empresaConsultar", "@idEmpresa", 1)) {
-				if (rs.Read ())
-					salida = Convert.ToDouble (rs ["porcentajeAlicuotaLRT"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("empresaConsultar", "@idEmpresa", 1))
+			{
+				if (rs.Read())
+					salida = Convert.ToDouble(rs["porcentajeAlicuotaLRT"]);
 			}
 			return salida;
 		}
 
-		public double empresaConsultarCuotaLRT ()
+		public double empresaConsultarCuotaLRT()
 		{
 			double salida = 0;
-			using (DbDataReader rs = DB.Instancia.SPToDbDataReader ("empresaConsultar", "@idEmpresa", 1)) {
-				if (rs.Read ())
-					salida = Convert.ToDouble (rs ["cuotaFijaLRT"]);
+			using (DbDataReader rs = DB.Instancia.SPToDbDataReader("empresaConsultar", "@idEmpresa", 1))
+			{
+				if (rs.Read())
+					salida = Convert.ToDouble(rs["cuotaFijaLRT"]);
 			}
 			return salida;
 		}
@@ -854,7 +915,7 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="numero"></param>
 		/// <returns></returns>
-		public int entero (double numero)
+		public int entero(double numero)
 		{
 			return (int)numero;
 		}
@@ -863,25 +924,25 @@ namespace Sueldos.Core
 		/// Devuelve el total de días que trae un mes.
 		/// </summary>
 		/// <returns></returns>
-		public int diasDelMes ()
+		public int diasDelMes()
 		{
-			var d = new DateTime (AnioCalculo, MesCalculo, DateTime.DaysInMonth (AnioCalculo, MesCalculo));
+			var d = new DateTime(AnioCalculo, MesCalculo, DateTime.DaysInMonth(AnioCalculo, MesCalculo));
 			return d.Day;
 		}
 
-		public int mesLiquidacion ()
+		public int mesLiquidacion()
 		{
 			return MesCalculo;
 		}
 
-		public int anioLiquidacion ()
+		public int anioLiquidacion()
 		{
 			return AnioCalculo;
 		}
 
-		public int anioMesLiquidacion ()
+		public int anioMesLiquidacion()
 		{
-			return Convert.ToInt32 (Calculo.AnioMes.ToString ());
+			return Convert.ToInt32(AnioMes.ToString());
 		}
 
 		/// <summary>
@@ -889,35 +950,35 @@ namespace Sueldos.Core
 		/// formato aaaamm
 		/// </summary>
 		/// <returns></returns>
-		public string ArmaAnioMes (int anio, byte mes)
+		public string ArmaAnioMes(int anio, byte mes)
 		{
 			string strMes;
 			if (mes > 9)
-				strMes = mes.ToString ();
+				strMes = mes.ToString();
 			else
-				strMes = 0 + mes.ToString ();
+				strMes = 0 + mes.ToString();
 			return anio + strMes;
 		}
 
-		public int legajoEmpleado ()
+		public int legajoEmpleado()
 		{
-			return Calculo.Legajo;
+			return Legajo;
 		}
 
 		/// <summary>
 		/// Devuelve la fecha correspondiente al ultimo dia del mes.
 		/// </summary>
 		/// <returns></returns>
-		public DateTime fechaUltimoDiaDelMes ()
+		public DateTime fechaUltimoDiaDelMes()
 		{
-			var dd = new DateTime (AnioCalculo, MesCalculo, DateTime.DaysInMonth (AnioCalculo, MesCalculo));
+			var dd = new DateTime(AnioCalculo, MesCalculo, DateTime.DaysInMonth(AnioCalculo, MesCalculo));
 			return dd;
 		}
 
 
-		public DateTime fechaDia15DelMes ()
+		public DateTime fechaDia15DelMes()
 		{
-			var dd = new DateTime (AnioCalculo, MesCalculo, 15);
+			var dd = new DateTime(AnioCalculo, MesCalculo, 15);
 			return dd;
 		}
 
@@ -926,10 +987,10 @@ namespace Sueldos.Core
 		/// </summary>
 		/// <param name="codigo"></param>
 		/// <returns></returns>
-		public DateTime fechaEmpleado (int codigo)
+		public DateTime fechaEmpleado(int codigo)
 		{
 			DateTime salida;
-			salida = Convert.ToDateTime (DB.Instancia.SPToScalar ("empleadosSueldosConsultarValorLegajo", "@legajo", Calculo.Legajo, "@codigo", codigo).ToString ());
+			salida = Convert.ToDateTime(DB.Instancia.SPToScalar("empleadosSueldosConsultarValorLegajo", "@legajo", Legajo, "@codigo", codigo).ToString());
 			return salida;
 		}
 
@@ -937,30 +998,28 @@ namespace Sueldos.Core
 		/// Devuelve fecha Nula
 		/// </summary>
 		/// <returns></returns>
-		public DateTime fechaNula ()
+		public DateTime fechaNula()
 		{
-			return Convert.ToDateTime ("01/01/0001");
+			return Convert.ToDateTime("01/01/0001");
 		}
 
 		/// <summary>
-		/// Devuelve =0 si es igual
-		/// >0 si fecha1 > fecha2
-		/// <0 si fecha1 < fecha2
+		/// Devuelve 0 si es igual, positivo si fecha1 mayor a fecha2, negativo si fecha1 menos a fecha2
 		/// </summary>
 		/// <param name="fecha1"></param>
 		/// <param name="fecha2"></param>
 		/// <returns></returns>
-		public int comparaFecha (DateTime fecha1, DateTime fecha2)
+		public int comparaFecha(DateTime fecha1, DateTime fecha2)
 		{
-			return fecha1.CompareTo (fecha2);
+			return fecha1.CompareTo(fecha2);
 		}
 
-		public object Muevo (object expr, int campo)
+		public object Muevo(object expr, int campo)
 		{
 			return "Muevo " + expr + " a " + campo;
 		}
 
-		public DateTime fechaHoy ()
+		public DateTime fechaHoy()
 		{
 			return DateTime.Now.Date;
 		}
@@ -971,10 +1030,10 @@ namespace Sueldos.Core
 		/// <param name="fDesde"></param>
 		/// <param name="fHasta"></param>
 		/// <returns></returns>
-		public long Anios (DateTime fDesde, DateTime fHasta)
+		public long Anios(DateTime fDesde, DateTime fHasta)
 		{
 			long i;
-			i = DateDiff (DateInterval.Year, fDesde, fHasta);
+			i = DateDiff(DateInterval.Year, fDesde, fHasta);
 			return i;
 		}
 
@@ -982,7 +1041,7 @@ namespace Sueldos.Core
 		/// Devuelve el año de una fecha.
 		/// </summary>
 		/// <returns></returns>
-		public int Anio (DateTime fecha)
+		public int Anio(DateTime fecha)
 		{
 			return fecha.Year;
 		}
@@ -991,7 +1050,7 @@ namespace Sueldos.Core
 		/// Devuelve el mes de una fecha.
 		/// </summary>
 		/// <returns></returns>
-		public int Mes (DateTime fecha)
+		public int Mes(DateTime fecha)
 		{
 			return fecha.Month;
 		}
@@ -1000,35 +1059,35 @@ namespace Sueldos.Core
 		/// Devuelve el dia de una fecha.
 		/// </summary>
 		/// <returns></returns>
-		public int Dia (DateTime fecha)
+		public int Dia(DateTime fecha)
 		{
 			return fecha.Day;
 		}
 
-		public long diasEntreFechas (DateTime fDesde, DateTime fHasta)
+		public long diasEntreFechas(DateTime fDesde, DateTime fHasta)
 		{
 			long i;
-			i = DateDiff (DateInterval.Day, fDesde, fHasta);
+			i = DateDiff(DateInterval.Day, fDesde, fHasta);
 			return i;
 		}
 
-		public DateTime inicioSemestre ()
+		public DateTime inicioSemestre()
 		{
 			DateTime fecha;
 			int mesInicio = MesCalculo <= 6 ? 1 : 7;
-			fecha = new DateTime (AnioCalculo, mesInicio, 1);
+			fecha = new DateTime(AnioCalculo, mesInicio, 1);
 			return fecha;
 		}
 
-		public DateTime finSemestre ()
+		public DateTime finSemestre()
 		{
 			DateTime fecha;
 			int mesFin = MesCalculo <= 6 ? 6 : 12;
-			fecha = new DateTime (AnioCalculo, mesFin, 30);
+			fecha = new DateTime(AnioCalculo, mesFin, 30);
 			return fecha;
 		}
 
-		public object SI (bool cond, object ValorVerdadero, object ValorFalso)
+		public object SI(bool cond, object ValorVerdadero, object ValorFalso)
 		{
 			return cond ? ValorVerdadero : ValorFalso;
 		}
@@ -1045,28 +1104,29 @@ namespace Sueldos.Core
 			Year
 		}
 
-		public long DateDiff (DateInterval Interval, DateTime StartDate, DateTime EndDate)
+		public long DateDiff(DateInterval Interval, DateTime StartDate, DateTime EndDate)
 		{
-			var TS = new TimeSpan (EndDate.Ticks - StartDate.Ticks);
-			switch (Interval) {
-			case DateInterval.Day:
-				return (long)TS.Days;
-			case DateInterval.Hour:
-				return (long)TS.TotalHours;
-			case DateInterval.Minute:
-				return (long)TS.TotalMinutes;
-			case DateInterval.Month:
-				return (long)(TS.Days / 30.4375);
-			case DateInterval.Quarter:
-				return (long)((TS.Days / 30) / 3);
-			case DateInterval.Second:
-				return (long)TS.TotalSeconds;
-			case DateInterval.Week:
-				return (long)(TS.Days / 7);
-			case DateInterval.Year:
-				return (long)(TS.Days / 365.25);
-			default:
-				return TS.Ticks;
+			var TS = new TimeSpan(EndDate.Ticks - StartDate.Ticks);
+			switch (Interval)
+			{
+				case DateInterval.Day:
+					return TS.Days;
+				case DateInterval.Hour:
+					return (long)TS.TotalHours;
+				case DateInterval.Minute:
+					return (long)TS.TotalMinutes;
+				case DateInterval.Month:
+					return (long)(TS.Days / 30.4375);
+				case DateInterval.Quarter:
+					return (TS.Days / 30) / 3;
+				case DateInterval.Second:
+					return (long)TS.TotalSeconds;
+				case DateInterval.Week:
+					return TS.Days / 7;
+				case DateInterval.Year:
+					return (long)(TS.Days / 365.25);
+				default:
+					return TS.Ticks;
 			}
 		}
 	}

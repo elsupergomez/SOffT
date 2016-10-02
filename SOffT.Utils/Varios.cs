@@ -20,7 +20,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Windows.Forms;
 using Hamekoz.Data;
@@ -41,85 +40,62 @@ namespace Sofft.Utils
 			Year
 		}
 
-		public static long DateDiff (DateInterval Interval, DateTime StartDate, DateTime EndDate)
+		public static long DateDiff(DateInterval Interval, DateTime StartDate, DateTime EndDate)
 		{
-			var TS = new TimeSpan (EndDate.Ticks - StartDate.Ticks);
-			switch (Interval) {
-			case DateInterval.Day:
-				return (long)TS.Days;
-			case DateInterval.Hour:
-				return (long)TS.TotalHours;
-			case DateInterval.Minute:
-				return (long)TS.TotalMinutes;
-			case DateInterval.Month:
-				return (long)(TS.Days / 30);
-			case DateInterval.Quarter:
-				return (long)((TS.Days / 30) / 3);
-			case DateInterval.Second:
-				return (long)TS.TotalSeconds;
-			case DateInterval.Week:
-				return (long)(TS.Days / 7);
-			case DateInterval.Year:
-				return (long)(TS.Days / 365);
-			default:
-				return 0;
+			var TS = new TimeSpan(EndDate.Ticks - StartDate.Ticks);
+			switch (Interval)
+			{
+				case DateInterval.Day:
+					return (long)TS.Days;
+				case DateInterval.Hour:
+					return (long)TS.TotalHours;
+				case DateInterval.Minute:
+					return (long)TS.TotalMinutes;
+				case DateInterval.Month:
+					return (long)(TS.Days / 30);
+				case DateInterval.Quarter:
+					return (long)((TS.Days / 30) / 3);
+				case DateInterval.Second:
+					return (long)TS.TotalSeconds;
+				case DateInterval.Week:
+					return (long)(TS.Days / 7);
+				case DateInterval.Year:
+					return (long)(TS.Days / 365);
+				default:
+					return 0;
 			}
 		}
 		//end of DateDiff
 
-		public static bool IsNumeric (string theValue)
+		public static bool IsNumeric(string theValue)
 		{
-			try {
-				Convert.ToDouble (theValue);
+			try
+			{
+				Convert.ToDouble(theValue);
 				return true;
-			} catch {
+			}
+			catch
+			{
 				return false;
 			}
 		}
 
 		//TODO: sacar esto de acá !!!!!!!!!!!!!!!!!!!!
-		public static string consultarFechaActual ()
+		public static string consultarFechaActual()
 		{
 			string fecha;
-			fecha = DB.Instancia.SP ("fechaActual").ToString ();
+			fecha = DB.Instancia.SP("fechaActual").ToString();
 			return fecha;
 		}
 
 		/// <summary>
-		/// Arma la cadena AnioMes, a partir de un año y mes dados.
-		/// formato aaaamm
-		/// </summary>
-		/// <returns></returns>
-		[Obsolete ("Usar string.Format(\"{0:0000}{1:00}, anio, mes\");")]
-		public static string anioMes (int anio, byte mes)
-		{
-			string strMes;
-			if (mes > 9)
-				strMes = mes.ToString ();
-			else
-				strMes = 0 + mes.ToString ();
-			return anio + strMes;
-		}
-
-		/// <summary>
 		/// realiza consulta generica para confirmar la eliminacion de un registro
 		/// Está seguro de eliminar el registro ?
 		/// </summary>
 		/// <returns></returns>
-		[Obsolete ("Usar ConfirmarEliminarRegitro()")]
-		public static bool confirmaEliminarRegistro ()
+		public static bool ConfirmaEliminarRegistro()
 		{
-			return ConfirmaEliminarRegistro ();
-		}
-
-		/// <summary>
-		/// realiza consulta generica para confirmar la eliminacion de un registro
-		/// Está seguro de eliminar el registro ?
-		/// </summary>
-		/// <returns></returns>
-		public static bool ConfirmaEliminarRegistro ()
-		{
-			DialogResult result = MessageBox.Show ("Está seguro de eliminar el registro ?", "Caption", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			DialogResult result = MessageBox.Show("Está seguro de eliminar el registro ?", "Caption", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 			return result == DialogResult.Yes;
 		}
 
@@ -129,13 +105,13 @@ namespace Sofft.Utils
 		/// <param name="param"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		public static string Left (this string param, int length)
+		public static string Left(this string param, int length)
 		{
 			string result = param;
 			//we start at 0 since we want to get the characters starting from the
 			//left and with the specified lenght and assign it to a variable
 			if (param.Length > length)
-				result = param.Substring (0, length);
+				result = param.Substring(0, length);
 			//return the result of the operation
 			return result;
 		}
@@ -146,11 +122,11 @@ namespace Sofft.Utils
 		/// <param name="param"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		public static string Right (this string param, int length)
+		public static string Right(this string param, int length)
 		{
 			//start at the index based on the lenght of the sting minus
 			//the specified lenght and assign it a variable
-			string result = param.Substring (param.Length - length, length);
+			string result = param.Substring(param.Length - length, length);
 			//return the result of the operation
 			return result;
 		}
@@ -162,11 +138,11 @@ namespace Sofft.Utils
 		/// <param name="startIndex"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		public static string Mid (this string param, int startIndex, int length)
+		public static string Mid(this string param, int startIndex, int length)
 		{
 			//start at the specified index in the string ang get N number of
 			//characters depending on the lenght and assign it to a variable
-			string result = param.Substring (startIndex, length);
+			string result = param.Substring(startIndex, length);
 			//return the result of the operation
 			return result;
 		}
@@ -177,11 +153,11 @@ namespace Sofft.Utils
 		/// <param name="param"></param>
 		/// <param name="startIndex"></param>
 		/// <returns></returns>
-		public static string Mid (this string param, int startIndex)
+		public static string Mid(this string param, int startIndex)
 		{
 			//start at the specified index and return all characters after it
 			//and assign it to a variable
-			string result = param.Substring (startIndex);
+			string result = param.Substring(startIndex);
 			//return the result of the operation
 			return result;
 		}

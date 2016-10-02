@@ -1,0 +1,1 @@
+﻿Usar la directiva de compilacion WIS para incluir soporte de lector de huellas digitales
