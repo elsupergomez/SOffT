@@ -31,6 +31,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\..\packages\ClosedXML.0.80.1\lib\net40-client\ClosedXML.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,10 +63,6 @@
     <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj">
       <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
       <Name>Sueldos.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\excellibrary\src\ExcelLibrary\ExcelLibrary.csproj">
-      <Project>{0716F257-72DD-41EF-8E79-54BA388E3AB1}</Project>
-      <Name>ExcelLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\hamekoz-sharp\Hamekoz.Data\Hamekoz.Data.csproj">
       <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>

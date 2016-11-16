@@ -1,6 +1,3 @@
 [submodule "Eval4"]
 	path = Eval4
 	url = https://github.com/elsupergomez/Eval4.git
-[submodule "excellibrary"]
-	path = excellibrary
-	url = https://github.com/hamekoz/excellibrary.git
