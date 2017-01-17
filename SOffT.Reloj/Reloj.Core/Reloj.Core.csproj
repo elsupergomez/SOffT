@@ -52,11 +52,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Resources\avatar-default.png" />
-    <EmbeddedResource Include="Resources\dialog-error.png" />
-    <EmbeddedResource Include="Resources\view-refresh.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
