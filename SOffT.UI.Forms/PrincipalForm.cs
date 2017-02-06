@@ -58,11 +58,6 @@ namespace Sofft.UI.Forms
 			f.ShowDialog();
 			if (Modulo.Usuario != null)
 			{
-				//this.lblSistemaGestion.Text = Modulo.NombreSistema;
-				//this.lblModulo.Text = Modulo.NombreModulo;
-				//Usuario.setPermisosIndices(ref botones);
-				//actualizarDatosDocumentoModulo Me
-				//administrarPermisosIndices Me
 				Usuario.SetPermisos(ref botones, Nivel);
 			}
 		}

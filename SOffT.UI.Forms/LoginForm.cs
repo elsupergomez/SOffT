@@ -38,9 +38,11 @@ namespace Sofft.UI.Forms
 			picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
 			string pathLogo = Application.StartupPath + Path.DirectorySeparatorChar + Modulo.pathImagenes + Path.DirectorySeparatorChar + Modulo.nombreLogo;
 			picLogo.Image = Controles.CargarImagen(pathLogo);
-			//TODO: verificar si valida login o no
-			//Modulo.ValidaLogin = false;
-			LeeArchivoLogin();
+            //TODO: verificar si valida login o no
+            //Modulo.ValidaLogin = false;
+            txtUsuario.Text = Environment.UserName;
+            if (txtUsuario.Text != string.Empty)
+                txtPwd.Focus();
 		}
 
 		void btnAceptar_Click(object sender, EventArgs e)
@@ -54,7 +56,6 @@ namespace Sofft.UI.Forms
 				usuario.Login = txtUsuario.Text;
 				usuario.Password = txtPwd.Text;
 				Modulo.Usuario = usuario;
-				EscribeArchivoLogin();
 			}
 			else
 				MessageBox.Show("Usuario inexistente - Consulte con el administrador");
@@ -63,7 +64,7 @@ namespace Sofft.UI.Forms
 
 		void btnCancelar_Click(object sender, EventArgs e)
 		{
-			Close();
+            Application.Exit();
 		}
 
 		void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
@@ -81,43 +82,6 @@ namespace Sofft.UI.Forms
 			{
 				btnAceptar.Focus();
 				e.Handled = true; //No Beep}
-			}
-		}
-
-		void LeeArchivoLogin()
-		{
-			try
-			{
-				string strLine;
-				//TODO generalizar SO
-				var objReader = new StreamReader("C:\\lastusr.dat");
-				strLine = objReader.ReadLine();
-				if (strLine != null)
-				{
-					txtUsuario.Text = strLine;
-					txtPwd.Focus();
-				}
-				objReader.Close();
-			}
-			catch
-			{
-				Console.WriteLine("no se encontró archivo login.");
-			}
-		}
-
-		void EscribeArchivoLogin()
-		{
-			try
-			{
-				//TODO generalizar SO
-				var objWriter = new StreamWriter("C:\\lastusr.dat");
-				if (txtUsuario.Text.Length > 0)
-					objWriter.WriteLine(txtUsuario.Text);
-				objWriter.Close();
-			}
-			catch
-			{
-				Console.WriteLine("No pudo crear archivo login.");
 			}
 		}
 	}
