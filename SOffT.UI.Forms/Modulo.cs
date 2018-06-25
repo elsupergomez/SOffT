@@ -99,16 +99,6 @@ namespace Sofft.Utils
 		/// carga el icono desde el directorio imágenes del modulo
 		/// </summary>
 		/// <returns></returns>
-		[Obsolete ("Usar CargarIcono()")]
-		public static Icon cargaIcono ()
-		{
-			return CargarIcono ();
-		}
-
-		/// <summary>
-		/// carga el icono desde el directorio imágenes del modulo
-		/// </summary>
-		/// <returns></returns>
 		public static Icon CargarIcono ()
 		{
 			Icon icono = null;
@@ -121,36 +111,16 @@ namespace Sofft.Utils
 			return icono;
 		}
 
-		[Obsolete ("Usar TomarLogin()")]
-		public static void tomarLogin ()
-		{
-			//este metodo abre el archivo ini y setea el usuario por defecto o ultimo validado
-			TomarLogin ();
-		}
-
 		public static void TomarLogin ()
 		{
 			//este metodo abre el archivo ini y setea el usuario por defecto o ultimo validado
 			throw new NotImplementedException ();
 		}
 
-		[Obsolete ("Usar GuardarLogin()")]
-		public static void guardarLogin ()
-		{
-			//este metodo guarda el login en el archivo
-			GuardarLogin ();
-		}
-
 		public static void GuardarLogin ()
 		{
 			//este metodo guarda el login en el archivo
 			throw new NotImplementedException ();
-		}
-
-		[Obsolete ("Usar SeteaCultura")]
-		public static void seteaCultura ()
-		{
-			SeteaCultura ();
 		}
 
 		public static void SeteaCultura ()

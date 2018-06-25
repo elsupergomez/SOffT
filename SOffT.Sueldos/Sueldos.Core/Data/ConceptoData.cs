@@ -127,12 +127,6 @@ namespace Sueldos.Data
 
 		#region SELECTs
 
-		[Obsolete ("Usar GetById")]
-		public ConceptoEntity getById (int idCalculo, int ordenProceso, double codigo)
-		{
-			return GetById (idCalculo, ordenProceso, codigo);
-		}
-
 		public ConceptoEntity GetById (int idCalculo, int ordenProceso, double codigo)
 		{
 			var sql = new StringBuilder ();

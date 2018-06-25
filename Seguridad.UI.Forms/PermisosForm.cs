@@ -202,11 +202,3 @@ namespace Seguridad.UI.Forms
 	}
 }
 
-//TODO Remover
-namespace Seguridad.View
-{
-	[Obsolete ("Usar Seguridad.UI.Forms.PermisosForm")]
-	public class frmPermisos : Seguridad.UI.Forms.PermisosForm
-	{
-	}
-}

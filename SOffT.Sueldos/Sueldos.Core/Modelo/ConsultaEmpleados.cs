@@ -92,12 +92,6 @@ namespace Sueldos.Modelo
 			return foto;
 		}
 
-		[Obsolete ("Usar ListaDatosBasicos ()")]
-		public List<EmpleadoEntity> GetAlldatosBasicos ()
-		{
-			return ListaDatosBasicos ();
-		}
-
 		public List<EmpleadoEntity> ListaDatosBasicos ()
 		{
 			var empleados = new List<EmpleadoEntity> ();

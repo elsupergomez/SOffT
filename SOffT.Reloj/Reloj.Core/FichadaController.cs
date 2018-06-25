@@ -31,22 +31,22 @@ namespace Reloj.Core
 {
 	public class FichadaController
 	{
-		TablaController tablaController = new TablaController();
+		TablaController tablaController = new TablaController ();
 
 		public Fichada UltimaFichada {
 			get;
 			private set;
 		}
 
-		FichadaData persistencia = new FichadaData();
+		FichadaData persistencia = new FichadaData ();
 
 		/// <summary>
 		/// Crea una nueva instancia de Fichada
 		/// </summary>
 		/// <returns>Fichada con valor de propiedades por defecto</returns>
-		public Fichada GetNew()
+		public Fichada GetNew ()
 		{
-			return new Fichada();
+			return new Fichada ();
 		}
 
 		/// <summary>
@@ -54,10 +54,10 @@ namespace Reloj.Core
 		/// </summary>
 		/// <param name="id">Identificador unico de Fichada</param>
 		/// <returns>Instancia de Fichada solicitada</returns>
-		public Fichada getById(short id)
+		public Fichada getById (short id)
 		{
 			Fichada fichada;
-			fichada = persistencia.GetBy(id);
+			fichada = persistencia.GetBy (id);
 			return fichada;
 		}
 
@@ -65,9 +65,9 @@ namespace Reloj.Core
 		/// Obtiene la lista de todos las Fichada
 		/// </summary>
 		/// <returns>Lista de Fichada</returns>
-		public List<Fichada> getLista()
+		public List<Fichada> getLista ()
 		{
-			List<Fichada> fichadas = persistencia.GetAll();
+			List<Fichada> fichadas = persistencia.GetAll ();
 			return fichadas;
 		}
 
@@ -75,33 +75,25 @@ namespace Reloj.Core
 		/// Obtiene la lista de todos las Fichadas entre fechas
 		/// </summary>
 		/// <returns>Lista de Fichada</returns>
-		public List<Fichada> getListaEntreFechas(DateTime desde, DateTime hasta)
+		public List<Fichada> getListaEntreFechas (DateTime desde, DateTime hasta)
 		{
-			List<Fichada> fichadas = persistencia.GetEntreFechas(desde, hasta);
+			List<Fichada> fichadas = persistencia.GetEntreFechas (desde, hasta);
 			return fichadas;
 		}
 
-		[Obsolete("Usar metodo con otros parametros")]
-		public DataSet ExportarXLS(DateTime desde, DateTime hasta)
+		public void ExportarXLS (DateTime desde, DateTime hasta, string archivo)
 		{
-			DataSet ds;
-			ds = persistencia.GetAll(desde, hasta);
-			return ds;
-		}
-
-		public void ExportarXLS(DateTime desde, DateTime hasta, string archivo)
-		{
-			DataSet fichadas = persistencia.GetAll(desde, hasta);
-			var workbook = new ClosedXML.Excel.XLWorkbook();
+			DataSet fichadas = persistencia.GetAll (desde, hasta);
+			var workbook = new ClosedXML.Excel.XLWorkbook ();
 			foreach (DataTable datatable in fichadas.Tables) {
-				var sheetname = datatable.TableName.Length <= 31 ? datatable.TableName : datatable.TableName.Substring(0, 30);
-				var worksheet = workbook.Worksheets.Add(sheetname);
-				worksheet.Cell(1, 1).InsertTable(datatable);
-				worksheet.Columns().AdjustToContents();
+				var sheetname = datatable.TableName.Length <= 31 ? datatable.TableName : datatable.TableName.Substring (0, 30);
+				var worksheet = workbook.Worksheets.Add (sheetname);
+				worksheet.Cell (1, 1).InsertTable (datatable);
+				worksheet.Columns ().AdjustToContents ();
 			}
-			workbook.SaveAs(archivo);
-			workbook.Dispose();
-			Process.Start(archivo);
+			workbook.SaveAs (archivo);
+			workbook.Dispose ();
+			Process.Start (archivo);
 		}
 
 		/// <summary>
@@ -120,31 +112,31 @@ namespace Reloj.Core
 		/// Acción de guardar un Fichada
 		/// </summary>
 		/// <param name="fichada">Fichada a guardar</param>
-		public void Guardar(Fichada fichada)
+		public void Guardar (Fichada fichada)
 		{
 			fichada.FechaHora = DateTime.Now;
 
 			//verifica tiempos entre fichadas y legajo repetido
 			//si la fichada es del mismo legajo y está dentro de los 30 segundos se descarta.
 			if (UltimaFichada != null) {
-				var timeStamp = new TimeSpan(fichada.FechaHora.Ticks - UltimaFichada.FechaHora.Ticks);
+				var timeStamp = new TimeSpan (fichada.FechaHora.Ticks - UltimaFichada.FechaHora.Ticks);
 				var segundosEntreFichada = timeStamp.TotalSeconds;
 				if (UltimaFichada.Legajo == fichada.Legajo && segundosEntreFichada < 30)
-					throw new Exception("Debe esperar al menos 30 segundos entre cada fichada");
+					throw new Exception ("Debe esperar al menos 30 segundos entre cada fichada");
 			}
 
-			fichada.ApellidoYnombres = ConsultaEmpleados.consultarApellidoYnombres(fichada.Legajo);
+			fichada.ApellidoYnombres = ConsultaEmpleados.consultarApellidoYnombres (fichada.Legajo);
 
 			if (fichada.ApellidoYnombres != "SIN DATO") {
-				fichada.Foto = ConsultaEmpleados.consultarFoto(fichada.Legajo);
-				fichada.Foto = fichada.Foto.Replace("\\\\curie\\Sistemas\\Personal\\Fotos\\", "./fotos/");
-				fichada.Reloj = tablaController.getById("reloj", 3, fichada.RelojId);
+				fichada.Foto = ConsultaEmpleados.consultarFoto (fichada.Legajo);
+				fichada.Foto = fichada.Foto.Replace ("\\\\curie\\Sistemas\\Personal\\Fotos\\", "./fotos/");
+				fichada.Reloj = tablaController.getById ("reloj", 3, fichada.RelojId);
 			} else {
-				throw new Exception("Empleado no encontrado");
+				throw new Exception ("Empleado no encontrado");
 			}
 
 			if (fichada.Id == 0) {
-				persistencia.Insert(fichada);
+				persistencia.Insert (fichada);
 			}
 
 			UltimaFichada = fichada;
@@ -154,24 +146,12 @@ namespace Reloj.Core
 		/// Valida los datos de Fichada
 		/// </summary>
 		/// <param name="fichada">Fichada a validar</param>
-		static void Validar(Fichada fichada)
+		static void Validar (Fichada fichada)
 		{
-			if (fichada.Fecha == null || fichada.Fecha.Equals(string.Empty)) {
-				throw new FichadaException("Falta cargar la fecha");
+			if (fichada.Fecha == null || fichada.Fecha.Equals (string.Empty)) {
+				throw new FichadaException ("Falta cargar la fecha");
 			}
 		}
 	}
 }
 
-//TODO Remover
-namespace Reloj.Negocio
-{
-	[Obsolete("Usar Reloj.Core.FichadaController")]
-	public class FichadasNegocio : Reloj.Core.FichadaController
-	{
-		public DataSet getAll(DateTime desde, DateTime hasta)
-		{
-			return ExportarXLS(desde, hasta);
-		}
-	}
-}
