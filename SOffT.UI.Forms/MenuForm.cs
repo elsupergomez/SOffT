@@ -31,9 +31,9 @@ namespace Sofft.UI.Forms
 	{
 		public MenuForm()
 		{
-			InitializeComponent();
-			Icon = Modulo.CargarIcono();
-		}
+            InitializeComponent();
+            Icon = Controles.Icono;
+        }
 
 		/// <summary>
 		/// Lista de Botones para manejar los indices de los permisos.
@@ -46,14 +46,16 @@ namespace Sofft.UI.Forms
 		/// <param name="nombre">Nombre del boton</param>
 		public void AgregarBoton(string nombre)
 		{
-			var boton = new Button();
-			boton.Enabled = !Modulo.ValidaLogin;
-			boton.TabIndex = botones.Count;
-			boton.Text = nombre;
-			boton.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			flpBotones.Controls.Add(boton);
+            var boton = new Button
+            {
+                AutoSize = true,
+                Enabled = !Usuario.Requerir,
+                TabIndex = botones.Count,
+                Text = nombre,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right
+            };
+            flpBotones.Controls.Add(boton);
 			boton.Click += botones_Click;
-			boton.AutoSize = true;
 			botones.Add(boton);
 		}
 

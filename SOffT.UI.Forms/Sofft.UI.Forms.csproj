@@ -70,12 +70,6 @@
     <Compile Include="ABMCForm.designer.cs">
       <DependentUpon>ABMCForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaseForm.Designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="DatosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,10 +122,6 @@
       <DependentUpon>DatosForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ABMForm.resx">
       <DependentUpon>ABMForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -147,10 +137,7 @@
       <DependentUpon>PeriodoDialog.cs</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <Compile Include="Codigos.cs" />
-    <Compile Include="Modulo.cs" />
     <Compile Include="Usuario.cs" />
-    <Compile Include="Varios.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Glossy 3d blue orbs2 133.ico" />

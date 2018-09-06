@@ -21,6 +21,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Sofft.Utils;
@@ -35,9 +36,9 @@ namespace Sofft.UI.Forms
 		public LoginForm()
 		{
 			InitializeComponent();
-			picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-			string pathLogo = Application.StartupPath + Path.DirectorySeparatorChar + Modulo.pathImagenes + Path.DirectorySeparatorChar + Modulo.nombreLogo;
-			picLogo.Image = Controles.CargarImagen(pathLogo);
+            Icon = Icon = Controles.Icono;
+            picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+			picLogo.Image = Controles.Logo;
             //TODO: verificar si valida login o no
             //Modulo.ValidaLogin = false;
             txtUsuario.Text = Environment.UserName;
@@ -52,10 +53,10 @@ namespace Sofft.UI.Forms
 			idUsuario = usuario.ExisteUsuario(txtUsuario.Text, txtPwd.Text);
 			if (idUsuario > 0)
 			{
-				usuario.IdUsuario = idUsuario;
+				usuario.Id = idUsuario;
 				usuario.Login = txtUsuario.Text;
 				usuario.Password = txtPwd.Text;
-				Modulo.Usuario = usuario;
+				Usuario.Actual = usuario;
 			}
 			else
 				MessageBox.Show("Usuario inexistente - Consulte con el administrador");

@@ -34,12 +34,112 @@ namespace Sofft.UI.Forms
 	/// </summary>
 	public static class Controles
 	{
-		/// <summary>
-		/// Devuelve un objeton imágen desde un byte[]
-		/// </summary>
-		/// <param name="byteArrayIn"></param>
-		/// <returns></returns>
-		public static Image ByteArrayToImage(byte[] byteArrayIn)
+        public static void BaseForm(this Form form)
+        {
+            form.SuspendLayout();
+            form.AutoScaleDimensions = new SizeF(6F, 13F);
+            form.AutoScaleMode = AutoScaleMode.Font;
+            form.ClientSize = new Size(284, 262);
+            form.ForeColor = Color.Navy;
+            form.Icon = Icono;
+            form.MaximizeBox = false;
+            form.ShowInTaskbar = false;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.ResumeLayout(false);
+        }
+
+        public const string LogoFile = "Logo.png";
+        public const string IconoFile = "Icono.ico";
+        public const string BannerFile = "Banner.png";
+        public const string ImagenesPath = "Imagenes";
+        public const string DocumentosPath = "Documentos";
+
+        /// <summary>
+        /// Obtiene el icono del sistema
+        /// </summary>
+        /// <returns></returns>
+        public static Icon Icono
+        {
+            get
+            {
+                Icon icono = null;
+                try
+                {
+                    string pathIcono = Path.Combine(Application.StartupPath, ImagenesPath, IconoFile);
+                    icono = new Icon(pathIcono);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al cargar el icono del modulo {0}", ex);
+                }
+                return icono;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el Logo del sistema
+        /// </summary>
+        /// <returns></returns>
+        public static Image Logo
+        {
+            get
+            {
+                Image logo = null;
+                try
+                {
+                    string logoPath = Path.Combine(Application.StartupPath, ImagenesPath, LogoFile);
+                    logo = Image.FromFile(logoPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al cargar el logo del modulo {0}", ex);
+                }
+                return logo;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el Banner del sistema
+        /// </summary>
+        /// <returns></returns>
+        public static Image Banner
+        {
+            get
+            {
+                Image banner = null;
+                try
+                {
+                    string bannerPath = Path.Combine(Application.StartupPath, ImagenesPath, BannerFile);
+                    banner = Image.FromFile(bannerPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al cargar el banner del modulo {0}", ex);
+                }
+                return banner;
+            }
+        }
+
+        //UNDONE revisar logica y reemplazar por algo mas prolijo
+        public static bool IsNumeric(string theValue)
+        {
+            try
+            {
+                Convert.ToDouble(theValue);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Devuelve un objeton imágen desde un byte[]
+        /// </summary>
+        /// <param name="byteArrayIn"></param>
+        /// <returns></returns>
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
 		{
 			Image newImage;
 			//Read image data into a memory stream
@@ -263,37 +363,17 @@ namespace Sofft.UI.Forms
 			return dgv.SelectedRows[0].Cells[0].RowIndex;
 		}
 
-		/// <summary>
-		/// Carga la imagen solicitada en un control bitmap.
-		/// </summary>
-		/// <param name="pathAbsoluto">Pasar Application.StartupPath + pathRelativo o pathAbsoluto</param>
-		/// <returns></returns>
-		public static Bitmap CargarImagen(string pathAbsoluto)
-		{
-			Bitmap bmp = null;
-			try
-			{
-				bmp = new Bitmap(pathAbsoluto);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine("Error al cargar la imagen solicitada" + ex);
-			}
-			return bmp;
-		}
-
-		/// <summary>
-		/// Habilitar o deshabilita los controles hijos de forma recursiva
-		/// </summary>
-		/// <param name="control">Control contenedor</param>
-		/// <param name="estado">True para habilitar controles, False para deshabilitar controles</param>
-		/// <autor>Claudio Rodrigo Pereyra Diaz</autor>
-		public static void HabilitarControles(Control control, bool estado)
+        /// <summary>
+        /// Habilitar o deshabilita los controles hijos de forma recursiva
+        /// </summary>
+        /// <param name="control">Control contenedor</param>
+        /// <param name="estado">True para habilitar controles, False para deshabilitar controles</param>
+        /// <autor>Claudio Rodrigo Pereyra Diaz</autor>
+        public static void HabilitarControles(Control control, bool estado)
 		{
 			foreach (Control c in control.Controls)
-			{
-				HabilitarControles(c, estado);
-			}
+			    HabilitarControles(c, estado);
+			
 			if (control is TextBox)
 				control.Enabled = estado;
 			if (control is ComboBox)
@@ -306,9 +386,8 @@ namespace Sofft.UI.Forms
 				control.Enabled = estado;
 			if (control is MaskedTextBox)
 				control.Enabled = estado;
-			var dataGridView = control as DataGridView;
-			if (dataGridView != null)
-				dataGridView.ReadOnly = !estado;
-		}
+            if (control is DataGridView dataGridView)
+                dataGridView.ReadOnly = !estado;
+        }
 	}
 }

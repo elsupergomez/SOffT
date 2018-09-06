@@ -58,8 +58,8 @@ namespace Sofft.UI.Forms
 		public ABMForm()
 		{
 			InitializeComponent();
-			Icon = Modulo.CargarIcono();
-			txtBoxBuqueda.KeyDown += txtBoxBuqueda_KeyDown;
+            Icon = Controles.Icono;
+            txtBoxBuqueda.KeyDown += txtBoxBuqueda_KeyDown;
 			txtBoxBuqueda.Focus();
 		}
 
@@ -102,7 +102,7 @@ namespace Sofft.UI.Forms
 			for (int i = 0; i < nombres.Length + 5; i++)
 			{
 				var boton = new Button();
-				boton.Enabled = !Modulo.ValidaLogin;
+				boton.Enabled = !Usuario.Requerir;
 				boton.Size = btnCerrar.Size;
 				boton.Tag = i;
 				boton.Click += botones_Click;
@@ -329,7 +329,7 @@ namespace Sofft.UI.Forms
 					cadfitro = cadfitro + " and " + etiquetas[i].Text + " like '*" + filtros[i].Text + "*'";
 			}
 			if (txtBoxBuqueda.TextLength > 0)
-				if (Varios.IsNumeric(txtBoxBuqueda.Text))
+				if (Controles.IsNumeric(txtBoxBuqueda.Text))
 					cadfitro = cadfitro + " and [" + busquedas[getBusquedaSeleccionada()].Text + "] = " + txtBoxBuqueda.Text;
 				else {
 					if (getBusquedaSeleccionada() != 0)

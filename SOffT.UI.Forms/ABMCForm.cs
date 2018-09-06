@@ -35,7 +35,8 @@ namespace Sofft.UI.Forms
 		public ABMCForm()
 		{
 			InitializeComponent();
-			btnBuscar.MouseHover += btnBuscar_MouseHover;
+            Icon = Controles.Icono;
+            btnBuscar.MouseHover += btnBuscar_MouseHover;
 			Text = "A.B.M. Generico";
 		}
 

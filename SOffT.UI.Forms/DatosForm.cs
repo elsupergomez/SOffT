@@ -30,6 +30,7 @@ namespace Sofft.UI.Forms
 		public DatosForm()
 		{
 			InitializeComponent();
+            Icon = Controles.Icono;
 		}
 
 		protected virtual void aceptarButton_Click(object sender, EventArgs e)

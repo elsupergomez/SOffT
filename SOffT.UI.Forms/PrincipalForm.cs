@@ -28,52 +28,51 @@ using Sofft.Utils;
 
 namespace Sofft.UI.Forms
 {
-	/// <summary>
-	/// Formulario Principal de Modulos, Heredable, con metodos redefinibles.
-	/// </summary>
-	public partial class PrincipalForm : Form
-	{
-		/// <summary>
-		/// Constructor de la clase
-		/// </summary>
-		public PrincipalForm()
-		{
-			InitializeComponent();
-			var logo = string.Format("{0}{1}imagenes{1}logoGrande.jpg", Application.StartupPath, System.IO.Path.DirectorySeparatorChar);
-			pictureBoxEmpresa.Image = Controles.CargarImagen(logo);
-		}
+    /// <summary>
+    /// Formulario Principal de Modulos, Heredable, con metodos redefinibles.
+    /// </summary>
+    public partial class PrincipalForm : Form
+    {
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public PrincipalForm()
+        {
+            InitializeComponent();
+            Icon = Controles.Icono;
+            pictureBoxEmpresa.Image = Controles.Banner;
+        }
 
-		/// <summary>
-		/// Lista de Botones para manejar los indices de los permisos.
-		/// </summary>
-		List<Button> botones = new List<Button>();
+        /// <summary>
+        /// Lista de Botones para manejar los indices de los permisos.
+        /// </summary>
+        List<Button> botones = new List<Button>();
 
-		/// <summary>
-		/// Llama al login y verifica los datos ingresados.
-		/// hvivani. 20061011.
-		/// </summary>
-		public void VerificaLogin()
-		{
-			var f = new LoginForm();
-			f.ShowDialog();
-			if (Modulo.Usuario != null)
-			{
-				Usuario.SetPermisos(ref botones, Nivel);
-			}
-		}
+        /// <summary>
+        /// Llama al login y verifica los datos ingresados.
+        /// hvivani. 20061011.
+        /// </summary>
+        public void VerificaLogin()
+        {
+            var f = new LoginForm();
+            f.ShowDialog();
+            if (Usuario.Actual != null)
+                Usuario.SetPermisos(ref botones, Nivel);
+        }
 
-		public void SetDatos(string servidor, string DB, string nombreModulo, string nombreSistema, string version)
-		{
-			Modulo.ServidorDB = servidor;
-			Modulo.DB = DB;
-			Modulo.NombreModulo = nombreModulo;
-			Modulo.NombreSistema = nombreSistema;
-			Modulo.IdModulo = 2;
-			Icon = Modulo.CargarIcono();
-			lblVersion.Text = version;
-			lblSistemaGestion.Text = Modulo.NombreSistema;
-			lblModulo.Text = Modulo.NombreModulo;
-		}
+        public void SetDatos(string modulo, string sistema)
+        {
+            SetDatos(0, modulo, sistema);
+        }
+
+        public void SetDatos(int id, string modulo, string sistema)
+        {
+            Usuario.ModuloId = id;
+            Icon = Controles.Icono;
+            lblVersion.Text = string.Format("versión: {0}", Application.ProductVersion);
+            lblSistemaGestion.Text = sistema;
+            lblModulo.Text = modulo;
+        }
 
 		/// <summary>
 		/// Crea los botones en una lista a agregar en el frm.
@@ -93,12 +92,14 @@ namespace Sofft.UI.Forms
 		/// <param name="nombre">Nombre del boton</param>
 		public void AgregarBoton(string nombre)
 		{
-			var boton = new Button();
-			boton.Enabled = !Modulo.ValidaLogin;
-			boton.TabIndex = botones.Count;
-			boton.Text = nombre;
-			boton.Width = fLPBotones.Width - fLPBotones.Margin.All;
-			fLPBotones.Controls.Add(boton);
+            var boton = new Button
+            {
+                Enabled = !Usuario.Requerir,
+                TabIndex = botones.Count,
+                Text = nombre,
+                Width = fLPBotones.Width - fLPBotones.Margin.All
+            };
+            fLPBotones.Controls.Add(boton);
 			boton.Click += botones_Click;
 			botones.Add(boton);
 		}
@@ -126,7 +127,7 @@ namespace Sofft.UI.Forms
 		void FormPrincipal_Load(object sender, EventArgs e)
 		{
 			//si se esta validando el usuario y no se obtuvo uno valido. cierro.
-			if (Modulo.ValidaLogin && Modulo.Usuario == null || Nivel == null)
+			if (Usuario.Requerir && Usuario.Actual == null || Nivel == null)
 				Close();
 		}
 
@@ -134,7 +135,7 @@ namespace Sofft.UI.Forms
 
 		public string Nivel
 		{
-			get { return Modulo.IdModulo.ToString(); }
+			get { return Usuario.ModuloId.ToString(); }
 		}
 
 		#endregion
