@@ -57,10 +57,10 @@ namespace Sofft.UI.Forms
 				usuario.Login = txtUsuario.Text;
 				usuario.Password = txtPwd.Text;
 				Usuario.Actual = usuario;
-			}
+                Close();
+            }
 			else
 				MessageBox.Show("Usuario inexistente - Consulte con el administrador");
-			Close();
 		}
 
 		void btnCancelar_Click(object sender, EventArgs e)
