@@ -17,7 +17,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Sueldos.Reportes.CrystalReport</AssemblyTitle>
     <Company>Postres Balcarce S.A.</Company>
     <Product>Sueldos.Reportes.CrystalReport</Product>

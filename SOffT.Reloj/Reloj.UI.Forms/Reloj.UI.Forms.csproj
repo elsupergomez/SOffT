@@ -5,7 +5,7 @@
     <ApplicationIcon>clock.ico</ApplicationIcon>
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Reloj.UI.Forms</AssemblyTitle>
     <Company>SOffT</Company>
     <Product>Reloj.UI.Forms</Product>

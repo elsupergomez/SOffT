@@ -2,7 +2,7 @@
   <PropertyGroup>
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Sofft.UI.Forms</AssemblyTitle>
     <Company>SOffT</Company>
     <Product>Sofft.UI.Forms</Product>

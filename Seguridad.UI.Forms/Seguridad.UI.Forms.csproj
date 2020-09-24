@@ -7,7 +7,7 @@
     <SignManifests>false</SignManifests>
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Seguridad.UI.Forms</AssemblyTitle>
     <Company>Hamekoz</Company>
     <Product>Seguridad</Product>
