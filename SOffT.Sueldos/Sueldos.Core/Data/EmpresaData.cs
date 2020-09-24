@@ -103,15 +103,12 @@ namespace Sueldos.Data
 			sql.Append (empresa.Provincia);
 			sql.Append ("', Localidad = '");
 			sql.Append (empresa.Localidad);
-			sql.Append ("', Logotipo = @logotipo");  //ojo on el N
-                
-			//sql.Append("', Logotipo = convert(varbinary(max),");  //ojo on el N
-			//sql.Append(Bytes2String(empresa.Imagen));
-			//sql.Append(") ");
+			sql.Append ("', Logotipo = '");
+            sql.Append(empresa.Imagen);
 			sql.Append (" WHERE ");
 			sql.Append (" idEmpresa = ");
 			sql.Append (empresa.IdEmpresa);
-			return DB.Instancia.ejecutarProceso (DB.TipoComando.Texto, sql.ToString (), "@logotipo", empresa.Imagen);
+			return DB.Instancia.Sql(sql.ToString ());
 		}
 
 		public int delete (EmpresaEntity empresa)
