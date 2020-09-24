@@ -1,50 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D667B156-C44B-4C85-B064-6B587CD308E1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sofft.UI.Forms</RootNamespace>
-    <AssemblyName>Sofft.UI.Forms</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyTitle>Sofft.UI.Forms</AssemblyTitle>
+    <Company>SOffT</Company>
+    <Product>Sofft.UI.Forms</Product>
+    <Copyright>Copyright © SOffT 2010</Copyright>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
+    <PackageReference Include="Hamekoz.Data" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controles.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -53,91 +36,89 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ABMForm.cs">
+    <Compile Update="ABMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMForm.Designer.cs">
+    <Compile Update="ABMForm.Designer.cs">
       <DependentUpon>ABMForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMCForm.cs">
+    <Compile Update="ABMCForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMCForm.designer.cs">
+    <Compile Update="ABMCForm.designer.cs">
       <DependentUpon>ABMCForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatosForm.cs">
+    <Compile Update="DatosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DatosForm.Designer.cs">
+    <Compile Update="DatosForm.Designer.cs">
       <DependentUpon>DatosForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Update="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.designer.cs">
+    <Compile Update="LoginForm.designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrincipalForm.cs">
+    <Compile Update="PrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrincipalForm.designer.cs">
+    <Compile Update="PrincipalForm.designer.cs">
       <DependentUpon>PrincipalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuForm.cs">
+    <Compile Update="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuForm.Designer.cs">
+    <Compile Update="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\SeleccionValorDialog.cs">
+    <Compile Update="Dialogos\SeleccionValorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\SeleccionValorDialog.Designer.cs">
+    <Compile Update="Dialogos\SeleccionValorDialog.Designer.cs">
       <DependentUpon>SeleccionValorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\SeleccionFechaDialog.cs">
+    <Compile Update="Dialogos\SeleccionFechaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\SeleccionFechaDialog.Designer.cs">
+    <Compile Update="Dialogos\SeleccionFechaDialog.Designer.cs">
       <DependentUpon>SeleccionFechaDialog.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PrincipalForm.resx">
+    <EmbeddedResource Update="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuForm.resx">
+    <EmbeddedResource Update="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Update="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DatosForm.resx">
+    <EmbeddedResource Update="DatosForm.resx">
       <DependentUpon>DatosForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMForm.resx">
+    <EmbeddedResource Update="ABMForm.resx">
       <DependentUpon>ABMForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMCForm.resx">
+    <EmbeddedResource Update="ABMCForm.resx">
       <DependentUpon>ABMCForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Dialogos\PeriodoDialog.cs">
+    <Compile Update="Dialogos\PeriodoDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\PeriodoDialog.Designer.cs">
+    <Compile Update="Dialogos\PeriodoDialog.Designer.cs">
       <DependentUpon>PeriodoDialog.cs</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
-    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Glossy 3d blue orbs2 133.ico" />
@@ -190,18 +171,7 @@
   <ItemGroup>
     <None Include="Resources\CheckMark32x32.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <ItemGroup>
-    <ProjectReference Include="..\..\hamekoz-sharp\Hamekoz.Data\Hamekoz.Data.csproj">
-      <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>
-      <Name>Hamekoz.Data</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\hamekoz-sharp\Hamekoz.Data\Hamekoz.Data.csproj" />
   </ItemGroup>
 </Project>

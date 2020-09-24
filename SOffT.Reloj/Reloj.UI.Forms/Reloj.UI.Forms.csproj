@@ -1,83 +1,60 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reloj.UI.Forms</RootNamespace>
-    <AssemblyName>Reloj.UI.Forms</AssemblyName>
     <StartupObject>Reloj.UI.Forms.Program</StartupObject>
     <ApplicationIcon>clock.ico</ApplicationIcon>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyTitle>Reloj.UI.Forms</AssemblyTitle>
+    <Company>SOffT</Company>
+    <Product>Reloj.UI.Forms</Product>
+    <Copyright>Copyright © SOffT 2008</Copyright>
+    <Deterministic>false</Deterministic>
+    <AssemblyVersion>2.2.1.*</AssemblyVersion>
+    <FileVersion>2.2.1.*</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <Commandlineparameters>1</Commandlineparameters>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Interop.WisSensorNLibLib">
       <HintPath>..\libs\Interop.WisSensorNLibLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="RelojUI.cs">
+    <Compile Update="RelojUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RelojUI.designer.cs">
+    <Compile Update="RelojUI.designer.cs">
       <DependentUpon>RelojUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RelojUI.resx">
+    <EmbeddedResource Update="RelojUI.resx">
       <DependentUpon>RelojUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="FingerPrintUtilsUI.cs">
+    <Compile Update="FingerPrintUtilsUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FingerPrintUtilsUI.Designer.cs">
+    <Compile Update="FingerPrintUtilsUI.Designer.cs">
       <DependentUpon>FingerPrintUtilsUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FingerPrintUtilsUI.resx">
+    <EmbeddedResource Update="FingerPrintUtilsUI.resx">
       <DependentUpon>FingerPrintUtilsUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -91,22 +68,11 @@
     <None Include="Resources\mano011.jpg" />
     <None Include="Resources\mano001.jpg" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <ItemGroup>
-    <ProjectReference Include="..\Reloj.Core\Reloj.Core.csproj">
-      <Project>{1F09652F-31D5-434E-B64C-C6CB70DCEDD3}</Project>
-      <Name>Reloj.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj">
-      <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
-      <Name>Sueldos.Core</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Reloj.Core\Reloj.Core.csproj" />
+    <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controles.cs" />
   </ItemGroup>
 </Project>

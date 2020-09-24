@@ -1,14 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52D22840-4B58-4525-BE57-77EFD9992FA0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sueldos.View</RootNamespace>
     <AssemblyName>Sueldos.View</AssemblyName>
-    <FileAlignment>512</FileAlignment>
     <TargetZone>LocalIntranet</TargetZone>
     <GenerateManifests>false</GenerateManifests>
     <ApplicationIcon>icono.ico</ApplicationIcon>
@@ -27,495 +21,482 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyTitle>Sueldos.View</AssemblyTitle>
+    <Company>SOffT</Company>
+    <Product>Sueldos.View</Product>
+    <Copyright>Copyright © SOffT 2010</Copyright>
+    <AssemblyVersion>1.6.41</AssemblyVersion>
+    <FileVersion>1.6.41</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <PackageReference Include="Hamekoz.Data" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="Sueldos.Reportes.CrystalReport">
       <HintPath>..\..\libs\Sueldos.Reportes.CrystalReport.dll</HintPath>
     </Reference>
-    <Reference Include="Hamekoz.Data">
-      <HintPath>..\..\packages\Hamekoz.Data.1.0.0\lib\Hamekoz.Data.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bapro.cs" />
-    <Compile Include="BancoGalicia.cs" />
-    <Compile Include="BancoCredicoop.cs" />
-    <Compile Include="DDJJUOCRA.cs" />
-    <Compile Include="Dialogos\frmSeleccionAnioMes.cs">
+    <Compile Update="Dialogos\frmSeleccionAnioMes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionAnioMes.Designer.cs">
+    <Compile Update="Dialogos\frmSeleccionAnioMes.Designer.cs">
       <DependentUpon>frmSeleccionAnioMes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionCampoEmpleado.cs">
+    <Compile Update="Dialogos\frmSeleccionCampoEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionCampoEmpleado.Designer.cs">
+    <Compile Update="Dialogos\frmSeleccionCampoEmpleado.Designer.cs">
       <DependentUpon>frmSeleccionCampoEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionItem.cs">
+    <Compile Update="Dialogos\frmSeleccionItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionItem.designer.cs">
+    <Compile Update="Dialogos\frmSeleccionItem.designer.cs">
       <DependentUpon>frmSeleccionItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionLiquidacionPorTipos.cs">
+    <Compile Update="Dialogos\frmSeleccionLiquidacionPorTipos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionLiquidacionPorTipos.Designer.cs">
+    <Compile Update="Dialogos\frmSeleccionLiquidacionPorTipos.Designer.cs">
       <DependentUpon>frmSeleccionLiquidacionPorTipos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionLiquidacionPorTiposConFechaAcreditacion.cs">
+    <Compile Update="Dialogos\frmSeleccionLiquidacionPorTiposConFechaAcreditacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionLiquidacionPorTiposConFechaAcreditacion.Designer.cs">
+    <Compile Update="Dialogos\frmSeleccionLiquidacionPorTiposConFechaAcreditacion.Designer.cs">
       <DependentUpon>frmSeleccionLiquidacionPorTiposConFechaAcreditacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionValor.cs">
+    <Compile Update="Dialogos\frmSeleccionValor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\frmSeleccionValor.designer.cs">
+    <Compile Update="Dialogos\frmSeleccionValor.designer.cs">
       <DependentUpon>frmSeleccionValor.cs</DependentUpon>
     </Compile>
-    <Compile Include="exportarAexcel.cs" />
-    <Compile Include="FondoDesempleo.cs" />
-    <Compile Include="frmABManticipos.cs">
+    <Compile Update="frmABManticipos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABManticipos.Designer.cs">
+    <Compile Update="frmABManticipos.Designer.cs">
       <DependentUpon>frmABManticipos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMConceptos.cs">
+    <Compile Update="frmABMConceptos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMConceptos.Designer.cs">
+    <Compile Update="frmABMConceptos.Designer.cs">
       <DependentUpon>frmABMConceptos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMempleados.cs">
+    <Compile Update="frmABMempleados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMempleados.Designer.cs">
+    <Compile Update="frmABMempleados.Designer.cs">
       <DependentUpon>frmABMempleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMfichadas.cs">
+    <Compile Update="frmABMfichadas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMfichadas.Designer.cs">
+    <Compile Update="frmABMfichadas.Designer.cs">
       <DependentUpon>frmABMfichadas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMliquidaciones.cs">
+    <Compile Update="frmABMliquidaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMliquidaciones.Designer.cs">
+    <Compile Update="frmABMliquidaciones.Designer.cs">
       <DependentUpon>frmABMliquidaciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMnovedades.cs">
+    <Compile Update="frmABMnovedades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMnovedades.Designer.cs">
+    <Compile Update="frmABMnovedades.Designer.cs">
       <DependentUpon>frmABMnovedades.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMTablas.cs">
+    <Compile Update="frmABMTablas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMTablas.Designer.cs">
+    <Compile Update="frmABMTablas.Designer.cs">
       <DependentUpon>frmABMTablas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAcreditaciones.cs">
+    <Compile Update="frmAcreditaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAcreditaciones.Designer.cs">
+    <Compile Update="frmAcreditaciones.Designer.cs">
       <DependentUpon>frmAcreditaciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAcreditacionesAnticipos.cs">
+    <Compile Update="frmAcreditacionesAnticipos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAcreditacionesAnticipos.Designer.cs">
+    <Compile Update="frmAcreditacionesAnticipos.Designer.cs">
       <DependentUpon>frmAcreditacionesAnticipos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmActualizarFichadas.cs">
+    <Compile Update="frmActualizarFichadas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmActualizarFichadas.Designer.cs">
+    <Compile Update="frmActualizarFichadas.Designer.cs">
       <DependentUpon>frmActualizarFichadas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAnticipo.cs">
+    <Compile Update="frmAnticipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAnticipo.Designer.cs">
+    <Compile Update="frmAnticipo.Designer.cs">
       <DependentUpon>frmAnticipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAsistencia.cs">
+    <Compile Update="frmAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAsistencia.Designer.cs">
+    <Compile Update="frmAsistencia.Designer.cs">
       <DependentUpon>frmAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBarcode.cs">
+    <Compile Update="frmBarcode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBarcode.Designer.cs">
+    <Compile Update="frmBarcode.Designer.cs">
       <DependentUpon>frmBarcode.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCampoEmpleado.cs">
+    <Compile Update="frmCampoEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCampoEmpleado.Designer.cs">
+    <Compile Update="frmCampoEmpleado.Designer.cs">
       <DependentUpon>frmCampoEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCargaAcumulados.cs">
+    <Compile Update="frmCargaAcumulados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCargaAcumulados.Designer.cs">
+    <Compile Update="frmCargaAcumulados.Designer.cs">
       <DependentUpon>frmCargaAcumulados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCargaCamposDeEmpleados.cs">
+    <Compile Update="frmCargaCamposDeEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCargaCamposDeEmpleados.Designer.cs">
+    <Compile Update="frmCargaCamposDeEmpleados.Designer.cs">
       <DependentUpon>frmCargaCamposDeEmpleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCargaMasivaNovedades.cs">
+    <Compile Update="frmCargaMasivaNovedades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCargaMasivaNovedades.Designer.cs">
+    <Compile Update="frmCargaMasivaNovedades.Designer.cs">
       <DependentUpon>frmCargaMasivaNovedades.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDatosEmpleado.cs">
+    <Compile Update="frmDatosEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDatosEmpleado.Designer.cs">
+    <Compile Update="frmDatosEmpleado.Designer.cs">
       <DependentUpon>frmDatosEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDatosEmpresa.cs">
+    <Compile Update="frmDatosEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDatosEmpresa.Designer.cs">
+    <Compile Update="frmDatosEmpresa.Designer.cs">
       <DependentUpon>frmDatosEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDatosLiquidacion.cs">
+    <Compile Update="frmDatosLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDatosLiquidacion.Designer.cs">
+    <Compile Update="frmDatosLiquidacion.Designer.cs">
       <DependentUpon>frmDatosLiquidacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDebug.cs">
+    <Compile Update="frmDebug.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDebug.Designer.cs">
+    <Compile Update="frmDebug.Designer.cs">
       <DependentUpon>frmDebug.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEdicionConcepto.cs">
+    <Compile Update="frmEdicionConcepto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEdicionConcepto.designer.cs">
+    <Compile Update="frmEdicionConcepto.designer.cs">
       <DependentUpon>frmEdicionConcepto.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFamiliar.cs">
+    <Compile Update="frmFamiliar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFamiliar.Designer.cs">
+    <Compile Update="frmFamiliar.Designer.cs">
       <DependentUpon>frmFamiliar.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestionDatosRemotos.cs">
+    <Compile Update="frmGestionDatosRemotos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestionDatosRemotos.Designer.cs">
+    <Compile Update="frmGestionDatosRemotos.Designer.cs">
       <DependentUpon>frmGestionDatosRemotos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHorario.cs">
+    <Compile Update="frmHorario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHorario.Designer.cs">
+    <Compile Update="frmHorario.Designer.cs">
       <DependentUpon>frmHorario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHorasExtras.cs">
+    <Compile Update="frmHorasExtras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHorasExtras.Designer.cs">
+    <Compile Update="frmHorasExtras.Designer.cs">
       <DependentUpon>frmHorasExtras.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmImportarSIJP.cs">
+    <Compile Update="frmImportarSIJP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImportarSIJP.Designer.cs">
+    <Compile Update="frmImportarSIJP.Designer.cs">
       <DependentUpon>frmImportarSIJP.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLiquidacion.cs">
+    <Compile Update="frmLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLiquidacion.Designer.cs">
+    <Compile Update="frmLiquidacion.Designer.cs">
       <DependentUpon>frmLiquidacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLiquidacionTabla.cs">
+    <Compile Update="frmLiquidacionTabla.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLiquidacionTabla.Designer.cs">
+    <Compile Update="frmLiquidacionTabla.Designer.cs">
       <DependentUpon>frmLiquidacionTabla.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuAnticipos.cs">
+    <Compile Update="frmMnuAnticipos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuAnticipos.Designer.cs">
+    <Compile Update="frmMnuAnticipos.Designer.cs">
       <DependentUpon>frmMnuAnticipos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuAsientosDeSueldos.cs">
+    <Compile Update="frmMnuAsientosDeSueldos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuAsientosDeSueldos.Designer.cs">
+    <Compile Update="frmMnuAsientosDeSueldos.Designer.cs">
       <DependentUpon>frmMnuAsientosDeSueldos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuAsistencia.cs">
+    <Compile Update="frmMnuAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuAsistencia.Designer.cs">
+    <Compile Update="frmMnuAsistencia.Designer.cs">
       <DependentUpon>frmMnuAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuCargasSociales.cs">
+    <Compile Update="frmMnuCargasSociales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuCargasSociales.Designer.cs">
+    <Compile Update="frmMnuCargasSociales.Designer.cs">
       <DependentUpon>frmMnuCargasSociales.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuHerramientas.cs">
+    <Compile Update="frmMnuHerramientas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuHerramientas.Designer.cs">
+    <Compile Update="frmMnuHerramientas.Designer.cs">
       <DependentUpon>frmMnuHerramientas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuInformes.cs">
+    <Compile Update="frmMnuInformes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuInformes.Designer.cs">
+    <Compile Update="frmMnuInformes.Designer.cs">
       <DependentUpon>frmMnuInformes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuLiquidacion.cs">
+    <Compile Update="frmMnuLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuLiquidacion.Designer.cs">
+    <Compile Update="frmMnuLiquidacion.Designer.cs">
       <DependentUpon>frmMnuLiquidacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMnuReportesLiquidacion.cs">
+    <Compile Update="frmMnuReportesLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMnuReportesLiquidacion.Designer.cs">
+    <Compile Update="frmMnuReportesLiquidacion.Designer.cs">
       <DependentUpon>frmMnuReportesLiquidacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPeriodosTrabajados.cs">
+    <Compile Update="frmPeriodosTrabajados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPeriodosTrabajados.Designer.cs">
+    <Compile Update="frmPeriodosTrabajados.Designer.cs">
       <DependentUpon>frmPeriodosTrabajados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRecibo.cs">
+    <Compile Update="frmRecibo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRecibo.Designer.cs">
+    <Compile Update="frmRecibo.Designer.cs">
       <DependentUpon>frmRecibo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRenglonRecibo.cs">
+    <Compile Update="frmRenglonRecibo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRenglonRecibo.Designer.cs">
+    <Compile Update="frmRenglonRecibo.Designer.cs">
       <DependentUpon>frmRenglonRecibo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSueldos.cs">
+    <Compile Update="frmSueldos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSueldos.Designer.cs">
+    <Compile Update="frmSueldos.Designer.cs">
       <DependentUpon>frmSueldos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVacacionesEmpleado.cs">
+    <Compile Update="frmVacacionesEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVacacionesEmpleado.Designer.cs">
+    <Compile Update="frmVacacionesEmpleado.Designer.cs">
       <DependentUpon>frmVacacionesEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmValidaCUIL.cs">
+    <Compile Update="frmValidaCUIL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmValidaCUIL.Designer.cs">
+    <Compile Update="frmValidaCUIL.Designer.cs">
       <DependentUpon>frmValidaCUIL.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlanillaDeCalculo.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmABManticipos.resx">
+    <EmbeddedResource Update="frmABManticipos.resx">
       <DependentUpon>frmABManticipos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMConceptos.resx">
+    <EmbeddedResource Update="frmABMConceptos.resx">
       <DependentUpon>frmABMConceptos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMempleados.resx">
+    <EmbeddedResource Update="frmABMempleados.resx">
       <DependentUpon>frmABMempleados.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMfichadas.resx">
+    <EmbeddedResource Update="frmABMfichadas.resx">
       <DependentUpon>frmABMfichadas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMliquidaciones.resx">
+    <EmbeddedResource Update="frmABMliquidaciones.resx">
       <DependentUpon>frmABMliquidaciones.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMnovedades.resx">
+    <EmbeddedResource Update="frmABMnovedades.resx">
       <DependentUpon>frmABMnovedades.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMTablas.resx">
+    <EmbeddedResource Update="frmABMTablas.resx">
       <DependentUpon>frmABMTablas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAcreditaciones.resx">
+    <EmbeddedResource Update="frmAcreditaciones.resx">
       <DependentUpon>frmAcreditaciones.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAcreditacionesAnticipos.resx">
+    <EmbeddedResource Update="frmAcreditacionesAnticipos.resx">
       <DependentUpon>frmAcreditacionesAnticipos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmActualizarFichadas.resx">
+    <EmbeddedResource Update="frmActualizarFichadas.resx">
       <DependentUpon>frmActualizarFichadas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAnticipo.resx">
+    <EmbeddedResource Update="frmAnticipo.resx">
       <DependentUpon>frmAnticipo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAsistencia.resx">
+    <EmbeddedResource Update="frmAsistencia.resx">
       <DependentUpon>frmAsistencia.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBarcode.resx">
+    <EmbeddedResource Update="frmBarcode.resx">
       <DependentUpon>frmBarcode.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCampoEmpleado.resx">
+    <EmbeddedResource Update="frmCampoEmpleado.resx">
       <DependentUpon>frmCampoEmpleado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCargaAcumulados.resx">
+    <EmbeddedResource Update="frmCargaAcumulados.resx">
       <DependentUpon>frmCargaAcumulados.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCargaCamposDeEmpleados.resx">
+    <EmbeddedResource Update="frmCargaCamposDeEmpleados.resx">
       <DependentUpon>frmCargaCamposDeEmpleados.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCargaMasivaNovedades.resx">
+    <EmbeddedResource Update="frmCargaMasivaNovedades.resx">
       <DependentUpon>frmCargaMasivaNovedades.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDatosEmpleado.resx">
+    <EmbeddedResource Update="frmDatosEmpleado.resx">
       <DependentUpon>frmDatosEmpleado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDatosEmpresa.resx">
+    <EmbeddedResource Update="frmDatosEmpresa.resx">
       <DependentUpon>frmDatosEmpresa.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDatosLiquidacion.resx">
+    <EmbeddedResource Update="frmDatosLiquidacion.resx">
       <DependentUpon>frmDatosLiquidacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDebug.resx">
+    <EmbeddedResource Update="frmDebug.resx">
       <DependentUpon>frmDebug.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEdicionConcepto.resx">
+    <EmbeddedResource Update="frmEdicionConcepto.resx">
       <DependentUpon>frmEdicionConcepto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFamiliar.resx">
+    <EmbeddedResource Update="frmFamiliar.resx">
       <DependentUpon>frmFamiliar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionDatosRemotos.resx">
+    <EmbeddedResource Update="frmGestionDatosRemotos.resx">
       <DependentUpon>frmGestionDatosRemotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHorario.resx">
+    <EmbeddedResource Update="frmHorario.resx">
       <DependentUpon>frmHorario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHorasExtras.resx">
+    <EmbeddedResource Update="frmHorasExtras.resx">
       <DependentUpon>frmHorasExtras.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImportarSIJP.resx">
+    <EmbeddedResource Update="frmImportarSIJP.resx">
       <DependentUpon>frmImportarSIJP.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLiquidacion.resx">
+    <EmbeddedResource Update="frmLiquidacion.resx">
       <DependentUpon>frmLiquidacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLiquidacionTabla.resx">
+    <EmbeddedResource Update="frmLiquidacionTabla.resx">
       <DependentUpon>frmLiquidacionTabla.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMnuAsistencia.resx">
+    <EmbeddedResource Update="frmMnuAsistencia.resx">
       <DependentUpon>frmMnuAsistencia.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMnuCargasSociales.resx">
+    <EmbeddedResource Update="frmMnuCargasSociales.resx">
       <DependentUpon>frmMnuCargasSociales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMnuLiquidacion.resx">
+    <EmbeddedResource Update="frmMnuLiquidacion.resx">
       <DependentUpon>frmMnuLiquidacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPeriodosTrabajados.resx">
+    <EmbeddedResource Update="frmPeriodosTrabajados.resx">
       <DependentUpon>frmPeriodosTrabajados.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRecibo.resx">
+    <EmbeddedResource Update="frmRecibo.resx">
       <DependentUpon>frmRecibo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRenglonRecibo.resx">
+    <EmbeddedResource Update="frmRenglonRecibo.resx">
       <DependentUpon>frmRenglonRecibo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSueldos.resx">
+    <EmbeddedResource Update="frmSueldos.resx">
       <DependentUpon>frmSueldos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVacacionesEmpleado.resx">
+    <EmbeddedResource Update="frmVacacionesEmpleado.resx">
       <DependentUpon>frmVacacionesEmpleado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmValidaCUIL.resx">
+    <EmbeddedResource Update="frmValidaCUIL.resx">
       <DependentUpon>frmValidaCUIL.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -529,18 +510,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="_CompatibilidadMono.txt" />
-    <None Include="packages.config" />
     <None Include="app.config.example" />
-    <Compile Include="Control\LiquidacionesControl.cs">
+    <Compile Update="Control\LiquidacionesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Control\LiquidacionesControl.Designer.cs">
+    <Compile Update="Control\LiquidacionesControl.Designer.cs">
       <DependentUpon>LiquidacionesControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -550,90 +530,21 @@
     <Content Include="_ToDo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <ProjectReference Include="..\Sueldos.Core\Sueldos.Core.csproj" />
+    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.UI.Forms\Reloj.UI.Forms.csproj" />
+    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.Core\Reloj.Core.csproj" />
+    <ProjectReference Include="..\..\SOffT.UI.Forms\Sofft.UI.Forms.csproj" />
+    <ProjectReference Include="..\..\SOffT.Utils\Sofft.Utils.csproj" />
+    <ProjectReference Include="..\..\Barcode\BarCode.csproj" />
+    <ProjectReference Include="..\..\Model\Model.csproj" />
+    <ProjectReference Include="..\..\excellibrary\src\ExcelLibrary\ExcelLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <ChangeLogPolicy UpdateMode="ProjectRoot" inheritsSet="Mono" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-    <VisualStudio />
-  </ProjectExtensions>
-  <ItemGroup>
-    <ProjectReference Include="..\Sueldos.Core\Sueldos.Core.csproj">
-      <Project>{2A508F9C-C1A3-413B-BA89-28A429994CF5}</Project>
-      <Name>Sueldos.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.UI.Forms\Reloj.UI.Forms.csproj">
-      <Project>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</Project>
-      <Name>Reloj.UI.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SOffT.Reloj\Reloj.Core\Reloj.Core.csproj">
-      <Project>{1F09652F-31D5-434E-B64C-C6CB70DCEDD3}</Project>
-      <Name>Reloj.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SOffT.UI.Forms\Sofft.UI.Forms.csproj">
-      <Project>{D667B156-C44B-4C85-B064-6B587CD308E1}</Project>
-      <Name>Sofft.UI.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SOffT.Utils\Sofft.Utils.csproj">
-      <Project>{9BBBC9AB-C1FD-4E74-91E4-F65B062C97FA}</Project>
-      <Name>Sofft.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Barcode\BarCode.csproj">
-      <Project>{045E8F90-175C-495E-A340-AF501D488128}</Project>
-      <Name>BarCode</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Model\Model.csproj">
-      <Project>{65909236-0370-4436-B362-93292DEAC91C}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\excellibrary\src\ExcelLibrary\ExcelLibrary.csproj">
-      <Project>{0716F257-72DD-41EF-8E79-54BA388E3AB1}</Project>
-      <Name>ExcelLibrary</Name>
-    </ProjectReference>
+    <Compile Remove="CamposEmpleado.cs" />
+    <Compile Remove="Empleados.cs" />
+    <Compile Remove="Dialogos\frmRangoFechas.cs" />
+    <Compile Remove="Dialogos\frmRangoFechas.Designer.cs" />
+    <Compile Remove="Dialogos\frmSeleccionFecha.cs" />
+    <Compile Remove="Dialogos\frmSeleccionFecha.Designer.cs" />
   </ItemGroup>
 </Project>

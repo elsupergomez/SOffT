@@ -1,86 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProjectGuid>{FE433B1A-3397-45FC-88C4-FB80ECAF5849}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
+    <AssemblyKeyContainerName />
     <AssemblyName>Eval3</AssemblyName>
     <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
     <OptionStrict>On</OptionStrict>
     <RootNamespace>Eval3</RootNamespace>
     <StartupObject>Eval3.%28None%29</StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
+    <FileUpgradeFlags />
     <MyType>Windows</MyType>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <UpgradeBackupLocation />
+    <TargetFramework>net45</TargetFramework>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <ConfigurationOverrideFile />
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <AdditionalParameters />
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>Eval3.xml</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <PreBuildEvent />
+    <PostBuildEvent />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Eval3.xml</DocumentationFile>
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
     <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <DebugSymbols>true</DebugSymbols>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
-    <AdditionalParameters>
-    </AdditionalParameters>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Eval3.xml</DocumentationFile>
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
     <DefineDebug>false</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <Optimize>true</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
     <DebugType>none</DebugType>
-    <AdditionalParameters>
-    </AdditionalParameters>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <ItemGroup>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -91,46 +53,4 @@
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Evaluator.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EvalVariable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Globals.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="interfaces\iEvalValue.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="interfaces\iVariableBag.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="opCode.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Parser.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tokenizer.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VariableNotFoundException.vb">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="My Project\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>

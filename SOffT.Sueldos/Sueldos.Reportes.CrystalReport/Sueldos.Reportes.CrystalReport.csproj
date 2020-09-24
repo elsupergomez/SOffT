@@ -1,18 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F462BE9D-90D3-4CD9-A097-BE0195A5D460}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sueldos.Reportes.CrystalReport</RootNamespace>
-    <AssemblyName>Sueldos.Reportes.CrystalReport</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,20 +17,19 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyTitle>Sueldos.Reportes.CrystalReport</AssemblyTitle>
+    <Company>Postres Balcarce S.A.</Company>
+    <Product>Sueldos.Reportes.CrystalReport</Product>
+    <Copyright>© Postres Balcarce S.A. 2010</Copyright>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -50,227 +38,221 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CDNovedadesDeLiquidacion.cs">
+    <Compile Update="CDNovedadesDeLiquidacion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CDNovedadesDeLiquidacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CDReporteBapro.cs">
+    <Compile Update="CDReporteBapro.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CDReporteBapro.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAcumuladosPorTipo.cs">
+    <Compile Update="CRAcumuladosPorTipo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAcumuladosPorTipo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAnticiposPorLegajo.cs">
+    <Compile Update="CRAnticiposPorLegajo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAnticiposPorLegajo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAnticiposPorTipo.cs">
+    <Compile Update="CRAnticiposPorTipo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAnticiposPorTipo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAnticipoVale.cs">
+    <Compile Update="CRAnticipoVale.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAnticipoVale.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAusencias.cs">
+    <Compile Update="CRAusencias.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAusencias.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRCamposEmpleado.cs">
+    <Compile Update="CRCamposEmpleado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRCamposEmpleado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRConceptos.cs">
+    <Compile Update="CRConceptos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRConceptos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CREmpleadosPorFechaDeJubilacion.cs">
+    <Compile Update="CREmpleadosPorFechaDeJubilacion.cs">
       <DependentUpon>CREmpleadosPorFechaDeJubilacion.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CRAsientoDeSueldo.cs">
+    <Compile Update="CRAsientoDeSueldo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAsientoDeSueldo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAsientoDeSueldoPorCentroCosto.cs">
+    <Compile Update="CRAsientoDeSueldoPorCentroCosto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAsientoDeSueldoPorCentroCosto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRAusenciasPorTipo.cs">
+    <Compile Update="CRAusenciasPorTipo.cs">
       <DependentUpon>CRAusenciasPorTipo.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CRAusenciasPorEmpleado.cs">
+    <Compile Update="CRAusenciasPorEmpleado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRAusenciasPorEmpleado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CREmpleado.cs">
+    <Compile Update="CREmpleado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CREmpleado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRHorarios.cs">
+    <Compile Update="CRHorarios.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRHorarios.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRHorasExtras.cs">
+    <Compile Update="CRHorasExtras.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRHorasExtras.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRLiquidacionesNetosPorFormaDePago.cs">
+    <Compile Update="CRLiquidacionesNetosPorFormaDePago.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRLiquidacionesNetosPorFormaDePago.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRLiquidacionesNetosPorLegajo.cs">
+    <Compile Update="CRLiquidacionesNetosPorLegajo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRLiquidacionesNetosPorLegajo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRLiquidacionesNetosPorLegajoParaAcreditacionBancaria.cs">
+    <Compile Update="CRLiquidacionesNetosPorLegajoParaAcreditacionBancaria.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRLiquidacionesNetosPorLegajoParaAcreditacionBancaria.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRLiquidacionesParaRecibosBorrador.cs">
+    <Compile Update="CRLiquidacionesParaRecibosBorrador.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRLiquidacionesParaRecibosBorrador.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRLiquidacionesTotalesPorConcepto.cs">
+    <Compile Update="CRLiquidacionesTotalesPorConcepto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRLiquidacionesTotalesPorConcepto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRListaDeEmpleados.cs">
+    <Compile Update="CRListaDeEmpleados.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRListaDeEmpleados.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRecibosSueldo-Nuevo.cs">
+    <Compile Update="CRRecibosSueldo-Nuevo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRecibosSueldo-Nuevo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRecibosSueldo.cs">
+    <Compile Update="CRRecibosSueldo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRecibosSueldo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRecibosSueldoDOG.cs">
+    <Compile Update="CRRecibosSueldoDOG.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRecibosSueldoDOG.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRelojFichadasEntreFechas.cs">
+    <Compile Update="CRRelojFichadasEntreFechas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRelojFichadasEntreFechas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRelojFichadasPorRelojEntreFechas.cs">
+    <Compile Update="CRRelojFichadasPorRelojEntreFechas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRelojFichadasPorRelojEntreFechas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRReporteBapro.cs">
+    <Compile Update="CRReporteBapro.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRReporteBapro.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRRubricasLibroLey.cs">
+    <Compile Update="CRRubricasLibroLey.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRRubricasLibroLey.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRSindicatos.cs">
+    <Compile Update="CRSindicatos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRSindicatos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CRTablaAsistencia.cs">
+    <Compile Update="CRTablaAsistencia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRTablaAsistencia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DSReportes.Designer.cs">
+    <Compile Update="DSReportes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSReportes.xsd</DependentUpon>
     </Compile>
-    <Compile Include="frmReportes.Designer.cs">
+    <Compile Update="frmReportes.Designer.cs">
       <DependentUpon>FrmReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CRReloj.cs">
+    <Compile Update="CRReloj.cs">
       <DependentUpon>CRReloj.rpt</DependentUpon>
       <SubType>Component</SubType>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="DSReportes.cs">
+    <Compile Update="DSReportes.cs">
       <DependentUpon>DSReportes.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ReportesCreador.cs" />
-    <Compile Include="FrmReportes.cs">
+    <Compile Update="FrmReportes.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -307,7 +289,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRRecibosSueldo-Nuevo.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReportes.resx">
+    <EmbeddedResource Update="frmReportes.resx">
       <DependentUpon>FrmReportes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -425,41 +407,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Compile Remove="ConsultaLiquidacionDetalle.cs" />
+    <Compile Remove="Copy of CRRecibosSueldo.cs" />
+    <Compile Remove="CRLiquidacionesNetoPorFormaDePago.cs" />
+    <Compile Remove="CRLiquidacionesNetoPorLegajo.cs" />
+    <Compile Remove="CRLiquidacionesNetoPorLegajoParaAcreditacionBancaria.cs" />
+    <Compile Remove="CRLiquidacionesPorFormaDePago.cs" />
+    <Compile Remove="CRReporteAnticiposPorAnioMes.cs" />
+    <Compile Remove="CRRubricaLibroLey.cs" />
+    <Compile Remove="FrmFichadas.cs" />
+    <Compile Remove="FrmFichadas.Designer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
