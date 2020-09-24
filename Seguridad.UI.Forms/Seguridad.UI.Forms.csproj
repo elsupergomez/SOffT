@@ -5,19 +5,11 @@
     <TargetZone>LocalIntranet</TargetZone>
     <GenerateManifests>false</GenerateManifests>
     <SignManifests>false</SignManifests>
-    <FileUpgradeFlags />
-    <UpgradeBackupLocation />
     <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Seguridad.UI.Forms</AssemblyTitle>
     <Company>Hamekoz</Company>
     <Product>Seguridad</Product>
     <Copyright>© Hamekoz 2008</Copyright>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Hamekoz.Data" Version="1.0.0" />

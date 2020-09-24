@@ -1,22 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <FileUpgradeFlags />
-    <UpgradeBackupLocation />
     <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Sofft.UI.Forms</AssemblyTitle>
     <Company>SOffT</Company>
     <Product>Sofft.UI.Forms</Product>
     <Copyright>Copyright © SOffT 2010</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Hamekoz.Data" Version="1.0.0" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Configuration" />

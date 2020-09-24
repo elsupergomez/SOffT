@@ -3,8 +3,6 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Reloj.UI.Forms.Program</StartupObject>
     <ApplicationIcon>clock.ico</ApplicationIcon>
-    <FileUpgradeFlags />
-    <UpgradeBackupLocation />
     <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>Reloj.UI.Forms</AssemblyTitle>
     <Company>SOffT</Company>
@@ -13,13 +11,6 @@
     <Deterministic>false</Deterministic>
     <AssemblyVersion>2.2.1.*</AssemblyVersion>
     <FileVersion>2.2.1.*</FileVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug</OutputPath>
-    <Commandlineparameters>1</Commandlineparameters>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

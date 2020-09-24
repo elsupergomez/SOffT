@@ -23,14 +23,6 @@
     <Product>Sueldos.Reportes.CrystalReport</Product>
     <Copyright>© Postres Balcarce S.A. 2010</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />

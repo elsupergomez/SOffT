@@ -10,22 +10,11 @@
     <FileVersion>1.0.*</FileVersion>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <OutputPath>bin\Release</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.86.0" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.5" />
-    <PackageReference Include="Hamekoz.Data" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SOffT.Sueldos\Sueldos.Core\Sueldos.Core.csproj" />
-    <ProjectReference Include="..\..\..\hamekoz-sharp\Hamekoz.Data\Hamekoz.Data.csproj" />
   </ItemGroup>
 </Project>
